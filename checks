@@ -1,0 +1,3 @@
+Vagrantfile:vagrant validate
+*.yml:yamllint *.yml
+Makefile:make --dry-run

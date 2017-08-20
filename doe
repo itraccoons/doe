@@ -1,0 +1,32 @@
+#!/bin/sh
+
+RED='\033[0;36m'	# Cyan color 
+NC='\033[0m'		# No Color
+
+[ -d ~/.doe ] || ( mkdir ~/.doe && curl -fsSL https://doe.cloud/checks -o ~/.doe/checks )
+
+IFS=$'\r\n' checks=($(cat ~/.doe/checks))
+
+
+do_check() {
+    IFS=':' a=($1)
+    set +f $a
+    set -f $a
+    if [ -f $1 ]
+    then
+	echo "${RED}${a[0]} detected ${NC}"
+	sh -c "${a[1]}"
+    fi
+}
+
+
+
+case $1 in
+	verify)
+		set -f
+		for c in ${checks[@]}; do do_check "${c}"; done
+		;;
+	help)
+		echo HELP
+		;;
+esac

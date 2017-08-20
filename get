@@ -1,0 +1,14 @@
+#!/bin/sh
+set -e
+
+# This script is meant for quick & easy install via:
+#   $ curl -fsSL https://doe.cloud/get | sudo -H sh
+
+do_install() {
+    sh_c='sh -c'
+
+    $sh_c "curl -fsSL https://doe.cloud/doe | install -m 755 doe /usr/local/bin"
+    $sh_c "pip install yamllint"
+}
+
+do_install
