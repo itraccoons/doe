@@ -1,12 +1,12 @@
 #!/bin/sh
 
+DOE_CHECKS=~/.doe/checks
 RED='\033[0;36m'	# Cyan color 
 NC='\033[0m'		# No Color
 
-[ -d ~/.doe ] || ( mkdir ~/.doe && curl -fsSL https://doe.cloud/checks -o ~/.doe/checks )
+[ -d ~/.doe ] || ( mkdir ~/.doe && curl -fsSL https://doe.cloud/checks -o ${DOE_CHECKS})
 
-IFS=$'\r\n' checks=($(cat ~/.doe/checks))
-
+IFS=$'\r\n' checks=($(cat ${DOE_CHECKS}))
 
 do_check() {
     IFS=':' a=($1)
@@ -19,14 +19,17 @@ do_check() {
     fi
 }
 
-
-
-case $1 in
-	verify)
+case ${1:-verify} in
+	list) # Print all checks
+		cut -d':' -f1 ${DOE_CHECKS}
+		;;
+	verify) # Verify all known environments
 		set -f
 		for c in ${checks[@]}; do do_check "${c}"; done
+		exit 0
 		;;
-	help)
-		echo HELP
+	help|*) # Print this help
+		echo "Usage:\n\tdoe\n\tdoe <command>\n\nCommnads:"
+		grep ") #[ ]" $0 | sed "s/) #/$(echo "\t")/g"
 		;;
 esac
