@@ -20,6 +20,8 @@ do_check() {
 }
 
 case ${1:-verify} in
+	box) # hdfkhaj
+		;;
 	list) # Print all checks
 		cut -d':' -f1 ${DOE_CHECKS}
 		;;

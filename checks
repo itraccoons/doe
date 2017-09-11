@@ -1,3 +1,5 @@
 Vagrantfile:vagrant validate
+*.tf:terraform validate
+*.tf.json:terraform validate
 *.yml:yamllint *.yml
 Makefile:make --dry-run
