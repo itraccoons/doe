@@ -1,4 +1,7 @@
-# Quickstart
+### Project: DevOps Environment (DOE)
+For now it's just draft of my help tool for quick verifying/validating configuration files and increasing perfomance my automating routing tasks.
+
+### Quickstart
 
 curl -fsSL https://doe.cloud/get | sudo -H sh
 
