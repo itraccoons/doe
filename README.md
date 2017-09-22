@@ -1,5 +1,5 @@
 ### Project: DevOps Environment (DOE)
-For now it's just draft of my help tool for quick verifying/validating configuration files and increasing perfomance my automating routing tasks.
+For now it's just draft of my help tool for quick verifying/validating configuration files and increasing perfomance by automating routing tasks.
 
 ### Quickstart
 
