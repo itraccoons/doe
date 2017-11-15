@@ -31,11 +31,11 @@ case ${1:-verify} in
 		for c in ${checks[@]}; do do_check "${c}"; done
 		exit 0
 		;;
-	vagrant) # Vagrant module
+	vagrant) # doe vagrant module commands
 		source ${DOE_HOME}/doe.vagrant.sh ${2}
 		;;
 	help|*) # Print this help
-		echo "Usage:\n\tdoe\n\tdoe <command>\n\nCommnads:"
-		grep ") #[ ]" $0 | sed "s/) #/$(echo "\t")/g"
+		echo "Usage:\n\tdoe\n\tdoe  <command>\n\nCommnads:"
+		grep ") #[ ]" $BASH_SOURCE | sed "s/) #/$(echo "\t")/g"
 		;;
 esac
