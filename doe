@@ -1,5 +1,6 @@
 #!/bin/sh
 
+DOE_HOME=~/.doe
 DOE_CHECKS=~/.doe/checks
 RED='\033[0;36m'	# Cyan color 
 NC='\033[0m'		# No Color
@@ -29,6 +30,9 @@ case ${1:-verify} in
 		set -f
 		for c in ${checks[@]}; do do_check "${c}"; done
 		exit 0
+		;;
+	vagrant) # Vagrant module
+		source ${DOE_HOME}/doe.vagrant.sh ${2}
 		;;
 	help|*) # Print this help
 		echo "Usage:\n\tdoe\n\tdoe <command>\n\nCommnads:"
