@@ -1,38 +1,14 @@
 #!/bin/sh
 
-DOE_HOME=~/.doe
-DOE_CHECKS=~/.doe/checks
-RED='\033[0;36m'	# Cyan color 
-NC='\033[0m'		# No Color
-
-[ -d ~/.doe ] || ( mkdir ~/.doe && curl -fsSL https://doe.cloud/checks -o ${DOE_CHECKS})
-
-IFS=$'\r\n' checks=($(cat ${DOE_CHECKS}))
-
-do_check() {
-    IFS=':' a=($1)
-    set +f $a
-    set -f $a
-    if [ -f $1 ]
-    then
-	echo "${RED}${a[0]} detected ${NC}"
-	sh -c "${a[1]}"
-    fi
-}
+#DOE_HOME=~/.doe
+source  ~/.doe/doe.presets
 
 case ${1:-verify} in
-	box) # hdfkhaj
-		;;
-	list) # Print all checks
-		cut -d':' -f1 ${DOE_CHECKS}
-		;;
 	verify) # Verify all known environments
-		set -f
-		for c in ${checks[@]}; do do_check "${c}"; done
-		exit 0
+		source ${DOE_HOME}/doe.verify.sh ${2:-all}
 		;;
 	vagrant) # doe vagrant module commands
-		source ${DOE_HOME}/doe.vagrant.sh ${2}
+		source ${DOE_HOME}/doe.vagrant.sh ${2:-help}
 		;;
 	help|*) # Print this help
 		echo "Usage:\n\tdoe\n\tdoe  <command>\n\nCommnads:"

@@ -1,0 +1,5 @@
+#!/bin/sh
+
+DOE_HOME=~/.doe
+RED='\033[0;31m'	# Cyan color 
+NC='\033[0m'		# No Color
