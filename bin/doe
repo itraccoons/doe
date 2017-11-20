@@ -1,0 +1,26 @@
+#!/bin/sh
+
+DOE_HOME=~/.doe
+DOE_MODULES=$DOE_HOME/lib
+RED='\033[0;31m'	# Cyan color 
+NC='\033[0m'		# No Color
+
+call_module()
+{
+    source ${DOE_MODULES}/${1} ${2:-help}
+}
+
+case ${1:-verify} in
+	verify) # Verify all known environments
+		call_module verify ${2:-all}
+		;;
+	vagrant) # "doe" vagrant module commands
+		call_module $1 $2
+		;;
+	gcloud)	# "doe" Google Cloud Platform module commands
+		call_module $1 $2
+		;;
+	help|*) # Print this help
+		call_module help $BASH_SOURCE
+		;;
+esac
