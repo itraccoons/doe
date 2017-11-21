@@ -1,7 +1,11 @@
 #!/bin/sh
 
-DOE_HOME=~/.doe
-DOE_MODULES=$DOE_HOME/lib
+DOE_VER=0.1
+DOE_DIR=doe
+DOE_BASEDIR=~
+DOE_HOMEDIR=${DOE_BASEDIR}/$DOE_DIR
+DOE_TMPDIR=$DOE_HOMEDIR/tmp
+DOE_MODULES=$DOE_HOMEDIR/lib
 RED='\033[0;31m'	# Cyan color 
 NC='\033[0m'		# No Color
 
@@ -16,27 +20,30 @@ CALL_FUNCTION='call_doe_module $(basename $BASH_SOURCE).$1'
 #	eval ${HELP}
 HELP='call_doe_module help $BASH_SOURCE'
 
-
 # Call module and functions files with  additional parametr
 call_doe_module()
 {
-    source ${DOE_MODULES}/${1} ${2:-help}
+    . ${DOE_MODULES}/${1} ${2:-help}
 }
 
-
-
 case ${1:-verify} in
+	.self) # Make yourself module
+		eval ${CALL_MODULE}
+		;;
 	verify) # Verify all known environments
 		call_doe_module verify ${2:-all}
 		;;
-	vagrant) # "doe" vagrant module commands
+	vagrant) # vagrant module commands
 		eval ${CALL_MODULE}
 		;;
-	gcloud)	# "doe" Google Cloud Platform module commands
+	gcloud) # Google Cloud Platform module commands
+		eval ${CALL_MODULE}
+		;;
+	version) # Show version
 		eval ${CALL_MODULE}
 		;;
 	comp)
-		echo "verify vagrant gcloud help"
+		echo "verify vagrant gcloud help .self version"
 		;;
 	help|*) # Print this help
 		eval ${HELP}
