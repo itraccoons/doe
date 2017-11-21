@@ -1,0 +1,4 @@
+#!/bin/sh
+
+[ -d ~/.doe/tmp ] || ( mkdir -p ~/.doe/tmp/ubuntu )
+sh -c 'cd ~/.doe/tmp/ubuntu && vagrant init ubuntu/xenial64 --minimal --force && vagrant up && vagrant ssh'

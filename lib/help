@@ -1,0 +1,8 @@
+#!/bin/sh
+
+CMD="$(basename $0)"
+
+[ $0 = $1 ] || CMD+=" $(basename $1)"
+
+echo "Usage:\n\t$CMD <subcommand>\n\nSubcommnads:"
+grep ") #[ ]" $1 | sed "s/) #/$(echo "\t")/g"
