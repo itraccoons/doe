@@ -1,0 +1,12 @@
+#!/bin/sh
+set -e
+
+[ -d ${DOE_BACKUPDIR} ] && rm -r ${DOE_BACKUPDIR}
+ 
+mkdir -p  ${DOE_BACKUPDIR}
+
+cd ~
+
+mv ${DOE_HOMEDIR}/* ${DOE_BACKUPDIR}
+
+curl -fsSL https://doe.cloud/get | sh -

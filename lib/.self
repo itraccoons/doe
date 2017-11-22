@@ -1,14 +1,17 @@
 #!/bin/sh
 
 case $1 in
+	init)
+		eval ${CALL_FUNCTION}
+		;;
+	update)
+		eval ${CALL_FUNCTION}
+		;;
 	release) # Create doe_latest.tar.gz release
 		eval ${CALL_FUNCTION}
 		;;
-	install)
-		eval ${CALL_FUNCTION}
-		;;
 	comp)
-		echo "release install help"
+		echo "init update release help"
 		;;
 	help|*) # Print this help
 		eval ${HELP}

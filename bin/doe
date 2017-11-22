@@ -1,4 +1,5 @@
 #!/bin/sh
+set -e
 
 DOE_VER=0.1
 DOE_DIR=doe
@@ -6,6 +7,8 @@ DOE_BASEDIR=~
 DOE_HOMEDIR=${DOE_BASEDIR}/$DOE_DIR
 DOE_TMPDIR=$DOE_HOMEDIR/tmp
 DOE_MODULES=$DOE_HOMEDIR/lib
+DOE_BACKUPDIR=$DOE_HOMEDIR/.install/.backup
+
 RED='\033[0;31m'	# Cyan color 
 NC='\033[0m'		# No Color
 

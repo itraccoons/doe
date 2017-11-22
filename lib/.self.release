@@ -6,5 +6,6 @@ DOE_RELEASE="doe_latest.tar.gz"
 
 tar	--exclude '.git' \
 	--exclude '.gitignore' \
+	--exclude '.install' \
 	--exclude ${DOE_RELEASE} \
 	-zcvf ${DOE_TMPDIR}/${DOE_RELEASE} -C ${DOE_BASEDIR} ${DOE_DIR}
