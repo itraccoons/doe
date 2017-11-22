@@ -1,0 +1,5 @@
+#!/bin/sh
+
+find ~ -name .vagrant -exec rm -dr {} +
+vagrant global-status --prune
+killall VBoxHeadless

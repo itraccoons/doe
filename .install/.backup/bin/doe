@@ -12,10 +12,8 @@ DOE_BACKUPDIR=$DOE_HOMEDIR/.install/.backup
 RED='\033[0;31m'	# Cyan color 
 NC='\033[0m'		# No Color
 
-CALL_MODULE='call_doe_module ${mod} $@'
-CALL_FUNCTION='call_doe_module ${mod}.$func $@'
-#CALL_MODULE='call_doe_module $1 $2'
-#CALL_FUNCTION='call_doe_module $(basename $BASH_SOURCE).$1'
+CALL_MODULE='call_doe_module $1 $2'
+CALL_FUNCTION='call_doe_module $(basename $BASH_SOURCE).$1'
 
 # Help printed for file where it was called ($BASH_SOURCE)
 # i.e.
@@ -28,20 +26,15 @@ HELP='call_doe_module help $BASH_SOURCE'
 # Call module and functions files with  additional parametr
 call_doe_module()
 {
-    m=$1
-    shift
-    . ${DOE_MODULES}/${m} ${@:-help}
+    . ${DOE_MODULES}/${1} ${2:-help}
 }
 
-mod=$1
-shift
-
-case ${mod:-verify} in
+case ${1:-verify} in
 	.self) # Make yourself module
 		eval ${CALL_MODULE}
 		;;
 	verify) # Verify all known environments
-		call_doe_module verify ${1:-all}
+		call_doe_module verify ${2:-all}
 		;;
 	vagrant) # vagrant module commands
 		eval ${CALL_MODULE}

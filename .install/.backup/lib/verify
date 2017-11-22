@@ -3,10 +3,7 @@
 VERIFY_CHECKS=$DOE_HOMEDIR/data/verify_checks
 #[ -d ~/.doe ] || ( mkdir ~/.doe && curl -fsSL https://doe.cloud/checks -o ${DOE_CHECKS})
 
-func=$1
-shift
-
-case "${func}" in
+case ${1} in
 	show) # Print all checks
 		eval ${CALL_FUNCTION}
 #		cut -d':' -f1 ${DOE_CHECKS}

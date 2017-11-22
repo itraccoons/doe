@@ -1,9 +1,6 @@
 #!/bin/sh
 
-func=$1
-shift
-
-case "${func}" in
+case $1 in
 	init) # Init gcloud
 		eval ${CALL_FUNCTION}
 		;;

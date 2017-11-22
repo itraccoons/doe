@@ -1,9 +1,6 @@
 #!/bin/sh
 
-func=$1
-shift
-
-case "${func}" in
+case $1 in
 	init)
 		eval ${CALL_FUNCTION}
 		;;
@@ -13,11 +10,8 @@ case "${func}" in
 	release) # Create doe_latest.tar.gz release
 		eval ${CALL_FUNCTION}
 		;;
-	version) # Show version
-		eval ${CALL_FUNCTION}
-		;;
 	comp)
-		echo "init update release version help"
+		echo "init update release help"
 		;;
 	help|*) # Print this help
 		eval ${HELP}
