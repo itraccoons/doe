@@ -1,25 +1,13 @@
-### Project: DevOps Environment (DOE)
-For now it's just draft of my help tool for quick verifying/validating configuration files and increasing perfomance by automating routing tasks.
+### Project: DevOps Environment or Do Experiments (DOE)
+
+Increasing perfomance by automating routing tasks.
 
 Platform: macOS
+(not fully POSIX compliant because some bashism inplace)
 
 ### Quickstart
 
 curl -fsSL https://doe.cloud/get | sudo -H sh
 
 ### Using DOE
-    $ doe
-    Usage:  
-	        doe
-            doe <command>
-
-    Commnads:
-	        list     Print all checks
-	        verify	 Verify all known environments
-	        help|*	 Print this help
-
-#### Dependencies
-* vagrant
-* terraform
-* yamllint
-* make
+    $ doe help
