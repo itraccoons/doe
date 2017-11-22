@@ -21,14 +21,14 @@ case "${mod:-verify}" in
 		eval "${CALL_MODULE}"
 		;;
 	version) # Show version
-		[ $1 = "comp" ] && exit 0
+		[ "$1" = "comp" ]] && exit 0
 		eval "${CALL_MODULE}"
 		;;
 	comp)
 		echo "verify vagrant gcloud help .self version"
 		;;
 	help|*) # Print this help
-		[ $1 = "comp" ] && exit 0
+		[ "$1" = "comp" ] && exit 0
 		eval "${HELP}"
 		;;
 esac

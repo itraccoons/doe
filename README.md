@@ -7,7 +7,12 @@ Platform: macOS
 
 ### Quickstart
 
-curl -fsSL https://doe.cloud/get | sudo -H sh
+cd ~ && git clone https://github.com/itraccoons/doe.git
+
+or
+
+curl -fsSL https://doe.cloud/get | sudo -H sh (broken now)
+
 
 ### Using DOE
     $ doe help
