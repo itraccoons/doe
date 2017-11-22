@@ -8,4 +8,4 @@ self_update()
     curl -fsSL "https://doe.cloud/get" | sh
 }
 
-#do_self_update
+#self_update
