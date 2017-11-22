@@ -24,7 +24,7 @@ CALL_FUNCTION='call_doe_module ${mod}.$func $@'
 #	doe gcloud help	- print help for module file gcloud
 # Called as:
 #	eval ${HELP}
-HELP='call_doe_module help $BASH_SOURCE'
+HELP='call_doe_module help ${BASH_SOURCE[0]}'
 
 # Call module and functions files with  additional parametr
 call_doe_module()
