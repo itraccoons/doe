@@ -5,4 +5,4 @@ gcloud_init()
     echo "gcloud.init + $@"
 }
 
-glcoud_init
+gcloud_init
