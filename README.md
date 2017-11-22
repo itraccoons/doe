@@ -11,7 +11,7 @@ cd ~ && git clone https://github.com/itraccoons/doe.git
 
 or
 
-curl -fsSL https://doe.cloud/get | sudo -H sh (broken now)
+curl -fsSL https://doe.cloud/get | sh (broken now)
 
 
 ### Using DOE

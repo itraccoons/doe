@@ -5,7 +5,7 @@ self_update()
     rm -rf "${DOE_BACKUPDIR}"
     mkdir -p "${DOE_BACKUPDIR}"
     mv "${DOE_HOMEDIR}"/* "${DOE_BACKUPDIR}"
-    curl -fsSL https://doe.cloud/get | sh
+    curl -fsSL "https://doe.cloud/get" | sh
 }
 
 #do_self_update
