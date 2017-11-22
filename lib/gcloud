@@ -5,12 +5,12 @@ shift
 
 case "${func}" in
 	init) # Init gcloud
-		eval ${CALL_FUNCTION}
+		eval "${CALL_FUNCTION}"
 		;;
 	comp)
 		echo "init help"
 		;;
 	help|*) # Print this help
-		eval ${HELP}
+		eval "${HELP}"
 		;;
 esac

@@ -1,6 +1,6 @@
 #!/bin/sh
 
-_doe()
+_doe_completion()
 {
     local cur prev
     cur=${COMP_WORDS[COMP_CWORD]}
@@ -19,4 +19,4 @@ _doe()
     esac
 }
 
-complete -F _doe doe
+complete -F _doe_completion doe

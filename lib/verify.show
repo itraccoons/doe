@@ -1,3 +1,10 @@
 #!/bin/sh
 
-cut -d':' -f1 ${VERIFY_CHECKS}
+verify_show_checks()
+{
+
+    VERIFY_CHECKS=$DOE_HOMEDIR/data/verify_checks
+    cut -d':' -f1 ${VERIFY_CHECKS}
+}
+
+verify_show_checks

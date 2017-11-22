@@ -1,1 +1,8 @@
-echo "gcloud.init"
+#!/bin/sh
+
+gcloud_init()
+{
+    echo "gcloud.init + $@"
+}
+
+glcoud_init

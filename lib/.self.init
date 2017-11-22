@@ -1,0 +1,30 @@
+#!/bin/sh
+
+add_to_bash_profile()
+{
+    bash_profile="$HOME"/.bash_profile
+
+    [ -f "$bash_profile" ] || touch "$bash_profile"
+
+    if ! grep -qF "$1" "$bash_profile"
+    then
+	echo "\n$1" >> "$bash_profile"
+	echo ".bash_profile: $1"
+    fi
+}
+
+self_init_path()
+{
+    string=$(echo "if [ -f '$HOME/$DOE_DIR/include/path.bash.inc' ]; then source '$HOME/$DOE_DIR/include/path.bash.inc'; fi")
+    add_to_bash_profile "$string"
+}
+
+self_init_completion()
+{
+    string=$(echo "if [ -f '$HOME/$DOE_DIR/include/completion.bash.inc' ]; then source '$HOME/$DOE_DIR/include/completion.bash.inc'; fi")
+    add_to_bash_profile "$string"
+}
+
+
+self_init_path
+self_init_completion
