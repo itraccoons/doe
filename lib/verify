@@ -1,0 +1,23 @@
+#!/bin/sh
+
+VERIFY_CHECKS=$DOE_HOMEDIR/data/verify_checks
+#[ -d ~/.doe ] || ( mkdir ~/.doe && curl -fsSL https://doe.cloud/checks -o ${DOE_CHECKS})
+
+func=$1
+shift
+
+case "${func}" in
+	show) # Print all checks
+		eval ${CALL_FUNCTION}
+#		cut -d':' -f1 ${DOE_CHECKS}
+		;;
+	all) # Verify all known environments
+		eval ${CALL_FUNCTION}
+		;;
+	comp)
+		echo "show all help"
+		;;
+	help|*) # Print this help
+		eval ${HELP}
+		;;
+esac

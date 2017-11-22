@@ -1,0 +1,35 @@
+#!/bin/sh
+
+set -e
+
+DOE_VER=0.1
+DOE_DIR=doe
+DOE_BASEDIR=~
+DOE_HOMEDIR=${DOE_BASEDIR}/$DOE_DIR
+DOE_TMPDIR=$DOE_HOMEDIR/tmp
+DOE_MODULES=$DOE_HOMEDIR/lib
+DOE_BACKUPDIR=$DOE_HOMEDIR/.install/.backup
+
+RED='\033[0;31m'	# Cyan color 
+NC='\033[0m'		# No Color
+
+CALL_MODULE='call_doe_module ${mod} $@'
+CALL_FUNCTION='call_doe_module ${mod}.$func $@'
+#CALL_MODULE='call_doe_module $1 $2'
+#CALL_FUNCTION='call_doe_module $(basename $BASH_SOURCE).$1'
+
+# Help printed for file where it was called ($BASH_SOURCE)
+# i.e.
+#	doe help	- print help for main file doe
+#	doe gcloud help	- print help for module file gcloud
+# Called as:
+#	eval ${HELP}
+HELP='call_doe_module help ${BASH_SOURCE[0]}'
+
+# Call module and functions files with  additional parametr
+call_doe_module()
+{
+    m=$1
+    shift
+    . ${DOE_MODULES}/${m} ${@:-help}
+}

@@ -2,13 +2,17 @@
 set -e
 
 # This script is meant for quick & easy install via:
-#   $ curl -fsSL https://doe.cloud/get | sudo -H sh
+#   $ curl -fsSL https://doe.cloud/get | sh
 
-do_install() {
+do_install()
+{
     sh_c='sh -c'
 
-    $sh_c "curl -fsSL https://doe.cloud/doe | install -m 755 doe /usr/local/bin"
-    $sh_c "pip install yamllint"
+    $sh_c "curl -fsSL https://doe.cloud/doe_latest.tar.gz | tar -xv -C ~"
+    $sh_c "~/doe/bin/doe .self init"
+
+#    $sh_c "curl -fsSL https://doe.cloud/doe_latest.tar.gz | install -m 755 doe /usr/local/bin"
+#    $sh_c "pip install yamllint"
 }
 
 do_install

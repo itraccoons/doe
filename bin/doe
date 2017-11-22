@@ -1,0 +1,34 @@
+#!/bin/sh
+
+set -e
+
+. ~/doe/include/doe_vars
+
+mod=$1
+shift
+
+case "${mod:-verify}" in
+	.self) # Make yourself module
+		eval "${CALL_MODULE}"
+		;;
+	verify) # Verify all known environments
+		call_doe_module verify "${1:-all}"
+		;;
+	vagrant) # vagrant module commands
+		eval "${CALL_MODULE}"
+		;;
+	gcloud) # Google Cloud Platform module commands
+		eval "${CALL_MODULE}"
+		;;
+	version) # Show version
+		[ $1 = "comp" ] && exit 0
+		eval "${CALL_MODULE}"
+		;;
+	comp)
+		echo "verify vagrant gcloud help .self version"
+		;;
+	help|*) # Print this help
+		[ $1 = "comp" ] && exit 0
+		eval "${HELP}"
+		;;
+esac

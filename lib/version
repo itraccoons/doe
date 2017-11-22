@@ -1,0 +1,3 @@
+#!/bin/sh
+
+echo "doe ${DOE_VER}"

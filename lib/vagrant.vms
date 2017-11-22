@@ -1,0 +1,8 @@
+#!/bin/sh
+
+echo ${RED}'Metadata:'${NC}
+find ~ -name .vagrant
+echo ${RED}'Vagrant global status:'${NC}
+vagrant global-status
+echo ${RED}'Running vboxes'${NC}
+ps x | grep VBoxHeadless
