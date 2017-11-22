@@ -4,7 +4,6 @@ _doe()
 {
     local cur prev
     cur=${COMP_WORDS[COMP_CWORD]}
-    prev=${COMP_WORDS[COMP_CWORD-1]}
 
     case ${COMP_CWORD} in
 	1)
