@@ -2,7 +2,8 @@
 
 set -e
 
-. ~/doe/include/doe_vars
+. ~/doe/include/doe.variables
+. ~/doe/include/doe.functions
 . ${DOE_CFGDIR}/doe.conf
 
 mod=$1
