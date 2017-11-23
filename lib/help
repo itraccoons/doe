@@ -1,8 +1,13 @@
 #!/bin/sh
 
-CMD="$(basename $0)"
+show_help()
+{
+    CMD="$(basename $0)"
 
-[ $0 = $1 ] || CMD+=" $(basename $1)"
+    [ $0 = $1 ] || CMD+=" $(basename $1)"
 
-echo "Usage:\n\t$CMD <command>\n\nCommnads:"
-grep ") #[ ]" $1 | sed "s/) #/$(echo "\t")/g"
+    echo "Usage:\n\t$CMD <command>\n\nCommnads:"
+    grep ") #[ ]" $1 | sed "s/) #/$(echo "\t")/g"
+}
+
+show_help $@

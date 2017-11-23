@@ -7,11 +7,11 @@ _doe_completion()
 
     case ${COMP_CWORD} in
 	1)
-		COMPREPLY=( $(compgen -W "$(~/doe/bin/doe comp)" -- $cur) )
+		COMPREPLY=( $(compgen -W "$(~/doe/bin/doe completion)" -- $cur) )
 		;;
 	2)
 		prev=${COMP_WORDS[COMP_CWORD-1]}
-		COMPREPLY=( $(compgen -W "$(~/doe/bin/doe $prev comp)" -- $cur) )
+		COMPREPLY=( $(compgen -W "$(~/doe/bin/doe $prev completion)" -- $cur) )
 		;;
 	*)
 		COMPREPLY=()

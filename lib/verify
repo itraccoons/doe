@@ -10,7 +10,7 @@ case "${func}" in
 	all) # Verify all known environments
 		eval "${CALL_FUNCTION}"
 		;;
-	comp)
+	completion)
 		echo "show all help"
 		;;
 	help|*) # Print this help

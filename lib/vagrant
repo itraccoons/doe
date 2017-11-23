@@ -16,7 +16,7 @@ case "${func}" in
 	latest) # Check vagrant updates
 		eval "${CALL_FUNCTION}"
 		;;
-	comp)
+	completion)
 		echo "ubuntu vms clean latest help"
 		;;
 	help|*) # Print this help

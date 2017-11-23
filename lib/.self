@@ -13,7 +13,7 @@ case "${func}" in
 	release) # Create doe_latest.tar.gz release
 		eval "${CALL_FUNCTION}"
 		;;
-	comp)
+	completion)
 		echo "init update release help"
 		;;
 	help|*) # Print this help

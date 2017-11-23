@@ -2,7 +2,12 @@
 
 set -e
 
+<<<<<<< HEAD
 . ~/doe/include/doe_vars
+=======
+. ~/doe/include/doe_variables
+. ~/doe/include/doe_functions
+>>>>>>> e6a621dc8a26b5bbaed8d2cc8b16efc1a94a298
 . ${DOE_CFGDIR}/doe.conf
 
 mod=$1
@@ -22,14 +27,14 @@ case "${mod:-verify}" in
 		eval "${CALL_MODULE}"
 		;;
 	version) # Show version
-		[ "$1" = "comp" ] && exit 0
+		eval "${NOCOMPLETION}"
 		eval "${CALL_MODULE}"
 		;;
-	comp)
+	completion)
 		echo "verify vagrant gcloud help .self version"
 		;;
 	help|*) # Print this help
-		[ "$1" = "comp" ] && exit 0
+		eval "${NOCOMPLETION}"
 		eval "${HELP}"
 		;;
 esac
