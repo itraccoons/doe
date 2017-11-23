@@ -1,8 +1,8 @@
 #!/bin/sh
 
-version()
+show_version()
 {
     echo "doe ${DOE_VER}"
 }
 
-version
+show_version

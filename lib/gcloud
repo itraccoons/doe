@@ -7,7 +7,7 @@ case "${func}" in
 	init) # Init gcloud
 		eval "${CALL_FUNCTION}"
 		;;
-	comp)
+	completion)
 		echo "init help"
 		;;
 	help|*) # Print this help
