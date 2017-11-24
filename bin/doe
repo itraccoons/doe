@@ -2,18 +2,70 @@
 
 set -e
 
-. ~/doe/include/doe.global.variables
-. ~/doe/include/doe.common.functions
+DOE_VER=0.1
+DOE_DIR=doe
+DOE_BASEDIR=~
+DOE_HOMEDIR=${DOE_BASEDIR}/$DOE_DIR
+DOE_CFGDIR=$DOE_HOMEDIR/etc
+DOE_TMPDIR=$DOE_HOMEDIR/.tmp
+DOE_MODDIR=$DOE_HOMEDIR/modules
+DOE_BACKUPDIR=$DOE_HOMEDIR/.install/.backup
+
+RED='\033[0;31m'	# Cyan color 
+NC='\033[0m'		# No Color
+
 . ${DOE_CFGDIR}/doe.conf
+
+# Call module and functions files with  additional parametr
+call_module()
+{
+    if [ -d "${DOE_MODDIR}/$1" ]
+    then
+	call_module_function $@  || echo "${RED}Usage:\n\tdoe $1 <function>\n\n\tfunctions = { $(list_module_functions $1) }${NC}" && exit 0
+    else
+	return 1
+    fi
+}
+
+call_module_function()
+{
+    if [ "$2" = "list-functions" ]
+    then
+	    list_module_functions $1
+	    return 0
+    else
+        m_f="${DOE_MODDIR}/$1/$1_$2"
+	shift 2
+
+	[ -f ${m_f} ] && . ${m_f} $@ || return 1
+    fi
+}
+
+list_modules()
+{
+    # Find all short filenames in directory with modules => string
+    echo "help $(cd $DOE_MODDIR; find * -type d -maxdepth 0 2>/dev/null  | tr '\n' ' ')"
+}
+
+list_module_functions()
+{
+    # $1 = module
+    echo "help $(cd $DOE_MODDIR/$1; find * -type f -maxdepth 0 2>/dev/null | cut -d'_' -f2 | tr '\n' ' ')"
+}
+
+
+################################################################################
+#
+# MAIN
+#
+################################################################################
 
 # if doe executed without any $arg => exec with default command
 if [ $# -eq 0 ]
 then
     eval "$0 ${default_command}"
-    
 else
     mod=$1
-    shift
 
     case ${mod} in
 	list-modules)
@@ -23,40 +75,9 @@ else
 		echo ${DOE_VER} && exit 0
 		;;
 	${mod})
-		call_module ${mod} $@
+		call_module $@ || echo "${RED}Usage:\n\tdoe <module>\n\n\tmodule = { $(list_modules) }${NC}"
     esac
 fi
 
 exit 0
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#case "${mod}" in
-#	help) # Print this help
-#		eval "${isNoFunctions}"
-#		show_help "${BASH_SOURCE[0]}"
-#		echo "\n\t\$mod = { $(list_modules)}"
-#		;;
-#	version) # Show version
-#		eval "${isNoFunctions}"
-#		show_version
-#		;;
-#	list-modules)
-#		list_modules
-#		;;
-#	$mod) # Run module
-#		call_module ${mod} $@ || eval "$0 help"
-#		;;
-#esac

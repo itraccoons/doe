@@ -1,0 +1,17 @@
+#!/bin/sh
+
+mod=$1
+func=$2
+shift 2
+
+case "${func}" in
+	list-functions)
+		list_module_functions ${mod}
+		;;
+	help) # Print this help
+		show_help "${BASH_SOURCE[0]}"
+		;;
+	${func}) # Init gcloud
+		call_module_function ${mod} ${func} $@ || echo "SHOW HELP"
+		;;
+esac
