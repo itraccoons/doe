@@ -10,21 +10,6 @@ mod=$1
 shift
 
 case "${mod:-verify}" in
-	.self) # Make yourself module
-		eval "${CALL_MODULE}"
-		;;
-	verify) # Verify all known environments
-		call_doe_module verify "${1:-all}"
-		;;
-	vagrant) # vagrant module commands
-		eval "${CALL_MODULE}"
-		;;
-	aws) # Google Cloud Platform module commands
-		eval "${CALL_MODULE}"
-		;;
-	gcloud) # Google Cloud Platform module commands
-		eval "${CALL_MODULE}"
-		;;
 	version) # Show version
 		eval "${NOCOMPLETION}"
 		show_version
@@ -32,8 +17,12 @@ case "${mod:-verify}" in
 	completion)
 		list_modules
 		;;
-	help|*) # Print this help
+	help) # Print this help
 		eval "${NOCOMPLETION}"
 		show_help "${BASH_SOURCE[0]}"
+		echo "\n\t\$mod = { $(list_modules)}"
+		;;
+	$mod) # Run module
+		eval "${CALL_MODULE}" || show_help "${BASH_SOURCE[0]}"
 		;;
 esac

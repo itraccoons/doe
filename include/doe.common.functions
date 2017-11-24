@@ -2,15 +2,13 @@
 
 list_modules()
 {
-    echo "help"
-    echo "$(cd $DOE_MODULES; find .* * -type f -maxdepth 0 2>/dev/null )"
+    echo "help $(cd $DOE_MODULES; find .* * -type f -maxdepth 0 2>/dev/null  | tr '\n' ' ')"
 }
 
 list_module_functions()
 {
     local m_f="$(basename $1)_*"
-    echo "help"
-    echo "$(cd $DOE_MODULES/functions; find ${m_f} -type f -maxdepth 0 2>/dev/null | cut -d'_' -f2 )"
+    echo "help $(cd $DOE_MODULES/functions; find ${m_f} -type f -maxdepth 0 2>/dev/null | cut -d'_' -f2 | tr '\n' ' ')"
 }
 
 show_version()
@@ -32,9 +30,12 @@ show_help()
 # Call module and functions files with  additional parametr
 call_module()
 {
-    local m=$1
+    local m="${DOE_MODULES}/$1"
     shift
-    . ${DOE_MODULES}/${m} ${@:-help}
+
+    [ -f ${m} ] || return 1
+
+    . ${m} ${@:-help}
 }
 
 CALL_MODULE='call_module ${mod} $@'

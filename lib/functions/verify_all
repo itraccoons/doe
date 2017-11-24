@@ -1,6 +1,6 @@
 #!/bin/sh
 
-#DOE_CHECKS=$DOE_HOMEDIR/data/verify_checks
+VERIFY_CHECKS=$DOE_HOMEDIR/etc/verify_checks
 
 IFS=$'\r\n' checks=($(cat ${VERIFY_CHECKS}))
 

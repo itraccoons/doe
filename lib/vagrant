@@ -20,6 +20,6 @@ case "${func}" in
 		list_module_functions "${BASH_SOURCE[0]}"
 		;;
 	help|*) # Print this help
-		eval "${HELP}"
+		show_help "${BASH_SOURCE[0]}"
 		;;
 esac

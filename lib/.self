@@ -17,7 +17,7 @@ case "${func}" in
 		eval "${CALL_FUNCTION}"
 		;;
 	completion)
-		list_module_functions "$(basename ${BASH_SOURCE[0]})"
+		list_module_functions "${BASH_SOURCE[0]}"
 		;;
 	help|*) # Print this help
 		show_help "${BASH_SOURCE[0]}"
