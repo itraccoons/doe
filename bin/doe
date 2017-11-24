@@ -6,10 +6,17 @@ set -e
 . ~/doe/include/doe.common.functions
 . ${DOE_CFGDIR}/doe.conf
 
+[ "$1" = "" ] && eval "$0 ${default_command}"
+
 mod=$1
 shift
 
-case "${mod:-verify}" in
+case "${mod}" in
+	help) # Print this help
+		eval "${NOCOMPLETION}"
+		show_help "${BASH_SOURCE[0]}"
+		echo "\n\t\$mod = { $(list_modules)}"
+		;;
 	version) # Show version
 		eval "${NOCOMPLETION}"
 		show_version
@@ -17,12 +24,7 @@ case "${mod:-verify}" in
 	completion)
 		list_modules
 		;;
-	help) # Print this help
-		eval "${NOCOMPLETION}"
-		show_help "${BASH_SOURCE[0]}"
-		echo "\n\t\$mod = { $(list_modules)}"
-		;;
 	$mod) # Run module
-		eval "${CALL_MODULE}" || show_help "${BASH_SOURCE[0]}"
+		eval "${CALL_MODULE}" || eval "$0 help"
 		;;
 esac
