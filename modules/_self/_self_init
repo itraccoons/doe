@@ -15,13 +15,13 @@ add_to_bash_profile()
 
 self_init_path()
 {
-    string=$(echo "if [ -f '$HOME/$DOE_DIR/include/path.bash.inc' ]; then source '$HOME/$DOE_DIR/include/path.bash.inc'; fi")
+    string=$(echo "if [ -f '$HOME/$DOE_DIR/path.bash.inc' ]; then source '$HOME/$DOE_DIR/path.bash.inc'; fi")
     add_to_bash_profile "$string"
 }
 
 self_init_completion()
 {
-    string=$(echo "if [ -f '$HOME/$DOE_DIR/include/completion.bash.inc' ]; then source '$HOME/$DOE_DIR/include/completion.bash.inc'; fi")
+    string=$(echo "if [ -f '$HOME/$DOE_DIR/completion.bash.inc' ]; then source '$HOME/$DOE_DIR/completion.bash.inc'; fi")
     add_to_bash_profile "$string"
 }
 
