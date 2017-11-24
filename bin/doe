@@ -23,7 +23,7 @@ call_module()
     # call "doe <module>" function. Print help if no such function in module. Stop execution
     if [ -d "${DOE_MODDIR}/$1" ]
     then
-	call_module_function $@  || echo "${RED}Usage:\n\tdoe $1 <function>\n\n\tfunctions = { $(list_module_functions $1) }${NC}" && exit 0
+	call_module_function "$@"  || echo "${RED}Usage:\n\tdoe $1 <function>\n\n\tfunctions = { $(list_module_functions $1) }${NC}" && exit 0
     else
 	return 1
     fi
@@ -33,13 +33,13 @@ call_module_function()
 {
     if [ "$2" = "list-functions" ]
     then
-	    list_module_functions $1
+	    list_module_functions "$1"
 	    return 0
     else
         m_f="${DOE_MODDIR}/$1/$1_$2"
 	shift 2
 
-	[ -f ${m_f} ] && . ${m_f} $@ || return 1
+	[ -f "${m_f}" ] && . "${m_f}" "$@" || return 1
     fi
 }
 
@@ -80,10 +80,10 @@ else					# else call "doe" module
 		list_modules		# show list of available modules for autocompetion
 		;;
 	version)			#  predefined module aka show_version()
-		echo "$(cat $DOE_CFGDIR/doe-release)"
+		cat $DOE_CFGDIR/doe-release
 		;;
 	$1)				# call "doe" module. Print help if no such module
-		call_module $@ || echo "${RED}Usage:\n\tdoe <module>\n\n\tmodule = { $(list_modules) }${NC}"
+		call_module "$@" || echo "${RED}Usage:\n\tdoe <module>\n\n\tmodule = { $(list_modules) }${NC}"
     esac
 fi
 
