@@ -7,9 +7,9 @@ case "${func}" in
 	init) # Initiate doe ( add PATH, autocompetion, etc...)
 		eval "${CALL_FUNCTION}"
 		;;
-	add-mod)
+	add-module)
+#		add_module_template
 		;;
-		
 	update)
 		eval "${CALL_FUNCTION}"
 		;;
@@ -17,10 +17,9 @@ case "${func}" in
 		eval "${CALL_FUNCTION}"
 		;;
 	completion)
-		list_module_functions "${BASH_SOURCE[0]}"
-#		echo "init update release help"
+		list_module_functions "$(basename ${BASH_SOURCE[0]})"
 		;;
 	help|*) # Print this help
-		eval "${HELP}"
+		show_help "${BASH_SOURCE[0]}"
 		;;
 esac

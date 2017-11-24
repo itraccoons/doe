@@ -2,7 +2,7 @@
 
 set -e
 
-. ~/doe/include/doe.variables
+. ~/doe/include/doe.global.variables
 . ~/doe/include/doe.common.functions
 . ${DOE_CFGDIR}/doe.conf
 
@@ -30,10 +30,10 @@ case "${mod:-verify}" in
 		show_version
 		;;
 	completion)
-		echo "aws verify vagrant gcloud help .self version"
+		list_modules
 		;;
 	help|*) # Print this help
 		eval "${NOCOMPLETION}"
-		eval "${HELP}"
+		show_help "${BASH_SOURCE[0]}"
 		;;
 esac

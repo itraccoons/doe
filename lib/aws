@@ -8,9 +8,9 @@ case "${func}" in
 		eval "${CALL_FUNCTION}"
 		;;
 	completion)
-		echo "init help"
+		list_module_functions "${BASH_SOURCE[0]}"
 		;;
 	help|*) # Print this help
-		eval "${HELP}"
+		show_help "${BASH_SOURCE[0]}"
 		;;
 esac
