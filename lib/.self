@@ -4,9 +4,12 @@ func=$1
 shift
 
 case "${func}" in
-	init)
+	init) # Initiate doe ( add PATH, autocompetion, etc...)
 		eval "${CALL_FUNCTION}"
 		;;
+	add-mod)
+		;;
+		
 	update)
 		eval "${CALL_FUNCTION}"
 		;;
@@ -14,7 +17,8 @@ case "${func}" in
 		eval "${CALL_FUNCTION}"
 		;;
 	completion)
-		echo "init update release help"
+		list_module_functions "${BASH_SOURCE[0]}"
+#		echo "init update release help"
 		;;
 	help|*) # Print this help
 		eval "${HELP}"

@@ -8,8 +8,18 @@ call_doe_module()
     . ${DOE_MODULES}/${m} ${@:-help}
 }
 
+list_module_functions()
+{
+    echo " help $(find $1_* -type f -execdir echo '{}' ';' | cut -d'_' -f2)"
+}
+
+show_version()
+{
+    echo "doe ${DOE_VER}"
+}
+
 CALL_MODULE='call_doe_module ${mod} $@'
-CALL_FUNCTION='call_doe_module ${mod}.$func $@'
+CALL_FUNCTION='call_doe_module ${mod}_$func $@'
 #CALL_MODULE='call_doe_module $1 $2'
 #CALL_FUNCTION='call_doe_module $(basename $BASH_SOURCE).$1'
 

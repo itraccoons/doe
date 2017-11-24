@@ -3,7 +3,7 @@
 set -e
 
 . ~/doe/include/doe.variables
-. ~/doe/include/doe.functions
+. ~/doe/include/doe.common.functions
 . ${DOE_CFGDIR}/doe.conf
 
 mod=$1
@@ -19,15 +19,18 @@ case "${mod:-verify}" in
 	vagrant) # vagrant module commands
 		eval "${CALL_MODULE}"
 		;;
+	aws) # Google Cloud Platform module commands
+		eval "${CALL_MODULE}"
+		;;
 	gcloud) # Google Cloud Platform module commands
 		eval "${CALL_MODULE}"
 		;;
 	version) # Show version
 		eval "${NOCOMPLETION}"
-		eval "${CALL_MODULE}"
+		show_version
 		;;
 	completion)
-		echo "verify vagrant gcloud help .self version"
+		echo "aws verify vagrant gcloud help .self version"
 		;;
 	help|*) # Print this help
 		eval "${NOCOMPLETION}"

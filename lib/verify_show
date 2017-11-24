@@ -6,4 +6,4 @@ verify_show_checks()
     cut -d':' -f1 ${checks}
 }
 
-verify_show_checks
+verify_show_checks $@

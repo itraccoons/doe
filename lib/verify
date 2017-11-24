@@ -11,7 +11,7 @@ case "${func}" in
 		eval "${CALL_FUNCTION}"
 		;;
 	completion)
-		echo "show all help"
+		list_module_functions "${BASH_SOURCE[0]}"
 		;;
 	help|*) # Print this help
 		eval "${HELP}"
