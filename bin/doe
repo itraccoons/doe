@@ -2,7 +2,6 @@
 
 set -e
 
-DOE_VER=0.1
 DOE_DIR=doe
 DOE_BASEDIR=~
 DOE_HOMEDIR=${DOE_BASEDIR}/$DOE_DIR
@@ -19,6 +18,9 @@ NC='\033[0m'		# No Color
 # Call module and functions files with  additional parametr
 call_module()
 {
+    # argv[1]=$1=module_name, argv[2]=$2=function_name, $@=all_args
+    # Check if directory ("module") exist
+    # call "doe <module>" function. Print help if no such function in module. Stop execution
     if [ -d "${DOE_MODDIR}/$1" ]
     then
 	call_module_function $@  || echo "${RED}Usage:\n\tdoe $1 <function>\n\n\tfunctions = { $(list_module_functions $1) }${NC}" && exit 0
@@ -43,38 +45,44 @@ call_module_function()
 
 list_modules()
 {
-    # Find all short filenames in directory with modules => string
-    echo "help $(cd $DOE_MODDIR; find * -type d -maxdepth 0 2>/dev/null  | tr '\n' ' ')"
+    # no_args
+    # Find all dirictories ("modules") in the directory with all modules
+    # Replace all newlines with space
+    # Add default modules
+    # return $string
+    echo "$(cd $DOE_MODDIR; find * -type d -maxdepth 0 2>/dev/null  | tr '\n' ' ')version help"
 }
 
 list_module_functions()
 {
-    # $1 = module
-    echo "help $(cd $DOE_MODDIR/$1; find * -type f -maxdepth 0 2>/dev/null | cut -d'_' -f2 | tr '\n' ' ')"
+    # argv[1] = $1 = module_name
+    # Find all files ("functions") in the module directory
+    # Cut module name
+    # Replace all newlines with space
+    # Add default functions
+    # return $string
+    echo "$(cd $DOE_MODDIR/$1; find * -type f -maxdepth 0 2>/dev/null | cut -d'_' -f2 | tr '\n' ' ')help"
 }
 
 
 ################################################################################
 #
-# MAIN
+# [raccoon1@amoeba:~]$ doe _self init
 #
 ################################################################################
 
-# if doe executed without any $arg => exec with default command
-if [ $# -eq 0 ]
+if [ $# -eq 0 ]				# if no args
 then
-    eval "$0 ${default_command}"
-else
-    mod=$1
-
-    case ${mod} in
-	list-modules)
-		list_modules
+    eval "$0 ${default_function}"	# re-exec "doe" with default function
+else					# else call "doe" module
+    case $1 in				# module = $1
+	list-modules)			# predefined module for autocompletion with <TAB><TAB>
+		list_modules		# show list of available modules for autocompetion
 		;;
-	version)
-		echo ${DOE_VER} && exit 0
+	version)			#  predefined module aka show_version()
+		echo "$(cat $DOE_CFGDIR/doe-release)"
 		;;
-	${mod})
+	$1)				# call "doe" module. Print help if no such module
 		call_module $@ || echo "${RED}Usage:\n\tdoe <module>\n\n\tmodule = { $(list_modules) }${NC}"
     esac
 fi
