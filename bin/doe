@@ -7,15 +7,27 @@ set -e
 . ${DOE_CFGDIR}/doe.conf
 
 # if doe executed without any $arg => exec with default command
-[ $# -eq 0 ] && eval "$0 ${default_command}" && exit 0
+if [ $# -eq 0 ]
+then
+    eval "$0 ${default_command}"
+    
+else
+    mod=$1
+    shift
 
-[ "$1" = "list-modules" ] && list_modules && exit 0
+    case ${mod} in
+	list-modules)
+		list_modules
+		;;
+	version)
+		echo ${DOE_VER} && exit 0
+		;;
+	${mod})
+		call_module ${mod} $@
+    esac
+fi
 
-mod=$1
-shift
-
-call_module ${mod} $@
-
+exit 0
 
 
 
