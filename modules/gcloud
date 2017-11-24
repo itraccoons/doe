@@ -4,10 +4,10 @@ func=$1
 shift
 
 case "${func}" in
-	info) # Show info about your AWS
+	init) # Init gcloud
 		eval "${CALL_FUNCTION}"
 		;;
-	completion)
+	list-functions)
 		list_module_functions "${BASH_SOURCE[0]}"
 		;;
 	help|*) # Print this help

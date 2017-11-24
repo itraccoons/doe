@@ -2,16 +2,15 @@
 
 _doe_completion()
 {
-    local cur prev
     cur=${COMP_WORDS[COMP_CWORD]}
 
     case ${COMP_CWORD} in
 	1)
-		COMPREPLY=( $(compgen -W "$(~/doe/bin/doe completion)" -- $cur) )
+		COMPREPLY=( $(compgen -W "$(~/doe/bin/doe list-modules)" -- $cur) )
 		;;
 	2)
-		prev=${COMP_WORDS[COMP_CWORD-1]}
-		COMPREPLY=( $(compgen -W "$(~/doe/bin/doe $prev completion)" -- $cur) )
+		module=${COMP_WORDS[COMP_CWORD-1]}
+		COMPREPLY=( $(compgen -W "$(~/doe/bin/doe $module list-functions)" -- $cur) )
 		;;
 	*)
 		COMPREPLY=()

@@ -16,7 +16,7 @@ case "${func}" in
 	release) # Create doe_latest.tar.gz release
 		eval "${CALL_FUNCTION}"
 		;;
-	completion)
+	list-functions)
 		list_module_functions "${BASH_SOURCE[0]}"
 		;;
 	help|*) # Print this help

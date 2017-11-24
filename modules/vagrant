@@ -4,13 +4,19 @@ func=$1
 shift
 
 case "${func}" in
-	show) # Print all checks
+	ubuntu) # Quick start ubuntu/xenial64
 		eval "${CALL_FUNCTION}"
 		;;
-	all) # Verify all known environments
+	vms) # Show all vagrant VMs info 
 		eval "${CALL_FUNCTION}"
 		;;
-	completion)
+	clean) # Clean all vagrant metadata
+		eval "${CALL_FUNCTION}"
+		;;
+	latest) # Check vagrant updates
+		eval "${CALL_FUNCTION}"
+		;;
+	list-functions)
 		list_module_functions "${BASH_SOURCE[0]}"
 		;;
 	help|*) # Print this help

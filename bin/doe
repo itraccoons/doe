@@ -6,25 +6,45 @@ set -e
 . ~/doe/include/doe.common.functions
 . ${DOE_CFGDIR}/doe.conf
 
-[ "$1" = "" ] && eval "$0 ${default_command}"
+# if doe executed without any $arg => exec with default command
+[ $# -eq 0 ] && eval "$0 ${default_command}" && exit 0
+
+[ "$1" = "list-modules" ] && list_modules && exit 0
 
 mod=$1
 shift
 
-case "${mod}" in
-	help) # Print this help
-		eval "${NOCOMPLETION}"
-		show_help "${BASH_SOURCE[0]}"
-		echo "\n\t\$mod = { $(list_modules)}"
-		;;
-	version) # Show version
-		eval "${NOCOMPLETION}"
-		show_version
-		;;
-	completion)
-		list_modules
-		;;
-	$mod) # Run module
-		eval "${CALL_MODULE}" || eval "$0 help"
-		;;
-esac
+call_module ${mod} $@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#case "${mod}" in
+#	help) # Print this help
+#		eval "${isNoFunctions}"
+#		show_help "${BASH_SOURCE[0]}"
+#		echo "\n\t\$mod = { $(list_modules)}"
+#		;;
+#	version) # Show version
+#		eval "${isNoFunctions}"
+#		show_version
+#		;;
+#	list-modules)
+#		list_modules
+#		;;
+#	$mod) # Run module
+#		call_module ${mod} $@ || eval "$0 help"
+#		;;
+#esac

@@ -2,13 +2,15 @@
 
 list_modules()
 {
-    echo "help $(cd $DOE_MODULES; find .* * -type f -maxdepth 0 2>/dev/null  | tr '\n' ' ')"
+    # Find all short filenames in directory with modules => string
+    echo "help $(cd $DOE_MODDIR; find .* * -type f -maxdepth 0 2>/dev/null  | tr '\n' ' ')"
 }
 
 list_module_functions()
 {
-    local m_f="$(basename $1)_*"
-    echo "help $(cd $DOE_MODULES/functions; find ${m_f} -type f -maxdepth 0 2>/dev/null | cut -d'_' -f2 | tr '\n' ' ')"
+    # $1 - 
+    m_f="$(basename $1)_*"
+    echo "help $(cd $DOE_MODDIR/functions; find ${m_f} -type f -maxdepth 0 2>/dev/null | cut -d'_' -f2 | tr '\n' ' ')"
 }
 
 show_version()
@@ -19,7 +21,7 @@ show_version()
 
 show_help()
 {
-    local cmd="$(basename $0)"
+    cmd="$(basename $0)"
 
     [ $0 = $1 ] || cmd+=" $(basename $1)"
 
@@ -30,7 +32,7 @@ show_help()
 # Call module and functions files with  additional parametr
 call_module()
 {
-    local m="${DOE_MODULES}/$1"
+    m="${DOE_MODDIR}/$1"
     shift
 
     [ -f ${m} ] || return 1
@@ -38,6 +40,6 @@ call_module()
     . ${m} ${@:-help}
 }
 
-CALL_MODULE='call_module ${mod} $@'
+#CALL_MODULE='call_module ${mod} $@'
 CALL_FUNCTION='call_module functions/${mod}_$func $@'
-NOCOMPLETION=' [ "$1" = "completion" ] && exit || continue'
+isNoFunctions=' [ "$1" = "completion" ] && exit || continue'

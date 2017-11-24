@@ -4,10 +4,13 @@ func=$1
 shift
 
 case "${func}" in
-	init) # Init gcloud
+	show) # Print all checks
 		eval "${CALL_FUNCTION}"
 		;;
-	completion)
+	all) # Verify all known environments
+		eval "${CALL_FUNCTION}"
+		;;
+	list-functions)
 		list_module_functions "${BASH_SOURCE[0]}"
 		;;
 	help|*) # Print this help
