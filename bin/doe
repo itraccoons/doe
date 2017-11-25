@@ -44,11 +44,10 @@ call_module_function()
 		;;
 	$2)
 		m_f="${DOE_MODDIR}/$1/$1.$2"
-#		shift 2
+		shift 2
 
 		if [ -f "${m_f}" ]
 		then
-		    shift
 		    . "${m_f}" "$@"
 		else
 		    return 1
