@@ -1,6 +1,6 @@
 #!/bin/sh
 
-self_update()
+_self_update()
 {
     rm -rf "${DOE_BACKUPDIR}"
     mkdir -p "${DOE_BACKUPDIR}"
@@ -13,7 +13,7 @@ self_update()
 if [ "${disable_self_update}" -eq "0" ]
 then
     echo "self_update"
-#    self_update $@
+#    _self_update "$@"
 else
     echo "doe.conf: disable_self_update=${disable_self_update}"
 fi
