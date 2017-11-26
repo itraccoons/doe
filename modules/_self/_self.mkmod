@@ -1,8 +1,0 @@
-#!/bin/sh
-
-_self_mkmod()
-{
-    echo $@
-}
-
-_self_mkmod "$@"

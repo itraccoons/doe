@@ -1,0 +1,44 @@
+#!/bin/sh
+
+# raccoon1@amoeba:~$ doe _self create -m docker -f create
+# result => ~/doe/module/docker/docker_create
+
+OPTIONS="m:f:"
+
+_self_create()
+{
+
+    while getopts ${OPTIONS} opt
+    do
+	case $opt in
+	    $opt)
+		eval arg_opt_$opt=${OPTARG}
+		;;
+	esac
+    done
+
+#    declare -p | grep arg_opt_
+
+    if [ x$arg_opt_m = x ]
+    then
+	echo "no -m option"
+	exit 1
+    fi
+
+    mod=${arg_opt_m}
+    func=${arg_opt_f:-help}
+    func_file=$DOE_MODDIR/$mod/$mod.$func
+
+    if [ -e $func_file ]
+    then
+	echo "${RED}$func_file"
+	echo "Already exist${NC}"
+    else
+	echo "Module:\t$mod"
+	echo "Func:\t$func"
+	echo "File:\t$func_file"
+	echo "Run as:\tdoe $mod $func"
+    fi
+}
+
+_self_create "$@"

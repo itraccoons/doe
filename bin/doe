@@ -5,6 +5,7 @@ set -e
 DOE_DIR=doe
 DOE_BASEDIR=~
 DOE_HOMEDIR=${DOE_BASEDIR}/$DOE_DIR
+
 DOE_CFGDIR=$DOE_HOMEDIR/etc
 DOE_TMPDIR=$DOE_HOMEDIR/.tmp
 DOE_MODDIR=$DOE_HOMEDIR/modules
@@ -49,6 +50,7 @@ call_module_function()
 
 		if [ -f "${m_f}" ]
 		then
+#		    exec "${m_f} $@"
 		    . "${m_f}" "$@"
 		else
 		    return 1
@@ -62,7 +64,10 @@ list_modules()
     # Find all dirictories ("modules") in the directory with all modules
     # Replace all newlines with space
     # return $string
-    echo "$(cd $DOE_MODDIR; find * -type d -maxdepth 0 2>/dev/null  | tr '\n' ' ')"
+    #echo "$(cd $DOE_MODDIR; find * -type d -or -type l -maxdepth 0 2>/dev/null  | tr '\n' ' ')"
+    #basename -a $(find -L $DOE_MODDIR/* -type d -maxdepth 0 2>/dev/null)  | tr '\n' ' '
+    #find -L $DOE_MODDIR/* -type d -maxdepth 0 -exec basename -a {} + 2>/dev/null | tr '\n' ' '
+    ls $DOE_MODDIR | tr '\n' ' '
 }
 
 list_module_functions()
@@ -72,7 +77,10 @@ list_module_functions()
     # Cut module name
     # Replace all newlines with space
     # return $string
-    echo "$(cd $DOE_MODDIR/$1; find * -type f -maxdepth 0 2>/dev/null | cut -d'.' -f2 | tr '\n' ' ')"
+    #echo "$(cd $DOE_MODDIR/$1; find * -type f -maxdepth 0 2>/dev/null | cut -d'.' -f2 | tr '\n' ' ')"
+    #basename -a $(find -L $DOE_MODDIR/$1/* -type f -maxdepth 0 2>/dev/null) | cut -d'.' -f2 | tr '\n' ' '
+    #find -L $DOE_MODDIR/$1/* -type f -maxdepth 0 -exec basename -a {} + 2>/dev/null | cut -d'.' -f2 | tr '\n' ' '
+    ls $DOE_MODDIR/$1 | cut -d'.' -f2 | tr '\n' ' '
 }
 
 
