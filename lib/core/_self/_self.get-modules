@@ -9,4 +9,4 @@ _self_get_modules()
     git pull origin master
 }
 
-_self_get_modules
+#_self_get_modules
