@@ -1,0 +1,6 @@
+#!/bin/sh
+
+echo 'ver.installed:\t\c'
+vagrant --version
+echo 'ver.latest:\t\c'
+curl -s https://releases.hashicorp.com/vagrant/ | grep vagrant_ | head -1 | cut -d'>' -f2 | cut -d'<' -f1

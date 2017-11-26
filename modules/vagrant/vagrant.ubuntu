@@ -1,0 +1,9 @@
+#!/bin/sh
+
+vagrant_create_ubuntu()
+{
+    [ -d "${DOE_TMPDIR}" ] || mkdir -p "${DOE_TMPDIR}"/ubuntu
+    cd "${DOE_TMPDIR}"/ubuntu && vagrant init ubuntu/xenial64 --minimal --force && vagrant up && vagrant ssh
+}
+
+vagrant_create_ubuntu

@@ -1,0 +1,21 @@
+#!/bin/sh
+
+VERIFY_CHECKS=$DOE_HOMEDIR/etc/verify_checks
+
+IFS=$'\r\n' checks=($(cat ${VERIFY_CHECKS}))
+
+do_check()
+{
+    IFS=':' a=($1)
+    set +f $a
+    set -f $a
+    if [ -f $1 ]
+    then
+    echo "${RED}${a[0]} detected ${NC}"
+    sh -c "${a[1]}"
+    fi
+}
+
+set -f
+for c in ${checks[@]}; do do_check "${c}"; done
+exit 0

@@ -1,0 +1,9 @@
+#!/bin/sh
+
+verify_show_checks()
+{
+    checks=$DOE_HOMEDIR/data/verify_checks
+    cut -d':' -f1 ${checks}
+}
+
+verify_show_checks "$@"
