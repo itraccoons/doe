@@ -21,8 +21,6 @@ _self_create()
 	esac
     done
 
-#    declare -p | grep arg_opt_
-
     if [ x$arg_opt_m = x ]
     then
 	echo "no -m option"

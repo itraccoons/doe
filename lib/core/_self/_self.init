@@ -9,22 +9,14 @@ add_to_bash_profile()
     if ! grep -qF "$1" "$bash_profile"
     then
 	echo "\n$1" >> "$bash_profile"
-	echo ".bash_profile: $1"
+	echo "${RED}.bash_profile: $1${NC}"
     fi
 }
 
-self_init_path()
+_self_init()
 {
-    string=$(echo "if [ -f '$HOME/$DOE_DIR/path.bash.inc' ]; then source '$HOME/$DOE_DIR/path.bash.inc'; fi")
-    add_to_bash_profile "$string"
+    add_to_bash_profile "$(echo "if [ -f '$DOE_HOMEDIR/path.bash.inc' ]; then source '$DOE_HOMEDIR/path.bash.inc'; fi")"
+    add_to_bash_profile "$(echo "if [ -f '$DOE_HOMEDIR/completion.bash.inc' ]; then source '$DOE_HOMEDIR/completion.bash.inc'; fi")"
 }
 
-self_init_completion()
-{
-    string=$(echo "if [ -f '$HOME/$DOE_DIR/completion.bash.inc' ]; then source '$HOME/$DOE_DIR/completion.bash.inc'; fi")
-    add_to_bash_profile "$string"
-}
-
-
-self_init_path
-self_init_completion
+_self_init "$@"

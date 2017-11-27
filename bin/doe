@@ -35,7 +35,6 @@ call_module()
 		fi
 		;;
     esac
-    return 0
 }
 
 call_module_function()
