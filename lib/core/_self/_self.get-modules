@@ -2,12 +2,12 @@
 
 _self_get_modules()
 {
-#    cd $DOE_HOMEDIR/lib
-#    git clone  https://github.com/itraccoons/doe-modules.git
-    cd $DOE_MODDIR
+    cd "$DOE_HOMEDIR/lib"
+    git clone  https://github.com/itraccoons/doe-modules.git
+    cd "$DOE_MODDIR"
     ln -s ../lib/doe-modules/* .
 
     echo "${RED}Linked: $(list_modules)${NC}"
 }
 
-_self_get_modules "$@"
+#_self_get_modules "$@"

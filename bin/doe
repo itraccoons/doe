@@ -3,8 +3,8 @@
 set -e
 
 DOE_DIR=doe
-DOE_BASEDIR=~
-DOE_HOMEDIR=${DOE_BASEDIR}/$DOE_DIR
+DOE_BASEDIR=$HOME
+DOE_HOMEDIR=$DOE_BASEDIR/$DOE_DIR
 
 DOE_CFGDIR=$DOE_HOMEDIR/etc
 DOE_TMPDIR=$DOE_HOMEDIR/.tmp
@@ -14,7 +14,7 @@ DOE_BACKUPDIR=$DOE_HOMEDIR/.install/.backup
 RED='\033[0;31m'	# Cyan color 
 NC='\033[0m'		# No Color
 
-. ${DOE_CFGDIR}/doe.conf
+. $DOE_CFGDIR/doe.conf
 
 # Call module and functions files with  additional parametr
 call_module()
@@ -27,9 +27,9 @@ call_module()
 		cat $DOE_CFGDIR/doe-release
 		;;
 	$1)
-		if [ -d "${DOE_MODDIR}/$1" ]
+		if [ -d "$DOE_MODDIR/$1" ]
 		then
-		    call_module_function "$@" || echo "${RED}Usage:\n\tdoe $1 <function>\n\n\tfunctions = { $(list_module_functions $1) }${NC}" && exit 0
+		    call_module_function "$@" || (echo "${RED}Usage:\n\tdoe $1 <function>\n\n\tfunctions = { $(list_module_functions $1) }${NC}" && exit 0)
 		else
 		    return 1
 		fi
@@ -44,7 +44,7 @@ call_module_function()
 		list_module_functions "$1"
 		;;
 	$2)
-		m_f="${DOE_MODDIR}/$1/$1.$2"
+		m_f="$DOE_MODDIR/$1/$1.$2"
 		shift 2
 
 		if [ -f "${m_f}" ]
@@ -61,8 +61,7 @@ list_modules()
 {
     # no_args
     # Find all dirictories ("modules") in the directory with all modules
-    # Replace all newlines with space
-    # return $string
+    # Replace all newlines with space. Return $string
     #echo "$(cd $DOE_MODDIR; find * -type d -or -type l -maxdepth 0 2>/dev/null  | tr '\n' ' ')"
     #basename -a $(find -L $DOE_MODDIR/* -type d -maxdepth 0 2>/dev/null)  | tr '\n' ' '
     #find -L $DOE_MODDIR/* -type d -maxdepth 0 -exec basename -a {} + 2>/dev/null | tr '\n' ' '
@@ -73,15 +72,12 @@ list_module_functions()
 {
     # argv[1] = $1 = module_name
     # Find all files ("functions") in the module directory
-    # Cut module name
-    # Replace all newlines with space
-    # return $string
+    # Cut module name. Replace all newlines with space. Return $string
     #echo "$(cd $DOE_MODDIR/$1; find * -type f -maxdepth 0 2>/dev/null | cut -d'.' -f2 | tr '\n' ' ')"
     #basename -a $(find -L $DOE_MODDIR/$1/* -type f -maxdepth 0 2>/dev/null) | cut -d'.' -f2 | tr '\n' ' '
     #find -L $DOE_MODDIR/$1/* -type f -maxdepth 0 -exec basename -a {} + 2>/dev/null | cut -d'.' -f2 | tr '\n' ' '
     ls $DOE_MODDIR/$1 | cut -d'.' -f2 | tr '\n' ' '
 }
-
 
 ################################################################################
 #
@@ -89,6 +85,6 @@ list_module_functions()
 #
 ################################################################################
 
-call_module "${@:-${default_function}}" || echo "${RED}Usage:\n\tdoe <module>\n\n\tmodule = { $(list_modules) }${NC}"
+call_module ${@:-${default_function}} || echo "${RED}Usage:\n\tdoe <module>\n\n\tmodule = { $(list_modules) }${NC}"
 
 exit 0

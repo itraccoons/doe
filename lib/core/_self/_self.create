@@ -32,6 +32,7 @@ _self_create()
     opt=${arg_opt_o:-a:b:}
     func_file=$DOE_MODDIR/$mod/$mod.$func
 
+
     if [ -e $func_file ]
     then
 	echo "${RED}$func_file"
@@ -41,7 +42,7 @@ _self_create()
 	echo "Func:\t$func"
 	echo "File:\t$func_file"
 	echo "Run as:\tdoe $mod $func"
-	mkdir $DOE_MODDIR/${mod}
+	[ -d $DOE_MODDIR/${mod} ] || mkdir $DOE_MODDIR/${mod}
 	eval "echo \"$(cat $DOE_HOMEDIR/lib/templates/function)\"" > ${func_file}
     fi
 }

@@ -6,7 +6,7 @@ add_to_bash_profile()
 
     [ -f "$bash_profile" ] || touch "$bash_profile"
 
-    if ! grep -qF "$1" "$bash_profile"
+    if ! grep -qF "$1" "$bash_profile"		# check if 
     then
 	echo "\n$1" >> "$bash_profile"
 	echo "${RED}.bash_profile: $1${NC}"
@@ -15,8 +15,8 @@ add_to_bash_profile()
 
 _self_init()
 {
-    add_to_bash_profile "$(echo "if [ -f '$DOE_HOMEDIR/path.bash.inc' ]; then source '$DOE_HOMEDIR/path.bash.inc'; fi")"
-    add_to_bash_profile "$(echo "if [ -f '$DOE_HOMEDIR/completion.bash.inc' ]; then source '$DOE_HOMEDIR/completion.bash.inc'; fi")"
+    add_to_bash_profile "if [ -f '$DOE_HOMEDIR/path.bash.inc' ]; then source '$DOE_HOMEDIR/path.bash.inc'; fi"
+    add_to_bash_profile "if [ -f '$DOE_HOMEDIR/completion.bash.inc' ]; then source '$DOE_HOMEDIR/completion.bash.inc'; fi"
 }
 
 _self_init "$@"
