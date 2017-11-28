@@ -1,2 +1,4 @@
 .install/
 .tmp/
+modules/
+lib/doe-modules/

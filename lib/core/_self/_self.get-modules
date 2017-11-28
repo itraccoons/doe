@@ -10,4 +10,4 @@ _self_get_modules()
     echo "${RED}Linked: $(list_modules)${NC}"
 }
 
-#_self_get_modules "$@"
+_self_get_modules "$@"
