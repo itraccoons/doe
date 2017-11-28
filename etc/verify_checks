@@ -1,8 +1,0 @@
-*.sh:shellcheck *.sh
-Vagrantfile:vagrant validate
-*.tf:terraform validate
-*.tf.json:terraform validate
-*.yml:yamllint *.yml
-*.yaml:yamllint *.yaml
-Makefile:make --dry-run
-*.sh:shellcheck *.sh

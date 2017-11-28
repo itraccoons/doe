@@ -14,7 +14,7 @@ DOE_BACKUPDIR=$DOE_HOMEDIR/.install/.backup
 RED='\033[0;31m'	# Cyan color 
 NC='\033[0m'		# No Color
 
-. $DOE_CFGDIR/doe.conf
+. $DOE_HOMEDIR/doe.conf
 
 # Call module and functions files with  additional parametr
 call_module()
@@ -27,7 +27,7 @@ call_module()
 		list_modules		# show list of available modules for autocompetion
 		;;
 	version)
-		cat $DOE_CFGDIR/doe-release
+		cat $DOE_HOMEDIR/doe-release
 		;;
 	$1)
 		if [ -d "$DOE_MODDIR/$1" ]
