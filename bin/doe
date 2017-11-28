@@ -49,7 +49,7 @@ call_module_function()
 
 		if [ -f "${m_f}" ]
 		then
-#		    exec "${m_f} $@"
+#		    sh -c "${m_f} $@"
 		    . "${m_f}" "$@"
 		else
 		    return 1
