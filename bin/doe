@@ -20,9 +20,6 @@ NC='\033[0m'		# No Color
 call_module()
 {
     case $1 in
-	.)
-		echo SELF
-		;;
 	list-modules)
 		list_modules		# show list of available modules for autocompetion
 		;;
