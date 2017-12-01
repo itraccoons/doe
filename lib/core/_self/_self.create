@@ -1,19 +1,16 @@
 #!/bin/sh
 
-# raccoon1@amoeba:~$ doe _self create -m docker -f create
-# result => ~/doe/module/docker/docker.create
-
-OPTIONS="m:f:o:"
+HELP="${RED}doe _self create -m <MODULE> -f <FUNCTION> [-o <OPTIONS>] [-l <sh|perl|python>]${NC}"
+OPTIONS="m:f:o:l:"
+MOD_DATADIR=$(dirname ${BASH_SOURCE[0]})/.data
 
 _self_create()
 {
-
-    while getopts ${OPTIONS} o
-    do
+    # 
+    while getopts ${OPTIONS} o; do
 	case $o in
 	    '?')
-		echo "invalid option"
-		exit 1
+		echo $HELP && exit 1
 		;;
 	    $o)
 		eval arg_opt_$o=${OPTARG}
@@ -21,29 +18,27 @@ _self_create()
 	esac
     done
 
-    if [ x$arg_opt_m = x ]
-    then
-	echo "no -m option"
-	exit 1
-    fi
+    [ x$arg_opt_m = x ] && echo $HELP  && exit 1
 
     mod=${arg_opt_m}
     func=${arg_opt_f:-help}
     opt=${arg_opt_o:-a:b:}
     func_file=$DOE_MODDIR/$mod/$mod.$func
+    func_file_template=$MOD_DATADIR/templates/${arg_opt_l:-sh}.function
 
-
-    if [ -e $func_file ]
-    then
-	echo "${RED}$func_file"
-	echo "Already exist${NC}"
+    if [ -e $func_file ]; then
+	echo "${RED}$func_file Already exist${NC}"
     else
 	echo "Module:\t$mod"
 	echo "Func:\t$func"
 	echo "File:\t$func_file"
 	echo "Run as:\tdoe $mod $func"
-	[ -d $DOE_MODDIR/${mod} ] || mkdir $DOE_MODDIR/${mod}
-	eval "echo \"$(cat $DOE_HOMEDIR/lib/templates/function)\"" > ${func_file}
+	
+	[ -d $DOE_MODDIR/$mod ] || mkdir $DOE_MODDIR/$mod
+	
+	eval "echo \"$(cat $func_file_template)\"" > $func_file
+	
+	[ "$arg_opt_l" = "perl" ] && chmod +x $func_file
     fi
 }
 

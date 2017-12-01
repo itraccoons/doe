@@ -1,14 +1,16 @@
 #!/bin/sh 
 
+HELP=\"doe ${mod} ${func} .....\"
+MOD_DATADIR=\$(dirname \${BASH_SOURCE[0]})/.data
+
 ${mod}_${func}_opts=\"${opt}\"
 
 ${mod}_${func}()
 {
-    while getopts \$${mod}_${func}_opts o
-    do
+    while getopts \$${mod}_${func}_opts o; do
 	case \$o in
 	    '?')
-		echo "invalid options"
+		echo \$HELP
 		exit 1
 		;;
 	    \$o)
