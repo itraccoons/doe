@@ -1,0 +1,8 @@
+#!/bin/sh 
+
+_self_version()
+{
+    cat $DOE_HOMEDIR/doe-release
+}
+
+_self_version "$@"
