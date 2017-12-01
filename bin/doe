@@ -49,8 +49,7 @@ call_module_function()
 
 		if [ -f "${m_f}" ]
 		then
-#		    sh -c "${m_f} $@"
-		    . "${m_f}" "$@"
+		    [ -x "${m_f}" ] && sh -c "${m_f} $@" || . "${m_f}" "$@"
 		else
 		    return 1
 		fi

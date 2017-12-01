@@ -1,0 +1,18 @@
+#!/bin/sh
+
+self_release()
+{
+    DOE_RELEASE="doe_latest.tar.gz"
+
+    [ -d "${DOE_TMPDIR}" ] || mkdir -p "${DOE_TMPDIR}"
+
+    tar	--exclude ".git" \
+    --exclude ".gitignore" \
+    --exclude ".install" \
+    --exclude ".tmp" \
+    --exclude "www/" \
+    --exclude "${DOE_RELEASE}" \
+    -zcvf "${DOE_TMPDIR}/${DOE_RELEASE}" -C "${DOE_BASEDIR}" "${DOE_DIR}"
+}
+
+self_release $@
