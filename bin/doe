@@ -6,7 +6,6 @@ DOE_DIR=doe
 DOE_BASEDIR=$HOME
 DOE_HOMEDIR=$DOE_BASEDIR/$DOE_DIR
 
-DOE_CFGDIR=$DOE_HOMEDIR/etc
 DOE_TMPDIR=$DOE_HOMEDIR/.tmp
 DOE_MODDIR=$DOE_HOMEDIR/modules
 DOE_BACKUPDIR=$DOE_HOMEDIR/.install/.backup
@@ -21,11 +20,15 @@ call_module()
 {
     case $1 in
 	list-modules)
-		list_modules		# show list of available modules for autocompetion
+		# Find all dirictories ("modules") in the directory with all modules
+		# Replace all newlines with space. Return $string
+		#basename -a $(find -L $DOE_MODDIR/* -type d -maxdepth 0 2>/dev/null)  | tr '\n' ' '
+		#find -L $DOE_MODDIR/* -type d -maxdepth 0 -exec basename -a {} + 2>/dev/null | tr '\n' ' '
+		ls $DOE_MODDIR | tr '\n' ' '
 		;;
 	$1)
 		if [ -d "$DOE_MODDIR/$1" ]; then
-		    call_module_function "$@" || (echo "${RED}Usage:\n\tdoe $1 <function>\n\n\tfunctions = { $(list_module_functions $1) }${NC}"; exit 0)
+		    call_module_function "$@" || (echo "${RED}Usage:\n\tdoe $1 <function>\n\n\tfunctions = { $($0 $1 list-functions) }${NC}"; exit 0)
 		else
 		    return 1
 		fi
@@ -37,7 +40,12 @@ call_module_function()
 {
     case $2 in
 	list-functions)
-		list_module_functions "$1"
+		# argv[1] = $1 = module_name = directory_name
+		# Find all files ("functions") in the module directory
+		# Cut module name. Replace all newlines with space. Return $string
+		#basename -a $(find -L $DOE_MODDIR/$1/* -type f -maxdepth 0 2>/dev/null) | cut -d'.' -f2 | tr '\n' ' '
+		#find -L $DOE_MODDIR/$1/* -type f -maxdepth 0 -exec basename -a {} + 2>/dev/null | cut -d'.' -f2 | tr '\n' ' '
+		ls $DOE_MODDIR/$1 | cut -d'.' -f2 | tr '\n' ' '
 		;;
 	$2)
 		m_f="$DOE_MODDIR/$1/$1.$2"
@@ -51,32 +59,12 @@ call_module_function()
     esac
 }
 
-list_modules()
-{
-    # no_args
-    # Find all dirictories ("modules") in the directory with all modules
-    # Replace all newlines with space. Return $string
-    #basename -a $(find -L $DOE_MODDIR/* -type d -maxdepth 0 2>/dev/null)  | tr '\n' ' '
-    #find -L $DOE_MODDIR/* -type d -maxdepth 0 -exec basename -a {} + 2>/dev/null | tr '\n' ' '
-    ls $DOE_MODDIR | tr '\n' ' '
-}
-
-list_module_functions()
-{
-    # argv[1] = $1 = module_name = directory_name
-    # Find all files ("functions") in the module directory
-    # Cut module name. Replace all newlines with space. Return $string
-    #basename -a $(find -L $DOE_MODDIR/$1/* -type f -maxdepth 0 2>/dev/null) | cut -d'.' -f2 | tr '\n' ' '
-    #find -L $DOE_MODDIR/$1/* -type f -maxdepth 0 -exec basename -a {} + 2>/dev/null | cut -d'.' -f2 | tr '\n' ' '
-    ls $DOE_MODDIR/$1 | cut -d'.' -f2 | tr '\n' ' '
-}
-
 ################################################################################
 #
 # [raccoon1:~]$ doe _self init
 #
 ################################################################################
 
-call_module ${@:-${default_function}} || echo "${RED}Usage:\n\tdoe <module>\n\n\tmodule = { $(list_modules) }${NC}"
+call_module ${@:-${default_function}} || echo "${RED}Usage:\n\tdoe <module>\n\n\tmodule = { $($0 list-modules) }${NC}"
 
 exit 0
