@@ -9,16 +9,12 @@ _self_create()
     # 
     while getopts ${OPTIONS} o; do
 	case $o in
-	    '?'|'h')
-		echo $HELP && exit 1
-		;;
-	    $o)
-		eval arg_opt_$o=${OPTARG}
-		;;
+	  '?'|'h' ) echo $HELP && return 1 ;;
+	  $o      ) eval arg_opt_$o=${OPTARG} ;;
 	esac
     done
 
-    [ x$arg_opt_m = x ] && echo $HELP  && exit 1
+    [ x$arg_opt_m = x ] && echo $HELP  && return 1
 
     mod=${arg_opt_m}
     func=${arg_opt_f:-help}
@@ -42,4 +38,7 @@ _self_create()
     fi
 }
 
-_self_create "$@"
+_self_create "$@" || exit 1
+
+exit 0
+

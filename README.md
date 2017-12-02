@@ -1,6 +1,6 @@
 [![HitCount](http://hits.dwyl.io/itraccoons/doe.svg)](http://hits.dwyl.io/itraccoons/doe)
 
-### Project: DevOps Environment or Do Experiments (DOE)
+### Project: doeZen ( Doezen Executions, Do Experiments, DevOps Environment)
 
 Increasing perfomance by automating routing tasks.
 Wrap your routine into own simple CLI
@@ -22,8 +22,8 @@ curl -fsSL https://doe.cloud/get | sh (broken now)
     $ doe docker env -c up
     $ doe docker env -c ssh
     $ doe docker env -c halt
-    $ cd $(oe docker env -c pwd)
+    $ cd $(doe docker env -c pwd)
 
 
 Oleksii Kucheruk
-Thu Nov 23 01:08:43 2017
+Sat Dec  2 19:22:47 2017
