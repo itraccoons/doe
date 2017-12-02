@@ -5,17 +5,14 @@ set -e
 DOE_DIR=doe
 DOE_BASEDIR=$HOME
 DOE_HOMEDIR=$DOE_BASEDIR/$DOE_DIR
-
 DOE_TMPDIR=$DOE_HOMEDIR/.tmp
 DOE_MODDIR=$DOE_HOMEDIR/modules
-DOE_BACKUPDIR=$DOE_HOMEDIR/.install/.backup
 
 RED='\033[0;31m'	# Cyan color 
 NC='\033[0m'		# No Color
 
 . $DOE_HOMEDIR/doe.conf
 
-# Call module and functions files with  additional parametr
 call_module()
 {
     case $1 in
