@@ -18,9 +18,11 @@ curl -fsSL https://doe.cloud/get | sh (broken now)
 
 
 ### Using DOE
-    $ doe _self create -m vagrant -f ubuntu -o v:
-    $ doe vagrant ubuntu -v xenial
-    $ doe help
+    $ doe _self create -m docker -f env -o c: -l shell
+    $ doe docker env -c up
+    $ doe docker env -c ssh
+    $ doe docker env -c halt
+    $ cd $(oe docker env -c pwd)
 
 
 Oleksii Kucheruk

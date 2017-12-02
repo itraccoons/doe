@@ -9,7 +9,7 @@ _self_create()
     # 
     while getopts ${OPTIONS} o; do
 	case $o in
-	    '?')
+	    '?'|'h')
 		echo $HELP && exit 1
 		;;
 	    $o)
@@ -22,7 +22,7 @@ _self_create()
 
     mod=${arg_opt_m}
     func=${arg_opt_f:-help}
-    opt=${arg_opt_o:-a:b:}
+    opt=${arg_opt_o:-h}
     func_file=$DOE_MODDIR/$mod/$mod.$func
     func_file_template=$MOD_DATADIR/templates/${arg_opt_l:-sh}.function
 
