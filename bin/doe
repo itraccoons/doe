@@ -11,7 +11,7 @@ DOE_TMPDIR=$DOE_HOMEDIR/.tmp
 RED='\033[0;31m'	# Red color 
 NC='\033[0m'		# No color
 
-source $DOE_HOMEDIR/doe.conf
+source "$DOE_HOMEDIR/doe.conf"
 
 call_module()
 {
@@ -20,7 +20,7 @@ call_module()
 	    # Find all dirictories ("modules") in the directory with all modules.
 	    # Replace newlines with space. Return $string
 	    #basename -a $(find -L $DOE_MODDIR/* -type d -maxdepth 0 2>/dev/null)  | tr '\n' ' '
-	    #find -L $DOE_MODDIR/* -type d -maxdepth 0 -exec basename -a {} + 2>/dev/null | tr '\n' ' '
+	    #find -L "$DOE_MODDIR"/* -type d -maxdepth 0 -exec basename -a {} + 2>/dev/null | tr '\n' ' '
 	    ls $DOE_MODDIR | tr '\n' ' '
 	    ;;
 	$1)
@@ -42,8 +42,8 @@ call_module_function()
 	list-functions)
 	    # Find all files ("functions") in the module directory.
 	    # Cut module name. Replace newlines with space. Return $string
-	    #basename -a $(find -L $DOE_MODDIR/$1/* -type f -maxdepth 0 2>/dev/null) | cut -d'.' -f2 | tr '\n' ' '
-	    #find -L $DOE_MODDIR/$1/* -type f -maxdepth 0 -exec basename -a {} + 2>/dev/null | cut -d'.' -f2 | tr '\n' ' '
+	    #basename -a $(find -L "$DOE_MODDIR/${mod}"/* -type f -maxdepth 0 2>/dev/null) | cut -d'.' -f2 | tr '\n' ' '
+	    #find -L "$DOE_MODDIR/${mod}"/* -type f -maxdepth 0 -exec basename -a {} + 2>/dev/null | cut -d'.' -f2 | tr '\n' ' '
 	    ls $DOE_MODDIR/${mod} | cut -d'.' -f2 | tr '\n' ' '
 	    ;;
 	$func)
@@ -61,4 +61,4 @@ call_module_function()
 # [raccoon1:~]$ doe <TAB><TAB>
 ################################################################################
 
-call_module ${@:-${default_function}} || (echo "${RED}Usage:\n\tdoe <module>\n\n\tmodule = { $($0 list-modules) }${NC}"; exit 1)
+call_module "${@:-${default_function}}" || (echo "${RED}Usage:\n\tdoe <module>\n\n\tmodule = { $($0 list-modules) }${NC}"; exit 1)
