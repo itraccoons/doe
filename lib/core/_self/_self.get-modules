@@ -7,7 +7,7 @@ _self_get_modules()
     cd "$DOE_MODDIR"
     ln -s ../lib/doe-modules/* .
 
-    echo "${RED}Linked: $(list_modules)${NC}"
+    echo "${RED}Linked: $($0 list-modules)${NC}"
 }
 
 _self_get_modules "$@"

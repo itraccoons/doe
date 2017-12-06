@@ -5,8 +5,8 @@ set -e
 DOE_DIR=doe
 DOE_BASEDIR=$HOME
 DOE_HOMEDIR=$DOE_BASEDIR/$DOE_DIR
-DOE_TMPDIR=$DOE_HOMEDIR/.tmp
 DOE_MODDIR=$DOE_HOMEDIR/modules
+DOE_TMPDIR=$DOE_HOMEDIR/.tmp
 
 RED='\033[0;31m'	# Red color 
 NC='\033[0m'		# No color
@@ -17,8 +17,8 @@ call_module()
 {
     case $1 in
 	list-modules)
-	    # Find all dirictories ("modules") in the directory with all modules
-	    # Replace all newlines with space. Return $string
+	    # Find all dirictories ("modules") in the directory with all modules.
+	    # Replace newlines with space. Return $string
 	    #basename -a $(find -L $DOE_MODDIR/* -type d -maxdepth 0 2>/dev/null)  | tr '\n' ' '
 	    #find -L $DOE_MODDIR/* -type d -maxdepth 0 -exec basename -a {} + 2>/dev/null | tr '\n' ' '
 	    ls $DOE_MODDIR | tr '\n' ' '
@@ -35,33 +35,30 @@ call_module()
 
 call_module_function()
 {
-    mod=$1	# Module name = Directory name
-    func=$2	# Function name
-    shift 2	# Remove two args from $@
+    mod=$1		# Module name = Directory name
+    func=$2		# Function name
+    shift 2		# Remove two args from $@. 
     case $func in
 	list-functions)
-		# Find all files ("functions") in the module directory
-		# Cut module name. Replace all newlines with space. Return $string
-		#basename -a $(find -L $DOE_MODDIR/$1/* -type f -maxdepth 0 2>/dev/null) | cut -d'.' -f2 | tr '\n' ' '
-		#find -L $DOE_MODDIR/$1/* -type f -maxdepth 0 -exec basename -a {} + 2>/dev/null | cut -d'.' -f2 | tr '\n' ' '
-		ls $DOE_MODDIR/${mod} | cut -d'.' -f2 | tr '\n' ' '
-		;;
+	    # Find all files ("functions") in the module directory.
+	    # Cut module name. Replace newlines with space. Return $string
+	    #basename -a $(find -L $DOE_MODDIR/$1/* -type f -maxdepth 0 2>/dev/null) | cut -d'.' -f2 | tr '\n' ' '
+	    #find -L $DOE_MODDIR/$1/* -type f -maxdepth 0 -exec basename -a {} + 2>/dev/null | cut -d'.' -f2 | tr '\n' ' '
+	    ls $DOE_MODDIR/${mod} | cut -d'.' -f2 | tr '\n' ' '
+	    ;;
 	$func)
-		m_f="$DOE_MODDIR/${mod}/${mod}.${func}"
-		if [ -f "${m_f}" ]; then
-		    [ -x "${m_f}" ] && exec "${m_f}" "$@" || source "${m_f}" "$@"
-		else
-		    return 1
-		fi
+	    func_file="$DOE_MODDIR/${mod}/${mod}.${func}"
+	    if [ -f "${func_file}" ]; then
+		[ -x "${func_file}" ] && exec "${func_file}" "$@" || source "${func_file}" "$@"
+	    else
+		return 1
+	    fi
     esac
 }
 
 ################################################################################
-#
 # [raccoon1:~]$ doe _self create -m MyMod -f CanDo [...]
-# [raccoon1:~]$ doe MyMod CanDO
 # [raccoon1:~]$ doe <TAB><TAB>
-#
 ################################################################################
 
 call_module ${@:-${default_function}} || (echo "${RED}Usage:\n\tdoe <module>\n\n\tmodule = { $($0 list-modules) }${NC}"; exit 1)

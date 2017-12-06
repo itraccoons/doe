@@ -39,6 +39,3 @@ _self_create()
 }
 
 _self_create "$@" || exit 1
-
-exit 0
-
