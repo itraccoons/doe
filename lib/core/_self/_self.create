@@ -25,14 +25,12 @@ _self_create()
     if [ -e $func_file ]; then
 	echo "${RED}$func_file Already exist${NC}"
     else
-	echo "Module:\t$mod"
-	echo "Func:\t$func"
-	echo "File:\t$func_file"
-	echo "Run as:\tdoe $mod $func"
+	echo "Module:\t$mod\nFunc:\t$func\nFile:\t$func_file\nRun as:\tdoe $mod $func"
 	
 	[ -d $DOE_MODDIR/$mod ] || mkdir $DOE_MODDIR/$mod
 	
 	eval "echo \"$(cat $func_file_template)\"" > $func_file
+#	eval $(cat $func_file_template) > $func_file
 	
 	[ "$arg_opt_l" = "perl" ] && chmod +x $func_file
     fi

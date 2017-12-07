@@ -1,6 +1,6 @@
 #!/bin/sh 
 
-HELP=\"doe ${mod} ${func} .....\"
+HELP=\"\${RED}doe ${mod} ${func} .....\${NC}\"
 MOD_DATADIR=\$(dirname \${BASH_SOURCE[0]})/.data
 
 ${mod}_${func}_opts=\"${opt}\"
