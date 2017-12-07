@@ -15,4 +15,4 @@ self_release()
 	-zcvf "${DOE_TMPDIR}/${DOE_RELEASE}" -C "${DOE_BASEDIR}" "${DOE_DIR}"
 }
 
-self_release $@
+self_release "$@"
