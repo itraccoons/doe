@@ -1,0 +1,10 @@
+#!/usr/bin/python
+
+import sys
+
+def ${mod}_${func} (*args) :
+
+    print \"${mod}.${func} + \", args;
+    return;
+
+${mod}_${func}(sys.argv);

@@ -3,7 +3,7 @@
 _self_get_modules()
 {
     cd "$DOE_HOMEDIR/lib"
-    git clone  https://github.com/itraccoons/doe-modules.git
+    git clone ${doe_modules_url}
     cd "$DOE_MODDIR"
     ln -s ../lib/doe-modules/* .
 

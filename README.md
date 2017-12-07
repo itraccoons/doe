@@ -5,7 +5,7 @@
 Increasing perfomance by automating routing tasks.
 Wrap your routine into own simple CLI
 
-Platform: macOS
+Platform: sh (macOS)
 (not fully POSIX compliant because some bashism inplace)
 
 ### Quickstart
@@ -19,6 +19,7 @@ curl -fsSL https://doe.cloud/get | sh (broken now)
 
 ### Using DOE
     $ doe _self create -m docker -f env -o c: -l shell
+    $ ...
     $ doe docker env -c up
     $ doe docker env -c ssh
     $ doe docker env -c halt
@@ -26,4 +27,4 @@ curl -fsSL https://doe.cloud/get | sh (broken now)
 
 
 Oleksii Kucheruk
-Sat Dec  2 19:22:47 2017
+Thu Dec  7 22:52:01 2017

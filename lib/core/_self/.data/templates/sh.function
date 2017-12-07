@@ -9,8 +9,8 @@ ${mod}_${func}()
 {
     while getopts \$${mod}_${func}_opts o; do
 	case \$o in
-	    '?'|'h') echo \$HELP && return 1 ;;
-	    \$o    ) eval arg_opt_\$o=\${OPTARG} ;;
+	    '?'|'h' ) echo \$HELP && return 1 ;;
+	    \$o      ) eval arg_opt_\$o=\${OPTARG} ;;
 	esac
     done
 

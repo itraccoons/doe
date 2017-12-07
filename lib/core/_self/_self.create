@@ -6,7 +6,6 @@ MOD_DATADIR=$(dirname ${BASH_SOURCE[0]})/.data
 
 _self_create()
 {
-    # 
     while getopts ${OPTIONS} o; do
 	case $o in
 	  '?'|'h' ) echo $HELP && return 1 ;;
@@ -19,20 +18,20 @@ _self_create()
     mod=${arg_opt_m}
     func=${arg_opt_f:-help}
     opt=${arg_opt_o:-h}
+    lang=${arg_opt_l:-sh}
     func_file=$DOE_MODDIR/$mod/$mod.$func
-    func_file_template=$MOD_DATADIR/templates/${arg_opt_l:-sh}.function
+    func_file_template=$MOD_DATADIR/templates/$lang.function
 
     if [ -e $func_file ]; then
 	echo "${RED}$func_file Already exist${NC}"
     else
-	echo "Module:\t$mod\nFunc:\t$func\nFile:\t$func_file\nRun as:\tdoe $mod $func"
+	echo "Module:\t$mod\nFunc:\t$func\nFile:\t$func_file\nLang:\t$lang\nRun as:\tdoe $mod $func"
 	
 	[ -d $DOE_MODDIR/$mod ] || mkdir $DOE_MODDIR/$mod
 	
 	eval "echo \"$(cat $func_file_template)\"" > $func_file
-#	eval $(cat $func_file_template) > $func_file
 	
-	[ "$arg_opt_l" = "perl" ] && chmod +x $func_file
+	[ $lang != 'sh' ] && chmod +x $func_file
     fi
 }
 
