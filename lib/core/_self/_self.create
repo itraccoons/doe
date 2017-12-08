@@ -1,37 +1,41 @@
-#!/bin/sh
+#!/bin/bash
 
-HELP="${RED}doe _self create -m <MODULE> -f <FUNCTION> [-o <OPTIONS>] [-l <sh|perl|python>]${NC}"
+HELP="${RED}doe _self create -m <MODULE> -f <FUNCTION> [-o <OPTIONS>] [-l <bash|perl|python>]${NC}"
 OPTIONS="m:f:o:l:"
-MOD_DATADIR=$(dirname ${BASH_SOURCE[0]})/.data
+MOD_DATADIR=$( dirname ${BASH_SOURCE[0]} )/.data
 
 _self_create()
 {
     while getopts ${OPTIONS} o; do
 	case $o in
-	  '?'|'h' ) echo $HELP && return 1 ;;
+	  '?'|'h' ) echo "$HELP" && return 1 ;;
 	  $o      ) eval arg_opt_$o=${OPTARG} ;;
 	esac
     done
 
-    [ x$arg_opt_m = x ] && echo $HELP  && return 1
+    [ x$arg_opt_m = x ] && echo "$HELP"  && return 1
 
     mod=${arg_opt_m}
-    func=${arg_opt_f:-help}
-    opt=${arg_opt_o:-h}
-    lang=${arg_opt_l:-sh}
+    func=${arg_opt_f:=help}
+    opt=${arg_opt_o:=h}
+    lang=${arg_opt_l:=bash}
     func_file=$DOE_MODDIR/$mod/$mod.$func
     func_file_template=$MOD_DATADIR/templates/$lang.function
 
-    if [ -e $func_file ]; then
+    if [ -e "$func_file" ]; then
 	echo "${RED}$func_file Already exist${NC}"
     else
-	echo "Module:\t$mod\nFunc:\t$func\nFile:\t$func_file\nLang:\t$lang\nRun as:\tdoe $mod $func"
+	echo "Module: $mod"
+	echo "Func:   $func"
+	echo "File:   $func_file"
+	echo "Lang:   $lang"
+	echo "Run as: doe $mod $func"
 	
 	[ -d $DOE_MODDIR/$mod ] || mkdir $DOE_MODDIR/$mod
 	
 	eval "echo \"$(cat $func_file_template)\"" > $func_file
 	
-	[ $lang != 'sh' ] && chmod +x $func_file
+	[ "$lang" != "bash" ] && chmod +x $func_file
     fi
 }
 

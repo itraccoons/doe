@@ -1,7 +1,7 @@
-#!/bin/sh 
+#!/bin/bash 
 
 HELP=\"\${RED}doe ${mod} ${func} .....\${NC}\"
-MOD_DATADIR=\$(dirname \${BASH_SOURCE[0]})/.data
+MOD_DATADIR=\$( dirname \${BASH_SOURCE[0]} )/.data
 
 ${mod}_${func}_opts=\"${opt}\"
 
@@ -9,7 +9,7 @@ ${mod}_${func}()
 {
     while getopts \$${mod}_${func}_opts o; do
 	case \$o in
-	    '?'|'h' ) echo \$HELP && return 1 ;;
+	    '?'|'h' ) echo \"\$HELP\" && return 1 ;;
 	    \$o      ) eval arg_opt_\$o=\${OPTARG} ;;
 	esac
     done
