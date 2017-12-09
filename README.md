@@ -14,7 +14,8 @@ cd ~ && git clone https://github.com/itraccoons/doe.git
 
 or
 
-(curl -fsSL https://doe.cloud/get | sh (broken now) - let me know if it's will be usefull for you)
+curl -fsSL https://doe.cloud/get | sh
+(experimental) let me know if it's usefull for you
 
 
 ### Using DOE
