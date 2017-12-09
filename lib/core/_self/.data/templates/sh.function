@@ -14,6 +14,7 @@ ${mod}_${func}()
 	    \$o      ) eval arg_opt_\$o=\${OPTARG} ;;
 	esac
     done
+    shift \$((OPTIND-1))
 
     echo \"Your function with your agruments\"
 }
