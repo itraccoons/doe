@@ -26,6 +26,7 @@ _self_create()
 
     if [ -e "$func_file" ]; then
 	echo "${RED}$func_file Already exist${NC}"
+	return 1
     else
 	echo "Module: $mod"
 	echo "Func:   $func"
