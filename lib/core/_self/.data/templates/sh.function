@@ -1,7 +1,8 @@
-#!/bin/bash 
+#!/bin/sh
 
 help=\"\${RED}doe ${mod} ${func} .....\${NC}\"
 mod_datadir=\$DOE_MODDIR/${mod}/.data
+mod_tempdir=\$DOE_TMPDIR/${mod}
 
 ${mod}_${func}_opts=\"${opt}\"
 
@@ -14,8 +15,7 @@ ${mod}_${func}()
 	esac
     done
 
-    echo \"Your function with agruments\"
-    declare -p | grep arg_opt_
+    echo \"Your function with your agruments\"
 }
 
 ${mod}_${func} "\"\$@\"" || exit 1

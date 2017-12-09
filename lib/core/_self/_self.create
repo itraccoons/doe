@@ -1,6 +1,6 @@
-#!/bin/bash --posix
+#!/bin/sh
 
-help="${RED}doe _self create -m <MODULE> -f <FUNCTION> [-o <OPTIONS>] [-l <bash|perl|python>]${NC}"
+help="${RED}doe _self create -m <MODULE> -f <FUNCTION> [-o <OPTIONS>] [-l <sh|perl|python>]${NC}"
 _self_create_opts="m:f:o:l:"
 mod_datadir=$DOE_MODDIR/_self/.data
 
@@ -20,7 +20,7 @@ _self_create()
     mod=${arg_opt_m}
     func=${arg_opt_f:=help}
     opt=${arg_opt_o:=h}
-    lang=${arg_opt_l:=bash}
+    lang=${arg_opt_l:=sh}
     func_file=$DOE_MODDIR/$mod/$mod.$func
     func_file_template=${mod_datadir}/templates/$lang.function
 
@@ -37,7 +37,7 @@ _self_create()
 	
 	eval "echo \"$(cat $func_file_template)\"" > $func_file
 	
-	[ "$lang" != "bash" ] && chmod +x $func_file
+	[ "$lang" != "sh" ] && chmod +x $func_file
     fi
 }
 
