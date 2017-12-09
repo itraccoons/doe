@@ -18,12 +18,13 @@ or
 
 
 ### Using DOE
-    $ doe _self init
+    $ ~/doe/bin/doe _self init
     $ . ~/.bash_profile
-    $ doe _self create -m docker -f env -o c: -l shell
+    $ doe <TAB><TAB>
+    $ doe _self create -m docker -f env -o c:h -l shell
     $ nano ~/doe/modules/docker/docker.create
     $ doe docker env -c up
 
 
 Oleksii Kucheruk
-Thu Dec  7 22:52:01 2017
+Sat Dec  9 17:26:59 2017
