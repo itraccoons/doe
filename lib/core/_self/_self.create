@@ -1,28 +1,28 @@
 #!/bin/bash --posix
 
-HELP="${RED}doe _self create -m <MODULE> -f <FUNCTION> [-o <OPTIONS>] [-l <bash|perl|python>]${NC}"
-OPTIONS="m:f:o:l:"
-MOD_DATADIR=$DOE_MODDIR/_self/.data
+help="${RED}doe _self create -m <MODULE> -f <FUNCTION> [-o <OPTIONS>] [-l <bash|perl|python>]${NC}"
+_self_create_opts="m:f:o:l:"
+mod_datadir=$DOE_MODDIR/_self/.data
 
 _self_create()
 {
     # parse agruments to variables arg_opt_<OPTION_LETTER>
-    while getopts ${OPTIONS} o; do
+    while getopts ${_self_create_opts} o; do
 	case $o in
-	  '?'|'h' ) echo "$HELP" && return 1 ;;
+	  '?'|'h' ) echo "$help" && return 1 ;;
 	  $o      ) eval arg_opt_$o=${OPTARG} ;;
 	esac
     done
 
     # if no module specified (option -m)
-    [ x$arg_opt_m = x ] && echo "$HELP"  && return 1
+    [ x$arg_opt_m = x ] && echo "$help"  && return 1
 
     mod=${arg_opt_m}
     func=${arg_opt_f:=help}
     opt=${arg_opt_o:=h}
     lang=${arg_opt_l:=bash}
     func_file=$DOE_MODDIR/$mod/$mod.$func
-    func_file_template=$MOD_DATADIR/templates/$lang.function
+    func_file_template=${mod_datadir}/templates/$lang.function
 
     if [ -e "$func_file" ]; then
 	echo "${RED}$func_file Already exist${NC}"
