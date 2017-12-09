@@ -1,8 +1,9 @@
 #!/bin/sh
 
 help="${RED}doe _self create -m <MODULE> -f <FUNCTION> [-o <OPTIONS>] [-l <sh|perl|python>]${NC}"
-_self_create_opts="m:f:o:l:"
 mod_datadir=$DOE_MODDIR/_self/.data
+
+_self_create_opts="m:f:o:l:"
 
 _self_create()
 {
@@ -37,8 +38,7 @@ _self_create()
 	[ -d $DOE_MODDIR/$mod ] || mkdir $DOE_MODDIR/$mod
 	
 	eval "echo \"$(cat $func_file_template)\"" > $func_file
-	
-	[ "$lang" != "sh" ] && chmod +x $func_file
+	chmod +x $func_file
     fi
 }
 

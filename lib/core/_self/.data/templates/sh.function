@@ -1,8 +1,8 @@
 #!/bin/sh
 
-help=\"\${RED}doe ${mod} ${func} .....\${NC}\"
-mod_datadir=\$DOE_MODDIR/${mod}/.data
-mod_tempdir=\$DOE_TMPDIR/${mod}
+help=\"doe ${mod} ${func} ...\"
+mod_datadir=\$HOME/doe/modules/${mod}/.data
+mod_tempdir=\$HOME/doe/.tmp/${mod}
 
 ${mod}_${func}_opts=\"${opt}\"
 
