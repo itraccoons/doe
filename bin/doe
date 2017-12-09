@@ -13,7 +13,7 @@ NC='\033[0m'		# No color
 
 call_module()
 {
-    case "$1" in
+    case $1 in
 	list-modules)
 	    # Find all dirictories ("modules") in the directory with all modules.
 	    # Replace newlines with space. Return $string

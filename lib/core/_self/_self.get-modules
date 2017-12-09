@@ -2,8 +2,7 @@
 
 _self_get_modules()
 {
-    cd "$DOE_HOMEDIR/lib" || exit 1
-    git clone ${doe_modules_url}
+    git clone ${doe_modules_url} $DOE_HOMEDIR/lib/doe-modules
     cd "$DOE_MODDIR" || exit 1
     ln -s ../lib/doe-modules/* .
 

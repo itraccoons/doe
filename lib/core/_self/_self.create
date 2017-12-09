@@ -1,11 +1,12 @@
-#!/bin/bash
+#!/bin/bash --posix
 
 HELP="${RED}doe _self create -m <MODULE> -f <FUNCTION> [-o <OPTIONS>] [-l <bash|perl|python>]${NC}"
 OPTIONS="m:f:o:l:"
-MOD_DATADIR=$( dirname ${BASH_SOURCE[0]} )/.data
+MOD_DATADIR=$DOE_MODDIR/_self/.data
 
 _self_create()
 {
+    # parse agruments to variables arg_opt_<OPTION_LETTER>
     while getopts ${OPTIONS} o; do
 	case $o in
 	  '?'|'h' ) echo "$HELP" && return 1 ;;
@@ -13,6 +14,7 @@ _self_create()
 	esac
     done
 
+    # if no module specified (option -m)
     [ x$arg_opt_m = x ] && echo "$HELP"  && return 1
 
     mod=${arg_opt_m}

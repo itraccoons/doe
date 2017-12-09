@@ -5,7 +5,7 @@
 Increasing perfomance by automating routing tasks.
 Wrap your routine into own simple CLI
 
-Platform: sh (macOS)
+Platform: bash (macOS)
 (not fully POSIX compliant because some bashism inplace)
 
 ### Quickstart
@@ -14,16 +14,15 @@ cd ~ && git clone https://github.com/itraccoons/doe.git
 
 or
 
-curl -fsSL https://doe.cloud/get | sh (broken now)
+(curl -fsSL https://doe.cloud/get | sh (broken now) - let me know if it's will be usefull for you)
 
 
 ### Using DOE
+    $ doe _self init
+    $ . ~/.bash_profile
     $ doe _self create -m docker -f env -o c: -l shell
-    $ ...
+    $ nano ~/doe/modules/docker/docker.create
     $ doe docker env -c up
-    $ doe docker env -c ssh
-    $ doe docker env -c halt
-    $ cd $(doe docker env -c pwd)
 
 
 Oleksii Kucheruk
