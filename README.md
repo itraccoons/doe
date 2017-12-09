@@ -6,7 +6,7 @@ Increasing perfomance by automating routing tasks.
 Wrap your routine into own simple CLI
 
 Platform: bash (macOS)
-(not fully POSIX compliant because some bashism inplace)
+###### not fully POSIX compliant because some bashism inplace
 
 ### Quickstart
 
@@ -15,7 +15,7 @@ cd ~ && git clone https://github.com/itraccoons/doe.git
 or
 
 curl -fsSL https://doe.cloud/get | sh
-experimental - let me know if it's usefull for you
+###### experimental - let me know if it's usefull for you
 
 
 ### Using DOE
@@ -27,5 +27,4 @@ experimental - let me know if it's usefull for you
     $ doe docker env -c up
 
 
-Oleksii Kucheruk
-Sat Dec  9 17:26:59 2017
+###### Oleksii Kucheruk (raccoon1)
