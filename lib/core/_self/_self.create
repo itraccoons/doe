@@ -1,6 +1,6 @@
 #!/bin/sh
 
-help="${RED}doe _self create -m <MODULE> -f <FUNCTION> [-o <OPTIONS>] [-l <sh|perl|python>]${NC}"
+help="doe _self create -m <MODULE> -f <FUNCTION> [-o <OPTIONS>] [-l <sh|perl|python>]"
 mod_datadir=$DOE_MODDIR/_self/.data
 
 _self_create_opts="m:f:o:l:"
@@ -14,6 +14,7 @@ _self_create()
 	  $o      ) eval arg_opt_$o=${OPTARG} ;;
 	esac
     done
+    shift $((OPTIND-1))
 
     # if no module specified (option -m)
     [ x$arg_opt_m = x ] && echo "$help"  && return 1
@@ -26,7 +27,7 @@ _self_create()
     func_file_template=${mod_datadir}/templates/$lang.function
 
     if [ -e "$func_file" ]; then
-	echo "${RED}$func_file Already exist${NC}"
+	echo "$func_file Already exist"
 	return 1
     else
 	echo "Module: $mod"

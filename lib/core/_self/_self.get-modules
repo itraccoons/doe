@@ -8,7 +8,7 @@ _self_get_modules()
 	git clone ${doe_modules_url} $DOE_HOMEDIR/lib/doe-modules
 	cd "$DOE_MODDIR" || exit 1
 	ln -s ../lib/doe-modules/* .
-	echo "${RED}Linked: $($0 list-modules)${NC}"
+	echo "Linked: $($0 list-modules)"
     fi
 }
 

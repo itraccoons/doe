@@ -6,9 +6,6 @@ DOE_HOMEDIR=$DOE_BASEDIR/$DOE_DIR
 DOE_MODDIR=$DOE_HOMEDIR/modules
 DOE_TMPDIR=$DOE_HOMEDIR/.tmp
 
-RED='\033[0;31m'	# Red color 
-NC='\033[0m'		# No color
-
 . $DOE_HOMEDIR/doe.conf
 
 call_module()
@@ -23,7 +20,7 @@ call_module()
 	    ;;
 	$1)
 	    if [ -d "$DOE_MODDIR/$1" ]; then
-		call_module_function "$@" || (echo "${RED}Usage:\n\tdoe $1 <function>\n\n\tfunctions = { $($0 $1 list-functions) }${NC}"; exit 0)
+		call_module_function "$@" || (echo "Usage:\n\tdoe $1 <function>\n\n\tfunctions = { $($0 $1 list-functions) }"; exit 0)
 	    else
 		return 1
 	    fi
@@ -56,4 +53,4 @@ call_module_function()
 
 ################################################################################
 
-call_module ${@:-${default_function}} || (echo "${RED}Usage:\n\tdoe <module>\n\n\tmodule = { $($0 list-modules) }${NC}"; exit 1)
+call_module ${@:-${default_function}} || (echo "Usage:\n\tdoe <module>\n\n\tmodule = { $($0 list-modules) }"; exit 1)
