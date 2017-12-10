@@ -1,6 +1,6 @@
 #!/bin/sh
 
-help="doe _self create -m <MODULE> -f <FUNCTION> [-o <OPTIONS>] [-l <sh|perl|python>]"
+help="doe _self create -m <MODULE> -f <FUNCTION> [-o <OPTIONS>] [-l <sh|perl|python>] [-h]"
 mod_datadir=$DOE_MODDIR/_self/.data
 
 _self_create_opts="m:f:o:l:h"
