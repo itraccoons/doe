@@ -32,7 +32,7 @@ or
     $ ~/doe/bin/doe _self init
     $ . ~/.bash_profile
     $ doe <TAB><TAB>
-    $ doe _self create -m quick -f ubuntu -o c:h -l shell
+    $ doe _self create -m quick -f ubuntu -o c:h
     $ nano ~/doe/modules/quick/quick.ubuntu
     $ doe quick ubuntu
     $ doe quick ubuntu -c destroy
