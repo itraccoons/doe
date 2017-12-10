@@ -20,11 +20,11 @@ _not fully POSIX compliant because some bashism inplace_
 
 ### Quickstart
 
-    cd ~ && git clone https://github.com/itraccoons/doe.git
+    $ cd ~ && git clone https://github.com/itraccoons/doe.git
 
 or
 
-    curl -fsSL https://doe.cloud/get | sh
+    $ curl -fsSL https://doe.cloud/get | sh
     experimental - let me know if it's usefull for you
 
 
@@ -32,9 +32,10 @@ or
     $ ~/doe/bin/doe _self init
     $ . ~/.bash_profile
     $ doe <TAB><TAB>
-    $ doe _self create -m docker -f env -o c:h -l shell
-    $ nano ~/doe/modules/docker/docker.create
-    $ doe docker env -c up
+    $ doe _self create -m quick -f ubuntu -o c:h -l shell
+    $ nano ~/doe/modules/quick/quick.ubuntu
+    $ doe quick ubuntu
+    $ doe quick ubuntu -c destroy
 
 
 ###### Oleksii Kucheruk (raccoon1)
