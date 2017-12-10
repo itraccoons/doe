@@ -16,7 +16,7 @@ _doe \<module\> \<function\> [options]_
     doe _self create -m <MODULE> -f <FUNCTION> [-o <OPTIONS>] [-l <sh|perl|python>] [-h]
 
 ### Platform: bash (macOS)
-_not fully POSIX compliant because some bashism inplace_
+_not fully POSIX compliant because some bashism could be inplace_
 
 ### Quickstart
 
