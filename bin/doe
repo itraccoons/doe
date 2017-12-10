@@ -20,7 +20,7 @@ call_module()
 	    ;;
 	$1)
 	    if [ -d "$DOE_MODDIR/$1" ]; then
-		call_module_function "$@" || (echo "Usage:\n\tdoe $1 <function>\n\n\tfunctions = { $($0 $1 list-functions) }"; exit 0)
+		call_module_function "$@" || (echo "Usage:\n\tdoe $1 <function>\n\n\tfunctions = { $($0 $1 list-functions) }"; exit 1)
 	    else
 		return 1
 	    fi
