@@ -3,7 +3,7 @@
 help="doe _self create -m <MODULE> -f <FUNCTION> [-o <OPTIONS>] [-l <sh|perl|python>]"
 mod_datadir=$DOE_MODDIR/_self/.data
 
-_self_create_opts="m:f:o:l:"
+_self_create_opts="m:f:o:l:h"
 
 _self_create()
 {
