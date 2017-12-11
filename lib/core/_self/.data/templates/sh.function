@@ -1,6 +1,6 @@
 #!/bin/sh
 
-help=\"doe ${mod} ${func} ...\"
+help=\"Usage: doe ${mod} ${func} [...]\"
 mod_datadir=\$HOME/doe/modules/${mod}/.data
 mod_tempdir=\$HOME/doe/.tmp/${mod}
 
