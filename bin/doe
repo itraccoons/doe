@@ -1,4 +1,11 @@
 #!/bin/sh
+#
+# $HOME/doe/bin/doe
+#
+# Oleksii Kucheruk <ok@raccoons.co> (raccoon1)
+# https://github.com/itraccoons/doe
+#
+# doe <module> <function> [options]
 
 DOE_DIR=doe
 DOE_BASEDIR=$HOME

@@ -15,7 +15,9 @@ _doe \<module\> \<function\> [options]_
     $ doe _self create -h
     doe _self create -m <MODULE> -f <FUNCTION> [-o <OPTIONS>] [-l <sh|perl|python>] [-h]
 
-### Platform: sh/bash (macOS/ubuntu)
+### Platform:
+
+GNU bash, version 3.2.57(1)-release (x86_64-apple-darwin15), 4.3.48(1)-release (x86_64-pc-linux-gnu)
 _not fully POSIX compliant because some bashism could be inplace_
 
 ### Quickstart
