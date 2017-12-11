@@ -8,6 +8,12 @@ DOE_TMPDIR=$DOE_HOMEDIR/.tmp
 
 . $DOE_HOMEDIR/doe.conf
 
+die()
+{
+    echo $1
+    exit 1
+}
+
 call_module()
 {
     case $1 in
@@ -20,7 +26,7 @@ call_module()
 	    ;;
 	$1)
 	    if [ -d "$DOE_MODDIR/$1" ]; then
-		call_module_function "$@" || (echo "Usage:\n\tdoe $1 <function>\n\n\tfunctions = { $($0 $1 list-functions) }"; exit 1)
+		call_module_function "$@" || die "Usage:\n\tdoe $1 <function>\n\n\tfunctions = { $($0 $1 list-functions) }"
 	    else
 		return 1
 	    fi
@@ -32,7 +38,7 @@ call_module_function()
 {
     mod=$1		# Module name = Directory name
     func=$2		# Function name
-    shift 2		# Remove two args from $@. 
+#    shift 2		# Remove two args from $@. 
     case "${func}" in
 	list-functions)
 	    # Find all files ("functions") in the module directory.
@@ -44,6 +50,7 @@ call_module_function()
 	$func)
 	    func_file="$DOE_MODDIR/${mod}/${mod}.${func}"
 	    if [ -f "${func_file}" ]; then
+		shift 2
 		[ -x "${func_file}" ] && exec "${func_file}" "$@" || . "${func_file}" "$@"
 	    else
 		return 1
@@ -53,4 +60,4 @@ call_module_function()
 
 ################################################################################
 
-call_module ${@:-${default_function}} || (echo "Usage:\n\tdoe <module>\n\n\tmodule = { $($0 list-modules) }"; exit 1)
+call_module ${@:-${default_function}} || die "Usage:\n\tdoe <module>\n\n\tmodule = { $($0 list-modules) }"

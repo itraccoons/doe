@@ -1,6 +1,6 @@
 [![HitCount](http://hits.dwyl.io/itraccoons/doe.svg)](http://hits.dwyl.io/itraccoons/doe)
 
-### Project: doeZen ( Doezen Executions, Do Experiments, DevOps Environment)
+### Project: doeZen ( Dozen Executions, Do Experiments, DevOps Environment)
 
 Increasing perfomance by automating routing tasks.
 Wrap your routine into own simple "tab-tab" CLI
