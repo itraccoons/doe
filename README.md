@@ -17,9 +17,7 @@ _doe \<module\> \<function\> [options]_
 
 ### Platform:
 
-GNU bash, version
-* 3.2.57(1)-release (x86_64-apple-darwin15)
-* 4.3.48(1)-release (x86_64-pc-linux-gnu)
+GNU bash, version 3.2.57(1)-release (x86_64-apple-darwin15), 4.3.48(1)-release (x86_64-pc-linux-gnu)
 
 ###### _not fully POSIX compliant because some bashism could be inplace_
 
