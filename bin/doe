@@ -2,8 +2,8 @@
 #
 # $HOME/doe/bin/doe
 #
-# Oleksii Kucheruk <ok@raccoons.co> (raccoon1)
-# https://github.com/itraccoons/doe
+# doeZen by Oleksii Kucheruk <ok@raccoons.co> (raccoon1) https://github.com/itraccoons/doe
+# Create your own 3-level CLI with tab complition
 #
 # doe <module> <function> [options]
 
@@ -45,7 +45,6 @@ call_module_function()
 {
     mod=$1		# Module name = Directory name
     func=$2		# Function name
-#    shift 2		# Remove two args from $@. 
     case "${func}" in
 	list-functions)
 	    # Find all files ("functions") in the module directory.
@@ -57,7 +56,7 @@ call_module_function()
 	$func)
 	    func_file="$DOE_MODDIR/${mod}/${mod}.${func}"
 	    if [ -f "${func_file}" ]; then
-		shift 2
+		shift 2	# Remove two args from $@
 		[ -x "${func_file}" ] && exec "${func_file}" "$@" || . "${func_file}" "$@"
 	    else
 		return 1
