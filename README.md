@@ -33,7 +33,7 @@ or
 
 ### Using DOE
     $ ~/doe/bin/doe _self init
-    $ . ~/.bash_profile
+    $ exec -l $SHELL
     $ doe <TAB><TAB>
     $ doe _self create -m quick -f ubuntu -o c:h
     $ nano ~/doe/modules/quick/quick.ubuntu

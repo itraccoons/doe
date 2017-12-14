@@ -1,21 +1,23 @@
 #!/bin/sh
 
-add_to_bash_profile()
+add_to_file()
 {
-    bash_profile="$HOME"/.bash_profile
+    file=$1
+    str=$2
 
-    [ -f "$bash_profile" ] || touch "$bash_profile"
+    [ -f "$file" ] || touch "$file"
 
-    if ! grep -qF "$1" "$bash_profile"; then
-	echo "\n$1" >> "$bash_profile"
-	echo ".bash_profile: $1"
+    if ! grep -qF "$str" "$file"; then
+	echo "\n$str" >> "$file"
+	echo "$file: $str"
     fi
 }
 
 _self_init()
 {
-    add_to_bash_profile "if [ -f '$DOE_HOMEDIR/path.bash.inc' ]; then source '$DOE_HOMEDIR/path.bash.inc'; fi"
-    add_to_bash_profile "if [ -f '$DOE_HOMEDIR/completion.bash.inc' ]; then source '$DOE_HOMEDIR/completion.bash.inc'; fi"
+    add_to_file "$HOME/.bash_profile" "if [ -f '$HOME/.bashrc' ]; then source '$HOME/.bashrc'; fi"
+    add_to_file "$HOME/.bashrc" "if [ -f '$DOE_HOMEDIR/path.bash.inc' ]; then source '$DOE_HOMEDIR/path.bash.inc'; fi"
+    add_to_file "$HOME/.bashrc" "if [ -f '$DOE_HOMEDIR/completion.bash.inc' ]; then source '$DOE_HOMEDIR/completion.bash.inc'; fi"
 }
 
 _self_init "$@"
