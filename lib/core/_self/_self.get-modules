@@ -9,14 +9,15 @@ _self_get_modules()
 	return 1
     fi
 
-    if [ cd "$dir" ]; then
+    cd "$dir"
+    if [ $? ]; then
 	git pull
     else
 	git clone ${doe_modules_url} ${dir}
 
     fi
     cd "$DOE_MODDIR" || exit 1
-    ln -s ../lib/doe-modules/* .
+    ln -s ../lib/doe-modules/* . 2>/dev/null
     echo "Linked: $($0 list-modules)"
 }
 
