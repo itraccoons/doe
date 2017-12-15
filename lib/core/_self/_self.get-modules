@@ -2,14 +2,22 @@
 
 _self_get_modules()
 {
+    dir=$DOE_HOMEDIR/lib/doe-modules
+
     if [ x${doe_modules_url} = x ]; then
 	echo "doe.conf: doe_modules_url is undefined"
-    else
-	git clone ${doe_modules_url} $DOE_HOMEDIR/lib/doe-modules
-	cd "$DOE_MODDIR" || exit 1
-	ln -s ../lib/doe-modules/* .
-	echo "Linked: $($0 list-modules)"
+	return 1
     fi
+
+    if [ cd "$dir" ]; then
+	git pull
+    else
+	git clone ${doe_modules_url} ${dir}
+
+    fi
+    cd "$DOE_MODDIR" || exit 1
+    ln -s ../lib/doe-modules/* .
+    echo "Linked: $($0 list-modules)"
 }
 
 _self_get_modules "$@"
