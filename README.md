@@ -1,7 +1,7 @@
 [![Build Status](https://circleci.com/gh/itraccoons/doe.svg?style=shield)](https://circleci.com/gh/itraccoons/doe/tree/master)
 
 ### Project: doeZen
-##### Dozen Executions, Do Experiments, DevOps Environment
+###### doe: DOzen Executions, DO Experiments, DevOps Environment
 
 Increasing perfomance by automating routing tasks.
 Wrap your routine into own simple "tab-tab" CLI
