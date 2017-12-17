@@ -1,4 +1,9 @@
 #!/bin/sh
+#
+# shellcheck disable=SC2154
+#
+#  - SC2154: arg_opt_m is referenced but not assigned.
+
 
 help="Usage: doe _self create -m <MODULE> -f <FUNCTION> [-o <OPTIONS>] [-l <sh|perl|python>] [-h]"
 mod_datadir=$DOE_MODDIR/_self/.data
