@@ -4,8 +4,7 @@ jobs:
 
   shellcheck:
     working_directory: /work
-    docker:
-      - image: debian:stretch-slim
+    docker: [{image: 'docker:17.06-git'}]
     steps:
       - checkout
       - run:
