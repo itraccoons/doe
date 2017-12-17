@@ -1,7 +1,7 @@
 [![Build Status](https://circleci.com/gh/itraccoons/doe.svg?style=shield)](https://circleci.com/gh/itraccoons/doe/tree/master)
 
 
-[![HitCount](http://hits.dwyl.io/itraccoons/doe.svg?style=shield)](http://hits.dwyl.io/itraccoons/doe)
+[![HitCount](http://hits.dwyl.io/itraccoons/doe.svg)](http://hits.dwyl.io/itraccoons/doe)
 
 ### Project: doeZen ( Dozen Executions, Do Experiments, DevOps Environment)
 
