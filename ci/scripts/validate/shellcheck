@@ -1,7 +1,6 @@
 #!/bin/sh
 
 set -e
-set -o pipefail
 
 shellcheck bin/doe
 find lib/core/_self/* -type f -exec shellcheck {} +
