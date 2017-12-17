@@ -1,5 +1,9 @@
 #!/bin/sh
+# shellcheck disable=SC2012
 #
+# Shellcheck ignore list:
+# - SC2012: Use find instead of ls to better handle non-alphanumeric filenames.:
+
 # $HOME/doe/bin/doe
 #
 # doeZen by Oleksii Kucheruk <ok@raccoons.co> (raccoon1) https://github.com/itraccoons/doe
