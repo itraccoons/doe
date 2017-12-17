@@ -3,8 +3,9 @@ version: 2
 jobs:
 
   shellcheck:
-    working_directory: /work
-    docker: debian:stretch-slim
+    working_directory: ~/
+    docker:
+      - image: debian:stretch-slim
     steps:
       - checkout
       - run:
