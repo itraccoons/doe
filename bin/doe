@@ -57,7 +57,11 @@ call_module_function()
 	    func_file="$DOE_MODDIR/${mod}/${mod}.${func}"
 	    if [ -f "${func_file}" ]; then
 		shift 2	# Remove two args from $@
-		[ -x "${func_file}" ] && exec "${func_file}" "$@" || . "${func_file}" "$@"
+		if [ -x "${func_file}" ]; then
+		    exec "${func_file}" "$@"
+		else
+		    . "${func_file}" "$@"
+		fi
 	    else
 		return 1
 	    fi
