@@ -79,4 +79,5 @@ call_module_function()
 
 ################################################################################
 
-call_module "${@:-${default_function}}" || die "Usage: doe <module>\nmodules: $($0 list-modules)"
+# shellcheck disable=SC2086
+call_module ${@:-${default_function}} || die "Usage: doe <module>\nmodules: $($0 list-modules)"
