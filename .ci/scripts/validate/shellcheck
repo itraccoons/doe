@@ -1,6 +1,4 @@
 #!/bin/sh
 
-set -eo pipefail
-
 shellcheck bin/doe
 #find scripts/ -type f | grep -v scripts/winresources | xargs shellcheck
