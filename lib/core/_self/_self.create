@@ -36,7 +36,7 @@ _self_create()
 	echo "Lang:   $lang"
 	echo "Run as: doe $mod $func"
 	
-	[ -d $DOE_MODDIR/$mod ] || mkdir $DOE_MODDIR/$mod
+	[ -d "$DOE_MODDIR/$mod" ] || mkdir "$DOE_MODDIR/$mod"
 	
 	eval "echo \"$(cat $func_file_template)\"" > $func_file
 	chmod +x $func_file

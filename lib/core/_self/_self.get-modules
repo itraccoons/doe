@@ -2,9 +2,9 @@
 
 _self_get_modules()
 {
-    user_mod_repo="$DOE_HOMEDIR/modules/repo"
+    user_mod_repo="$DOE_HOMEDIR"/modules/repo
     if [ -f "${user_mod_repo}" ]; then
-	user_mod_dir="$DOE_HOMEDIR/lib/doe-modules"
+	user_mod_dir="$DOE_HOMEDIR"/lib/doe-modules
 	if [ -d "${user_mod_dir}" ]; then
 	    cd "${user_mod_dir}" || exit 1
 	    git pull
