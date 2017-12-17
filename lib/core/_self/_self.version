@@ -2,7 +2,7 @@
 
 _self_version()
 {
-    cat $DOE_HOMEDIR/doe-release
+    cat $DOE_HOMEDIR/VERSION
 }
 
 _self_version "$@"
