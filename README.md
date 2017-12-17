@@ -1,8 +1,5 @@
 [![Build Status](https://circleci.com/gh/itraccoons/doe.svg?style=shield)](https://circleci.com/gh/itraccoons/doe/tree/master)
 
-
-[![HitCount](http://hits.dwyl.io/itraccoons/doe.svg)](http://hits.dwyl.io/itraccoons/doe)
-
 ### Project: doeZen ( Dozen Executions, Do Experiments, DevOps Environment)
 
 Increasing perfomance by automating routing tasks.
@@ -45,3 +42,4 @@ or
 
 
 ###### Oleksii Kucheruk (raccoon1)
+[![HitCount](http://hits.dwyl.io/itraccoons/doe.svg)](http://hits.dwyl.io/itraccoons/doe)
