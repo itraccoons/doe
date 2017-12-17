@@ -79,4 +79,4 @@ call_module_function()
 
 ################################################################################
 
-call_module ${@:-${default_function}} || die "Usage: doe <module>\nmodules: $($0 list-modules)"
+call_module "${@:-${default_function}}" || die "Usage: doe <module>\nmodules: $($0 list-modules)"
