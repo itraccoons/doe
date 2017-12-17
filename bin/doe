@@ -15,6 +15,8 @@
 #
 # doe <module> <function> [options]
 
+set -e
+
 DOE_DIR=doe
 DOE_BASEDIR=$HOME
 DOE_HOMEDIR=$DOE_BASEDIR/$DOE_DIR
