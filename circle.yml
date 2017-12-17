@@ -4,6 +4,7 @@ jobs:
 
   shellcheck:
     working_directory: /work
+    docker: debian:stretch-slim
     steps:
       - checkout
       - run:
