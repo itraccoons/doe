@@ -9,7 +9,7 @@ _self_get_modules()
 	    cd "${user_mod_dir}"
 	    git pull
 	else
-	    git clone ${user_mod_repo} ${user_mod_dir}
+	    git clone $(cat ${user_mod_repo}) ${user_mod_dir}
 	fi
 	cd "$DOE_MODDIR" || exit 1
 	ln -s ../lib/doe-modules/* . 2>/dev/null

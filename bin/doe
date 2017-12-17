@@ -35,8 +35,8 @@ call_module()
 	    # Find all dirictories ("modules") in the directory with all modules.
 	    # Replace newlines with space. Return $string
 	    #basename -a $(find -L $DOE_MODDIR/* -type d -maxdepth 0 2>/dev/null)  | tr '\n' ' '
-	    #find -L "$DOE_MODDIR"/* -type d -maxdepth 0 -exec basename -a {} + 2>/dev/null | tr '\n' ' '
-	    ls "$DOE_MODDIR" | tr '\n' ' '
+	    find -L "$DOE_MODDIR"/* -type d -maxdepth 0 -exec basename -a {} + 2>/dev/null | tr '\n' ' '
+	    #ls "$DOE_MODDIR" | tr '\n' ' '
 	    ;;
 	$1)
 	    if [ -d "$DOE_MODDIR/$1" ]; then
@@ -57,8 +57,8 @@ call_module_function()
 	    # Find all files ("functions") in the module directory.
 	    # Cut module name. Replace newlines with space. Return $string
 	    #basename -a $(find -L "$DOE_MODDIR/${mod}"/* -type f -maxdepth 0 2>/dev/null) | cut -d'.' -f2 | tr '\n' ' '
-	    #find -L "$DOE_MODDIR/${mod}"/* -type f -maxdepth 0 -exec basename -a {} + 2>/dev/null | cut -d'.' -f2 | tr '\n' ' '
-	    ls "$DOE_MODDIR/${mod}" | cut -d'.' -f2 | tr '\n' ' '
+	    find -L "$DOE_MODDIR/${mod}"/* -type f -maxdepth 0 -exec basename -a {} + 2>/dev/null | cut -d'.' -f2 | tr '\n' ' '
+	    #ls "$DOE_MODDIR/${mod}" | cut -d'.' -f2 | tr '\n' ' '
 	    ;;
 	$func)
 	    func_file="$DOE_MODDIR/${mod}/${mod}.${func}"
