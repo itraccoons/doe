@@ -1,9 +1,10 @@
 #!/bin/sh
-# shellcheck disable=SC2012,SC1090
+# shellcheck disable=SC2012,SC1090,SC2034
 #
 # Shellcheck ignore list:
 #  - SC2012: Use find instead of ls to better handle non-alphanumeric filenames.
 #  - SC1090: Can't follow non-constant source. Use a directive to specify location.
+#  - SC2034: DOE_TMPDIR appears unused. Verify it or export it.
 #
 # You can find more details for each warning at the following page: 
 #    https://github.com/koalaman/shellcheck/wiki/<SCXXXX>
@@ -21,7 +22,7 @@ DOE_HOMEDIR=$DOE_BASEDIR/$DOE_DIR
 DOE_MODDIR=$DOE_HOMEDIR/modules
 DOE_TMPDIR=$DOE_HOMEDIR/.tmp
 
-. $DOE_HOMEDIR/doe.conf
+. "$DOE_HOMEDIR"/doe.conf
 
 die()
 {
