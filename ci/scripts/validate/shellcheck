@@ -1,7 +1,7 @@
 #!/bin/sh
 
 shellcheck bin/doe
-find lib/core/ -type f | grep -v ".data" | xargs shellcheck
+find lib/core/_self/* -type f -exec shellcheck {} +
 find ci/scripts/ -type f -exec shellcheck {} +
 
 #find scripts/ -type f | grep -v scripts/winresources | xargs shellcheck
