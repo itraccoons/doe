@@ -2,21 +2,20 @@
 
 _self_get_modules()
 {
-    dir=$DOE_HOMEDIR/lib/doe-modules
-
-    if [ x${doe_modules_url} = x ]; then
-	echo "doe.conf: doe_modules_url is undefined"
-    else
-	if [ -d "$dir" ]; then
-	    cd "$dir"
+    user_mod_repo="$DOE_HOMEDIR/modules/repo"
+    if [ -f "${user_mod_repo}" ]; then
+	user_mod_dir="$DOE_HOMEDIR/lib/doe-modules"
+	if [ -d "${user_mod_dir}" ]; then
+	    cd "${user_mod_dir}"
 	    git pull
 	else
-	    git clone ${doe_modules_url} ${dir}
-
+	    git clone ${user_mod_repo} ${user_mod_dir}
 	fi
 	cd "$DOE_MODDIR" || exit 1
 	ln -s ../lib/doe-modules/* . 2>/dev/null
 	echo "Linked: $($0 list-modules)"
+    else
+	echo "No $user_mod_repo file"
     fi
 }
 

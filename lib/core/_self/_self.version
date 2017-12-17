@@ -1,8 +1,1 @@
-#!/bin/sh 
-
-_self_version()
-{
-    cat $DOE_HOMEDIR/VERSION
-}
-
-_self_version "$@"
+cat $DOE_HOMEDIR/VERSION

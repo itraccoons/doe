@@ -22,8 +22,6 @@ DOE_HOMEDIR=$DOE_BASEDIR/$DOE_DIR
 DOE_MODDIR=$DOE_HOMEDIR/modules
 DOE_TMPDIR=$DOE_HOMEDIR/.tmp
 
-. "$DOE_HOMEDIR"/doe.conf
-
 die()
 {
     echo "$1"
@@ -79,5 +77,4 @@ call_module_function()
 
 ################################################################################
 
-# shellcheck disable=SC2086
-call_module ${@:-${default_function}} || die "Usage: doe <module>\nmodules: $($0 list-modules)"
+call_module "$@" || die "Usage: doe <module>\nmodules: $($0 list-modules)"
