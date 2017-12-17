@@ -41,7 +41,7 @@ call_module()
 	    ;;
 	$1)
 	    if [ -d "$DOE_MODDIR/$1" ]; then
-		call_module_function "$@" || die "Usage: doe $1 <function>\nfunctions: $($0 $1 list-functions)"
+		call_module_function "$@" || die "Usage: doe $1 <function>\nfunctions: $($0 "$1" list-functions)"
 	    else
 		return 1
 	    fi
@@ -59,7 +59,7 @@ call_module_function()
 	    # Cut module name. Replace newlines with space. Return $string
 	    #basename -a $(find -L "$DOE_MODDIR/${mod}"/* -type f -maxdepth 0 2>/dev/null) | cut -d'.' -f2 | tr '\n' ' '
 	    #find -L "$DOE_MODDIR/${mod}"/* -type f -maxdepth 0 -exec basename -a {} + 2>/dev/null | cut -d'.' -f2 | tr '\n' ' '
-	    ls $DOE_MODDIR/${mod} | cut -d'.' -f2 | tr '\n' ' '
+	    ls "$DOE_MODDIR/${mod}" | cut -d'.' -f2 | tr '\n' ' '
 	    ;;
 	$func)
 	    func_file="$DOE_MODDIR/${mod}/${mod}.${func}"
