@@ -29,7 +29,7 @@ call_module()
 	    # Replace newlines with space. Return $string
 	    #basename -a $(find -L $DOE_MODDIR/* -type d -maxdepth 0 2>/dev/null)  | tr '\n' ' '
 	    #find -L "$DOE_MODDIR"/* -type d -maxdepth 0 -exec basename -a {} + 2>/dev/null | tr '\n' ' '
-	    ls $DOE_MODDIR | tr '\n' ' '
+	    ls "$DOE_MODDIR" | tr '\n' ' '
 	    ;;
 	$1)
 	    if [ -d "$DOE_MODDIR/$1" ]; then
