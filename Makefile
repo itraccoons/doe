@@ -1,8 +1,8 @@
 .PHONY: shellcheck
 shellcheck: ## run shellcheck validation
-	.ci/scripts/validate/shellcheck
+	ci/scripts/validate/shellcheck
 
 
 .PHONY: release
 release:
-	.ci/scripts/build/release
+	ci/scripts/build/release
