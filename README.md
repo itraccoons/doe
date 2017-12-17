@@ -1,6 +1,7 @@
 [![Build Status](https://circleci.com/gh/itraccoons/doe.svg?style=shield)](https://circleci.com/gh/itraccoons/doe/tree/master)
 
-### Project: doeZen ( Dozen Executions, Do Experiments, DevOps Environment)
+### Project: doeZen
+##### Dozen Executions, Do Experiments, DevOps Environment
 
 Increasing perfomance by automating routing tasks.
 Wrap your routine into own simple "tab-tab" CLI
@@ -10,6 +11,7 @@ Includes one core module "_self" with "init" and create" functions for self exte
 
 Main idea to wrap repeatable activities into "tab" completing 3-level CLI.
 Rest of args/options could be transfered into function. 
+
 _doe \<module\> \<function\> [options]_
 
     $ doe _self create -h
