@@ -30,10 +30,9 @@ GNU bash, version 3.2.57(1)-release (x86_64-apple-darwin15), 4.3.48(1)-release (
 or
 
     $ curl -fsSL https://doe.cloud/get | sh
-    experimental - let me know if it's usefull for you
+    experimental
 
-
-### Using DOE
+### Using doe
     $ ~/doe/bin/doe _self init
     $ exec -l $SHELL
     $ doe <TAB><TAB>
