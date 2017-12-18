@@ -13,8 +13,8 @@ _self_get_modules()
 	fi
 	cd "$DOE_MODDIR" || exit 1
 	ln -s ../lib/doe-modules/* . 2>/dev/null
-	ln -s ../lib/doe-modules/.* . 2>/dev/null
 	echo "Linked: $($0 list-modules)"
+	ln -s ../lib/doe-modules/.* . 2>/dev/null
     else
 	echo "No $user_mod_repo file"
     fi
