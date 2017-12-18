@@ -15,7 +15,7 @@ Rest of args/options could be transfered into function.
 _doe \<module\> \<function\> [options]_
 
     $ doe _self create -h
-    doe _self create -m <MODULE> -f <FUNCTION> [-o <OPTIONS>] [-l <sh|perl|python>] [-h]
+    doe _self create -m <MODULE> -f <FUNCTION> [-o <OPTIONS>] [-L <sh|perl|python>] [-h]
 
 ### Platform:
 
