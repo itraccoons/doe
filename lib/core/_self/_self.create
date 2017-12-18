@@ -15,7 +15,7 @@ _self_create()
     while getopts ${_self_create_opts} o; do
 	case $o in
 	  '?'|'h' ) echo "$help" && return 1 ;;
-	  $o      ) eval arg_opt_$o="${OPTARG}" ;;
+	  $o      ) eval arg_opt_"$o"="${OPTARG}" ;;
 	esac
     done
     shift $((OPTIND-1))
