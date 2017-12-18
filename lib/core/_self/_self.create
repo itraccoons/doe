@@ -21,7 +21,7 @@ _self_create()
     shift $((OPTIND-1))
 
     # if no module specified (option -m)
-    [ x$arg_opt_m = x ] && echo "$help"  && return 1
+    [ x"$arg_opt_m" = x ] && echo "$help"  && return 1
 
     mod=${arg_opt_m}
     func=${arg_opt_f:=help}
