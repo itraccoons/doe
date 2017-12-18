@@ -12,6 +12,7 @@ jobs:
           name: "Run shellcheck"
           command: |
             dockerfile=ci/dockerfiles/Dockerfile.shellcheck
+            pwd
             docker build -f $dockerfile --tag cli-validator:$CIRCLE_BUILD_NUM .
             docker run --rm cli-validator:$CIRCLE_BUILD_NUM make shellcheck
 workflows:
