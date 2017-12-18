@@ -42,7 +42,7 @@ _self_create()
 	
 	[ -d "$DOE_MODDIR/$mod" ] || mkdir "$DOE_MODDIR/$mod"
 	
-	eval "echo \"$(cat "$func_file_template")\"" > $func_file
+	eval "echo \"$(cat "$func_file_template")\"" > "$func_file"
 	chmod +x "$func_file"
     fi
 }
