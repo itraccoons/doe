@@ -8,7 +8,7 @@ add_to_file()
     [ -f "$file" ] || touch "$file"
 
     if ! grep -qF "$str" "$file"; then
-	printf "\n$str" >> "$file"
+	printf "\n$str\n" >> "$file"
 	echo "$file: $str"
     fi
 }
