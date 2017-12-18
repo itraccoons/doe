@@ -4,10 +4,10 @@
 #  - SC2154: arg_opt_m is referenced but not assigned.
 
 
-help="Usage: doe _self create -m <MODULE> -f <FUNCTION> [-o <OPTIONS>] [-l <sh|perl|python>] [-h]"
+help="Usage: doe _self create -m <MODULE> -f <FUNCTION> [-o <OPTIONS>] [-L <sh|perl|python>] [-h]"
 mod_datadir=$DOE_MODDIR/_self/.data
 
-_self_create_opts="m:f:o:l:h"
+_self_create_opts="m:f:o:L:h"
 
 _self_create()
 {
@@ -26,7 +26,7 @@ _self_create()
     mod=${arg_opt_m}
     func=${arg_opt_f:=help}
     opt=${arg_opt_o:=h}
-    lang=${arg_opt_l:=sh}
+    lang=${arg_opt_L:=sh}
     func_file=$DOE_MODDIR/$mod/$mod.$func
     func_file_template=${mod_datadir}/templates/$lang.function
 
