@@ -1,0 +1,16 @@
+#!/bin/sh
+
+DOE_RELEASE="doe_latest.tar.gz"
+DOE_TMPDIR=$HOME/doe/.tmp
+
+[ -d "${DOE_TMPDIR}" ] || mkdir -p "${DOE_TMPDIR}"
+
+tar	--exclude ".*" \
+	--exclude "*.yml" \
+	--exclude "Makefile" \
+	--exclude "lib/doe-modules/" \
+	--exclude "modules/[^a-zA-Z0-9]*" \
+	--exclude "${DOE_RELEASE}" \
+	-zcvf "${DOE_TMPDIR}/${DOE_RELEASE}" -C "$HOME" doe
+
+echo "Release: ${DOE_TMPDIR}/${DOE_RELEASE}"
