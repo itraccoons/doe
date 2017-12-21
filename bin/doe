@@ -87,10 +87,11 @@ call_module_function() {
 	    )
 	    echo "$l_f"
 	    ;;
-	"$func")
-	    if [ -f "$DOE_MODDIR/$1/$1.$2" ] ; then
+	"$2")
+	    func_file="$DOE_MODDIR/$1/$1.$2"
+	    if [ -f "$func_file" ] ; then
 		shift 2
-		exec "$DOE_MODDIR/$1/$1.$2" "$@"
+		exec "$func_file" "$@"
 	    else
 		return 1
 	    fi
