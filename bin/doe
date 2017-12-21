@@ -73,12 +73,10 @@ call_module() {
 }
 
 call_module_function() {
-    mod="$1"
-    func="$2"
-    case "$func" in
+    case "$2" in
 	list-functions)	# Find all files ("functions") in the module directory
 	    l_f=$(
-		find	-L "$DOE_MODDIR/$mod"/* \
+		find	-L "$DOE_MODDIR/$1"/* \
 			-type f \
 			-maxdepth 0 \
 			-exec basename -a \
@@ -90,10 +88,9 @@ call_module_function() {
 	    echo "$l_f"
 	    ;;
 	"$func")
-	    func_file="$DOE_MODDIR/$mod/$mod.$func"
-	    if [ -f "${func_file}" ] ; then
-		shift 2		# Remove two args from $@
-		exec "${func_file}" "$@"
+	    if [ -f "$DOE_MODDIR/$1/$1.$2" ] ; then
+		shift 2
+		exec "$DOE_MODDIR/$1/$1.$2" "$@"
 	    else
 		return 1
 	    fi
