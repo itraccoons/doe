@@ -1,19 +1,18 @@
 #!/bin/sh
-# shellcheck disable=SC1090,SC2034
+# shellcheck disable=SC1090
 #
 # Shellcheck ignore list:
 #  - SC1090: Can't follow non-constant source. Use a directive to specify location.
-#  - SC2034: DOE_TMPDIR appears unused. Verify it or export it.
 #
 # You can find more details for each warning at the following page: 
 #    https://github.com/koalaman/shellcheck/wiki/<SCXXXX>
 #
-# $HOME/doe/bin/doe
-#
-# doeZen by Oleksii Kucheruk <ok@raccoons.co> (raccoon1) https://github.com/itraccoons/doe
+# doeZen by Oleksii Kucheruk <ok@raccoons.co> (raccoon1) Thu Dec 21 02:37:28 2017
 # Create your own 3-level CLI with tab complition
 #
-# doe <module> <function> [options]
+# $ doe <module> <function> [options]
+#
+#    https://github.com/itraccoons/doe
 
 set -e
 
@@ -22,25 +21,70 @@ DOE_BASEDIR=$HOME
 DOE_HOMEDIR=$DOE_BASEDIR/$DOE_DIR
 DOE_MODDIR=$DOE_HOMEDIR/modules
 
-die()
-{
+die() {
     echo "$1"
     exit 1
 }
 
-call_module()
-{
-    case $1 in
-	list-modules)
-	    # Find all dirictories ("modules") in the directory with all modules.
-	    # Replace newlines with space. Return $string
-	    #basename -a $(find -L $DOE_MODDIR/* -type d -maxdepth 0 2>/dev/null)  | tr '\n' ' '
-	    find -L "$DOE_MODDIR"/* -type d -maxdepth 0 -exec basename -a {} + 2>/dev/null | tr '\n' ' '
-	    #ls "$DOE_MODDIR" | tr '\n' ' '
+create() {
+    help="Usage: doe create -m <MODULE> -f <FUNCTION> [-h]"
+    while getopts "m:f:h" o; do
+	case $o in
+	    '?'|'h') echo "$help" && return ;;
+	    'm'    ) mod="${OPTARG}" ;;
+	    'f'    ) func="${OPTARG:-help}" ;;
+	esac
+    done
+
+    # if no module specified (option -m)
+    [ x"$mod" = x ] && echo "$help"  && return
+
+    func_file=$DOE_MODDIR/$mod/$mod.$func
+    if [ -e "$func_file" ] ; then
+	echo "$func_file Already exist"
+    else
+        echo "Module: $mod"
+        echo "Func:   $func"
+        echo "File:   $func_file"
+        echo "Run as: doe $mod $func"
+
+        [ -d "$DOE_MODDIR/$mod" ] || mkdir "$DOE_MODDIR/$mod"
+
+        echo "#!/bin/sh" > "$func_file"
+        chmod +x "$func_file"
+    fi
+}
+
+call_module() {
+    if [ "$2" = "list-functions" ] ; then
+	call_module_function "$1" "$2"
+	die
+    fi
+
+    mod="$1"
+    case "$mod" in
+	list-modules)	# Find all dirictories ("modules") in the directory with all modules.
+	    l_m=$(
+	    	find	-L "$DOE_MODDIR"/* \
+			-type d \
+			-maxdepth 0 \
+			-exec basename -a \
+			{} + \
+			2>/dev/null \
+		| tr '\n' ' '
+	    )
+	    echo "create completion $l_m"
 	    ;;
-	$1)
-	    if [ -d "$DOE_MODDIR/$1" ]; then
-		call_module_function "$@" || die "Usage: doe $1 <function>\nfunctions: $($0 "$1" list-functions)"
+	completion)
+	    echo Completion
+	    ;;
+	create)
+	    shift	# Remove "create" from "create -m MODULE -f FUNCTION"
+	    create "$@"
+	    ;;
+	"$mod")
+	    if [ -d "$DOE_MODDIR/$mod" ] ; then
+		call_module_function "$@" || die "Usage: doe $mod <function>\nfunctions: $($0 "$mod" list-functions)"
 	    else
 		return 1
 	    fi
@@ -48,27 +92,28 @@ call_module()
     esac
 }
 
-call_module_function()
-{
-    mod=$1		# Module name = Directory name
-    func=$2		# Function name
-    case "${func}" in
-	list-functions)
-	    # Find all files ("functions") in the module directory.
-	    # Cut module name. Replace newlines with space. Return $string
-	    #basename -a $(find -L "$DOE_MODDIR/${mod}"/* -type f -maxdepth 0 2>/dev/null) | cut -d'.' -f2 | tr '\n' ' '
-	    find -L "$DOE_MODDIR/${mod}"/* -type f -maxdepth 0 -exec basename -a {} + 2>/dev/null | cut -d'.' -f2 | tr '\n' ' '
-	    #ls "$DOE_MODDIR/${mod}" | cut -d'.' -f2 | tr '\n' ' '
+call_module_function() {
+    mod="$1"
+    func="$2"
+    case "$func" in
+	list-functions)	# Find all files ("functions") in the module directory
+	    l_f=$(
+		find	-L "$DOE_MODDIR/$1"/* \
+			-type f \
+			-maxdepth 0 \
+			-exec basename -a \
+			{} + \
+			2>/dev/null \
+		| cut -d'.' -f2 \
+		| tr '\n' ' '
+	    )
+	    echo "$l_f"
 	    ;;
-	$func)
-	    func_file="$DOE_MODDIR/${mod}/${mod}.${func}"
-	    if [ -f "${func_file}" ]; then
-		shift 2	# Remove two args from $@
-		if [ -x "${func_file}" ]; then
-		    exec "${func_file}" "$@"
-		else
-		    . "${func_file}" "$@"
-		fi
+	"$func")
+	    func_file="$DOE_MODDIR/$mod/$mod.$func"
+	    if [ -f "${func_file}" ] ; then
+		shift 2		# Remove two args from $@
+		exec "${func_file}" "$@"
 	    else
 		return 1
 	    fi
