@@ -1,8 +1,0 @@
-#!/usr/bin/perl
-
-sub ${mod}_${func}
-{
-    print \"${mod}.${func} + @_\";
-}
-
-${mod}_${func}(@ARGV);
