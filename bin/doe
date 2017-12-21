@@ -1,24 +1,13 @@
 #!/bin/sh
-# shellcheck disable=SC1090
 #
-# Shellcheck ignore list:
-#  - SC1090: Can't follow non-constant source. Use a directive to specify location.
-#
-# You can find more details for each warning at the following page: 
-#    https://github.com/koalaman/shellcheck/wiki/<SCXXXX>
-#
+# https://github.com/itraccoons/doe
 # doeZen by Oleksii Kucheruk <ok@raccoons.co> (raccoon1) Thu Dec 21 02:37:28 2017
 # Create your own 3-level CLI with tab complition
 #
 # $ doe <module> <function> [options]
-#
-#    https://github.com/itraccoons/doe
-
 set -e
 
-DOE_DIR=doe
-DOE_BASEDIR=$HOME
-DOE_HOMEDIR=$DOE_BASEDIR/$DOE_DIR
+DOE_HOMEDIR=$HOME/.doe
 DOE_MODDIR=$DOE_HOMEDIR/modules
 
 die() {
@@ -30,39 +19,30 @@ create() {
     help="Usage: doe create -m <MODULE> -f <FUNCTION> [-h]"
     while getopts "m:f:h" o; do
 	case $o in
-	    '?'|'h') echo "$help" && return ;;
-	    'm'    ) mod="${OPTARG}" ;;
-	    'f'    ) func="${OPTARG:-help}" ;;
+	    m   ) mod="${OPTARG}" ;;
+	    f   ) func="${OPTARG:-help}" ;;
+	    ?|h ) echo "$help" && return ;;
 	esac
     done
 
-    # if no module specified (option -m)
-    [ x"$mod" = x ] && echo "$help"  && return
+    # if no -m or -f options
+    [ x"$mod" = x ] || [ y"$func" = y ] && echo "$help" && return
 
     func_file=$DOE_MODDIR/$mod/$mod.$func
     if [ -e "$func_file" ] ; then
 	echo "$func_file Already exist"
     else
-        echo "Module: $mod"
-        echo "Func:   $func"
-        echo "File:   $func_file"
-        echo "Run as: doe $mod $func"
-
-        [ -d "$DOE_MODDIR/$mod" ] || mkdir "$DOE_MODDIR/$mod"
-
+        [ -d "$DOE_MODDIR/$mod" ] || mkdir -p "$DOE_MODDIR/$mod"
         echo "#!/bin/sh" > "$func_file"
         chmod +x "$func_file"
+        echo "$func_file"
     fi
 }
 
 call_module() {
-    if [ "$2" = "list-functions" ] ; then
-	call_module_function "$1" "$2"
-	die
-    fi
+    [ "$2" = "list-functions" ] && call_module_function "$1" "$2" && die
 
-    mod="$1"
-    case "$mod" in
+    case "$1" in
 	list-modules)	# Find all dirictories ("modules") in the directory with all modules.
 	    l_m=$(
 	    	find	-L "$DOE_MODDIR"/* \
@@ -82,9 +62,9 @@ call_module() {
 	    shift	# Remove "create" from "create -m MODULE -f FUNCTION"
 	    create "$@"
 	    ;;
-	"$mod")
-	    if [ -d "$DOE_MODDIR/$mod" ] ; then
-		call_module_function "$@" || die "Usage: doe $mod <function>\nfunctions: $($0 "$mod" list-functions)"
+	"$1")
+	    if [ -d "$DOE_MODDIR/$1" ] ; then
+		call_module_function "$@" || die "Usage: doe $mod <function>\nfunctions: $($0 "$1" list-functions)"
 	    else
 		return 1
 	    fi
@@ -98,7 +78,7 @@ call_module_function() {
     case "$func" in
 	list-functions)	# Find all files ("functions") in the module directory
 	    l_f=$(
-		find	-L "$DOE_MODDIR/$1"/* \
+		find	-L "$DOE_MODDIR/$mod"/* \
 			-type f \
 			-maxdepth 0 \
 			-exec basename -a \
@@ -120,6 +100,8 @@ call_module_function() {
     esac
 }
 
-################################################################################
-
-call_module "$@" || die "Usage: doe <module>\nmodules: $($0 list-modules)"
+if [ $# -eq 0 ] ; then
+    die "Usage: doe <module>\nmodules: $($0 list-modules)"
+else
+    call_module "$@" || die "Usage: doe <module>\nmodules: $($0 list-modules)"
+fi
