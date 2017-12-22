@@ -3,7 +3,6 @@
 set -e
 
 shellcheck bin/doe
-shellcheck <(bin/doe completion)
 find .ci/scripts/ -type f -exec shellcheck {} +
 
 #find scripts/ -type f | grep -v scripts/winresources | xargs shellcheck
