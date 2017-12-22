@@ -2,11 +2,11 @@
 
 set -e
 
-echo "shellcheck bin/doe"
+echo "$0: shellcheck bin/doe"
 shellcheck bin/doe
-echo "bin/doe completion | shellcheck -"
+echo "$0: bin/doe completion | shellcheck -"
 bin/doe completion | shellcheck -
-echo "find .ci/scripts/ -type f -exec shellcheck {} +"
+echo "$0: find .ci/scripts/ -type f -exec shellcheck {} +"
 find .ci/scripts/ -type f -exec shellcheck {} +
 
 #find scripts/ -type f | grep -v scripts/winresources | xargs shellcheck
