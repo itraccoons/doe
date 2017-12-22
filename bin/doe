@@ -56,8 +56,7 @@ call_module() {
 	    echo "create completion $l_m"
 	    ;;
 	completion)
-	    case "$(basename "$SHELL")" in
-		bash)
+	    echo "$SHELL"
 echo "
 # shellcheck disable=SC2148
 if [ \"\$(basename \"\$SHELL\")\" = \"zsh\" ] ; then
@@ -73,12 +72,6 @@ _doe_completion() {
 }
 complete -F _doe_completion doe
 "
-		    ;;
-		zsh)
-echo "#!/usr/bin/env zsh
-"
-		    ;;
-	    esac
 	    ;;
 	create)
 	    shift	# Remove "create" from "create -m MODULE -f FUNCTION"
