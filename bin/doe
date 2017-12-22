@@ -1,7 +1,7 @@
 #!/bin/sh
 #
 # https://github.com/itraccoons/doe
-# doeZen by Oleksii Kucheruk <ok@raccoons.co> (raccoon1) Thu Dec 21 02:37:28 2017
+# doeZen by Oleksii Kucheruk <ok@raccoons.co> (raccoon1)
 # Create your own 3-level CLI with tab complition
 #
 # $ doe <module> <function> [options]
@@ -58,7 +58,11 @@ call_module() {
 	completion)
 	    case "$(basename "$SHELL")" in
 		bash)
-echo "#!/usr/bin/env bash
+echo "# shellcheck disable=SC2148
+if [ \"\$(basename \"\$SHELL\")\" = \"zsh\" ] ; then
+    autoload -U +X compinit bashcompinit
+    compinit -i && bashcompinit
+fi
 _doe_completion() {
     COMPREPLY=()
     case \${COMP_CWORD} in

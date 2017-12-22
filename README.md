@@ -26,7 +26,6 @@ GNU bash, version 3.2.57(1)-release (x86_64-apple-darwin15), 4.3.48(1)-release (
     $ curl -fsSL https://doe.cloud/get | sudo sh
 
 ### Using doe
-    $ ~/doe/bin/doe _self init
     $ . <(doe completion)
     $ doe <TAB><TAB>
     $ doe create -m quick -f ubuntu
