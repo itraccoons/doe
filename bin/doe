@@ -56,17 +56,24 @@ call_module() {
 	    echo "create completion $l_m"
 	    ;;
 	completion)
-echo "
+	    case "$(basename "$SHELL")" in
+		bash)
+echo "#!/usr/bin/env bash
 _doe_completion() {
     COMPREPLY=()
-    w=\${COMP_WORDS[COMP_CWORD]}
     case \${COMP_CWORD} in
-	1) COMPREPLY=( \$(compgen -W \"\$(doe list-modules)\" -- \$w) ) ;;
-        2) module=\${COMP_WORDS[COMP_CWORD-1]} ; COMPREPLY=( \$(compgen -W \"\$(doe \$module list-functions)\" -- \$w) ) ;;
+	1) COMPREPLY=( \$(compgen -W \"\$(doe list-modules)\" -- \"\${COMP_WORDS[COMP_CWORD]}\") ) ;;
+	2) COMPREPLY=( \$(compgen -W \"\$(doe \"\${COMP_WORDS[COMP_CWORD-1]}\" list-functions)\" -- \"\${COMP_WORDS[COMP_CWORD]}\") ) ;;
     esac
 }
 complete -F _doe_completion doe
 "
+		    ;;
+		zsh)
+echo "#!/usr/bin/env zsh
+"
+		    ;;
+	    esac
 	    ;;
 	create)
 	    shift	# Remove "create" from "create -m MODULE -f FUNCTION"
