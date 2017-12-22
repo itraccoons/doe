@@ -56,7 +56,7 @@ call_module() {
 	    echo "create completion $l_m"
 	    ;;
 	completion)
-	    case "$(basename $SHELL)" in
+	    case "$(basename "$SHELL")" in
 		bash)
 echo "#!/usr/bin/env bash
 _doe_completion() {
