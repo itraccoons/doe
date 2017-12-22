@@ -56,7 +56,6 @@ call_module() {
 	    echo "create completion $l_m"
 	    ;;
 	completion)
-	    echo "$SHELL"
 echo "
 # shellcheck disable=SC2148
 if [ \"\$(basename \"\$SHELL\")\" = \"zsh\" ] ; then
