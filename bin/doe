@@ -58,7 +58,8 @@ call_module() {
 	completion)
 	    case "$(basename "$SHELL")" in
 		bash)
-echo "#!/bin/bash
+echo "
+# shellcheck disable=SC2148
 if [ \"\$(basename \"\$SHELL\")\" = \"zsh\" ] ; then
     autoload -U +X compinit bashcompinit
     compinit -i && bashcompinit
