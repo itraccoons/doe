@@ -4,9 +4,9 @@ set -e
 
 echo "$0: shellcheck bin/doe"
 shellcheck bin/doe
-echo "$0: bin/doe completion | shellcheck -"
-bin/doe completion
-# completion | shellcheck -
+echo "$0: shellcheck <(bin/doe completion)"
+bin/doe completion > com[pletion
+shellcheck completion
 echo "$0: find .ci/scripts/ -type f -exec shellcheck {} +"
 find .ci/scripts/ -type f -exec shellcheck {} +
 
