@@ -15,7 +15,7 @@ echo "$? [ \"\$(command -v doe)\" = \"$DOE\" ]"
 [ -e "$DOE" ]
 echo "$? [ -e \"$DOE\" ]"
 
-echo "CALL $DOE"
+echo "CALL $DOE <some>"
 
 [ "$(doe list-modules)" = "create completion " ]
-echo "$? [ \"\$(doe list-modules)\" = \"create completion\" ]"
+echo "$? [ \"\$(doe list-modules)\" = \"create completion \" ]"
