@@ -1,6 +1,6 @@
 #!/bin/sh
 
-set -e
+#set -e
 
 DOE="/usr/local/bin/doe"
 
@@ -17,5 +17,5 @@ echo "$? [ -e \"$DOE\" ]"
 
 echo "CALL $DOE"
 
-[ "$(doe list-modules)" = "create completion" ]
+[ "$(doe list-modules)" = "create completion " ]
 echo "$? [ \"\$(doe list-modules)\" = \"create completion\" ]"
