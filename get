@@ -1,0 +1,15 @@
+#!/bin/sh
+set -e
+
+# This script is meant for quick & easy install via:
+#   $ curl -fsSL https://doe.cloud/get | sudo sh
+
+do_install()
+{
+    sh_c='sh -c'
+    #https://doe.cloud/doe
+    $sh_c "curl -fsSL -o /usr/local/bin/doe https://raw.githubusercontent.com/itraccoons/doe/master/bin/doe"
+    $sh_c "chmod 755 /usr/local/bin/doe"
+}
+
+do_install

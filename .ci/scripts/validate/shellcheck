@@ -3,6 +3,12 @@
 set -e
 
 shellcheck bin/doe
+echo "$0: shellcheck bin/doe => $?"
+
+bin/doe completion | shellcheck -
+echo "$0: bin/doe completion | shellcheck - => $?"
+
 find .ci/scripts/ -type f -exec shellcheck {} +
+echo "$0: find .ci/scripts/ -type f -exec shellcheck {} + => $?"
 
 #find scripts/ -type f | grep -v scripts/winresources | xargs shellcheck

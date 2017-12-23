@@ -7,16 +7,36 @@ jobs:
     docker: [{image: 'docker:17.06-git'}]
     steps:
       - checkout
-      - setup_remote_docker
+      - setup_remote_docker:
+          reusable: true
+          exclusive: false
       - run:
           name: "Run shellcheck"
           command: |
             dockerfile=.ci/dockerfiles/Dockerfile.shellcheck
             echo "COPY . ." >> $dockerfile
             docker build -f $dockerfile --tag cli-validator:$CIRCLE_BUILD_NUM .
-            docker run --rm cli-validator:$CIRCLE_BUILD_NUM make shellcheck
+            docker run --rm \
+                cli-validator:$CIRCLE_BUILD_NUM \
+                make shellcheck
+  test:
+    working_directory: /work
+    docker: [{image: 'docker:17.06-git'}]
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: "Run test zsh"
+          command: |
+            dockerfile=.ci/dockerfiles/Dockerfile.zsh
+            echo "COPY . ." >> $dockerfile
+            docker build -f $dockerfile --tag cli-builder:$CIRCLE_BUILD_NUM .
+            docker run --rm \
+                cli-builder:$CIRCLE_BUILD_NUM \
+                make install
 workflows:
   version: 2
   ci:
     jobs:
       - shellcheck
+      - test
