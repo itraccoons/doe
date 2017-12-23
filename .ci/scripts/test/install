@@ -2,12 +2,12 @@
 
 #set -e
 
-echo "$0: env"
-env
-echo "$0: curl -fsSL https://doe.cloud/get | sudo sh"
 curl -fsSL https://doe.cloud/get | sudo sh
+echo "$0: curl -fsSL https://doe.cloud/get | sudo sh => $?"
+
 echo "$0: command -v doe"
 command -v doe
-echo "$0: [ -e doe ]"
+echo "$0: command -v doe => $?"
+
 [ -e doe ]
-echo "end"
+echo "$0: [ -e doe ] => $?"
