@@ -1,0 +1,8 @@
+#!/bin/sh
+
+echo "$0: env"
+env
+echo "$0: get"
+get
+echo "$0: command -v doe"
+command -v doe

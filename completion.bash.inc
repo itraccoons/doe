@@ -1,18 +1,15 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
-_doe_completion()
-{
+if [ "$(basename "$SHELL")" = "zsh" ] ; then
+    autoload -U +X compinit bashcompinit
+    compinit -i && bashcompinit
+fi
+
+_doe_completion() {
     COMPREPLY=()
-    w=${COMP_WORDS[COMP_CWORD]}
-
     case ${COMP_CWORD} in
-	1)
-		COMPREPLY=( $(compgen -W "$(doe list-modules)" -- $w) )
-		;;
-	2)
-		module=${COMP_WORDS[COMP_CWORD-1]}
-		COMPREPLY=( $(compgen -W "$(doe $module list-functions)" -- $w) )
-		;;
+    1) COMPREPLY=( $(compgen -W "$(doe list-modules)" -- "${COMP_WORDS[COMP_CWORD]}") ) ;;
+    2) COMPREPLY=( $(compgen -W "$(doe "${COMP_WORDS[COMP_CWORD-1]}" list-functions)" -- "${COMP_WORDS[COMP_CWORD]}") ) ;;
     esac
 }
 

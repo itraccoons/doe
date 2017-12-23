@@ -12,4 +12,4 @@ release:
 
 .PHONY: install
 install:
-	.ci/scripts/test/get
+	.ci/scripts/test/install
