@@ -7,9 +7,9 @@ jobs:
     docker: [{image: 'docker:17.06-git'}]
     steps:
       - checkout
-      - setup_remote_docker
-            reusable: true
-            exclusive: false
+      - setup_remote_docker:
+          reusable: true
+          exclusive: false
       - run:
           name: "Run shellcheck"
           command: |
