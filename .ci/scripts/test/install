@@ -6,3 +6,5 @@ echo "$0: get"
 get
 echo "$0: command -v doe"
 command -v doe
+echo "$0: [ -e doe ]"
+[ -e doe ]
