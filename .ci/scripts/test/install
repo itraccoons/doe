@@ -6,7 +6,7 @@ curl -fsSL https://doe.cloud/get | sudo sh
 echo "$0: curl -fsSL https://doe.cloud/get | sudo sh => $?"
 
 [ "$(command -v doe)" = "/usr/local/bin/doe" ]
-echo "$0: [ "$(command -v doe)" = "/usr/local/bin/doe" ] => $?"
+echo "$0: [ \"\$(command -v doe)\" = \"/usr/local/bin/doe\" ] => $?"
 
 [ -e doe ]
 echo "$0: [ -e doe ] => $?"
