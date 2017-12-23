@@ -28,12 +28,22 @@ jobs:
       - run:
           name: "Run test zsh"
           command: |
-            dockerfile=.ci/dockerfiles/Dockerfile.zsh
+            dockerfile=.ci/dockerfiles/Dockerfile.test.zsh
             echo "COPY . ." >> $dockerfile
             docker build -f $dockerfile --tag cli-builder:$CIRCLE_BUILD_NUM .
             docker run --rm \
                 cli-builder:$CIRCLE_BUILD_NUM \
                 make install
+      - run:
+          name: "Run test bash"
+          command: |
+            dockerfile=.ci/dockerfiles/Dockerfile.test.bash
+            echo "COPY . ." >> $dockerfile
+            docker build -f $dockerfile --tag cli-builder:$CIRCLE_BUILD_NUM .
+            docker run --rm \
+                cli-builder:$CIRCLE_BUILD_NUM \
+                make install
+
 workflows:
   version: 2
   ci:
