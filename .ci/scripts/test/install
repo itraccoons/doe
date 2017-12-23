@@ -13,4 +13,4 @@ echo "$0: [ \"\$(command -v doe)\" = \"$DOE\" ] => $?"
 [ -e "$DOE" ]
 echo "$0: [ -e \"$DOE\" ] => $?"
 
-doe
+doe list-modules
