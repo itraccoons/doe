@@ -11,4 +11,6 @@ echo "$0: curl -fsSL https://doe.cloud/get | sudo sh => $?"
 echo "$0: [ \"\$(command -v doe)\" = \"$DOE\" ] => $?"
 
 [ -e "$DOE" ]
-echo "$0: [ -e $DOE ] => $?"
+echo "$0: [ -e \"$DOE\" ] => $?"
+
+doe
