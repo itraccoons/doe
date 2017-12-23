@@ -4,13 +4,18 @@ set -e
 
 DOE="/usr/local/bin/doe"
 
+echo "INSTALL $DOE"
+
 curl -fsSL https://doe.cloud/get | sudo sh
-echo "$0: curl -fsSL https://doe.cloud/get | sudo sh => $?"
+echo "$? curl -fsSL https://doe.cloud/get | sudo sh"
 
 [ "$(command -v doe)" = "$DOE" ]
-echo "$0: [ \"\$(command -v doe)\" = \"$DOE\" ] => $?"
+echo "$? [ \"\$(command -v doe)\" = \"$DOE\" ]"
 
 [ -e "$DOE" ]
-echo "$0: [ -e \"$DOE\" ] => $?"
+echo "$? [ -e \"$DOE\" ]"
 
-doe list-modules
+echo "CALL $DOE"
+
+[ "$(doe list-modules)" = "create completion" ]
+echo "$? [ \"\$(doe list-modules)\" = \"create completion\" ]"
