@@ -1,5 +1,5 @@
 #!/bin/sh
-# shellcheck disabled=SC2039
+# shellcheck disable=SC2039
 
 set -x
 #set -e
