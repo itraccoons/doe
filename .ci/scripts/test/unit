@@ -12,7 +12,8 @@ curl -fsSL https://doe.cloud/get | sudo sh
 [ "$(stat -c "%a" "$DOE")" = 755 ]
 
 echo "INIT COMPLETION"
-eval ". <(doe completion)"
+doe completion > completion.inc
+. ./completion.inc
 [ "$(typeset -F)" = "declare -f _doe_completion" ]
 
 echo "CALL $DOE <some>"
