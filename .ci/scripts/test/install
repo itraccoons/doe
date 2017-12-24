@@ -1,15 +1,11 @@
 #!/bin/sh
 
 #set -e
+set -x
 
 DOE="/usr/local/bin/doe"
 
 echo "INSTALL $DOE"
-
-set -x
-curl -fsSL https://doe.cloud/get | sudo sh
-set +x
-
 curl -fsSL https://doe.cloud/get | sudo sh	; echo "$? curl -fsSL https://doe.cloud/get | sudo sh"
 [ "$(command -v doe)" = "$DOE" ]		; echo "$? [ \"\$(command -v doe)\" = \"$DOE\" ]"
 [ -e "$DOE" ]					; echo "$? [ -e \"$DOE\" ]"
@@ -20,3 +16,4 @@ echo "CALL $DOE <some>"
 [ -e "$(doe create -m mod -f func)" ]		; echo "$? [ -e \"\$(doe create -m mod -f func)\" ]"
 [ "$(doe mod func)" ]				; echo "$? [ \"\$(doe mod func)\" ]"
 
+set +x
