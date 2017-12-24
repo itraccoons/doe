@@ -5,6 +5,11 @@
 DOE="/usr/local/bin/doe"
 
 echo "INSTALL $DOE"
+
+set -x
+curl -fsSL https://doe.cloud/get | sudo sh
+set +x
+
 curl -fsSL https://doe.cloud/get | sudo sh	; echo "$? curl -fsSL https://doe.cloud/get | sudo sh"
 [ "$(command -v doe)" = "$DOE" ]		; echo "$? [ \"\$(command -v doe)\" = \"$DOE\" ]"
 [ -e "$DOE" ]					; echo "$? [ -e \"$DOE\" ]"
@@ -14,4 +19,4 @@ echo "CALL $DOE <some>"
 [ "$(doe list-modules)" = "create completion " ]; echo "$? [ \"\$(doe list-modules)\" = \"create completion \" ]"
 [ -e "$(doe create -m mod -f func)" ]		; echo "$? [ -e \"\$(doe create -m mod -f func)\" ]"
 [ "$(doe mod func)" ]				; echo "$? [ \"\$(doe mod func)\" ]"
-echo "xxx" > 1
+
