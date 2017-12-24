@@ -3,11 +3,8 @@
 #set -e
 
 DOE="/usr/local/bin/doe"
-out=$(echo `history |tail -n2 |head -n1` | sed 's/[0-9]* //')
-
 
 echo "INSTALL $DOE"
-curl -fsSL https://doe.cloud/get | sudo sh	; echo "$? $out"
 curl -fsSL https://doe.cloud/get | sudo sh	; echo "$? curl -fsSL https://doe.cloud/get | sudo sh"
 [ "$(command -v doe)" = "$DOE" ]		; echo "$? [ \"\$(command -v doe)\" = \"$DOE\" ]"
 [ -e "$DOE" ]					; echo "$? [ -e \"$DOE\" ]"
