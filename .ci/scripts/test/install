@@ -10,8 +10,15 @@ curl -fsSL https://doe.cloud/get | sudo sh
 [ -e "$DOE" ]
 [ "$(stat -c "%a" "$DOE")" = 755 ]
 
+echo "INIT COMPLETION"
+. <(doe completion)
+[ "$(typeset -F)" = "declare -f _doe_completion" ]
+
 echo "CALL $DOE <some>"
 [ "$(doe list-modules)" = "create completion " ]
+
+doe completion
+
 [ -e "$(doe create -m mod -f func)" ]
 doe mod func
 
