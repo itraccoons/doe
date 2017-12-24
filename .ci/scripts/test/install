@@ -2,12 +2,20 @@
 
 #set -e
 
+DOE="/usr/local/bin/doe"
+
+echo "INSTALL $DOE"
+
 curl -fsSL https://doe.cloud/get | sudo sh
-echo "$0: curl -fsSL https://doe.cloud/get | sudo sh => $?"
+echo "$? curl -fsSL https://doe.cloud/get | sudo sh"
 
-echo "$0: command -v doe"
-command -v doe
-echo "$0: command -v doe => $?"
+[ "$(command -v doe)" = "$DOE" ]
+echo "$? [ \"\$(command -v doe)\" = \"$DOE\" ]"
 
-[ -e doe ]
-echo "$0: [ -e doe ] => $?"
+[ -e "$DOE" ]
+echo "$? [ -e \"$DOE\" ]"
+
+echo "CALL $DOE <some>"
+
+[ "$(doe list-modules)" = "create completion " ]
+echo "$? [ \"\$(doe list-modules)\" = \"create completion \" ]"
