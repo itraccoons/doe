@@ -15,7 +15,17 @@ echo "$? [ \"\$(command -v doe)\" = \"$DOE\" ]"
 [ -e "$DOE" ]
 echo "$? [ -e \"$DOE\" ]"
 
+[ "$(stat -c "%a" "$DOE")" = 755 ]
+echo "$? [ \"\$(stat -c \"%a\" \"\$DOE\")\" = 755 ]"
+
 echo "CALL $DOE <some>"
 
 [ "$(doe list-modules)" = "create completion " ]
 echo "$? [ \"\$(doe list-modules)\" = \"create completion \" ]"
+
+doe create -m mod -f func
+[ -e ~/.doe/modules/mod/mod.func ]
+echo "$? [ -e ~/.doe/modules/mod/mod.func ]"
+
+doe mod func
+echo "$? doe mod func"

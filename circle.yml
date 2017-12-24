@@ -43,6 +43,8 @@ jobs:
             docker run --rm \
                 cli-builder:$CIRCLE_BUILD_NUM \
                 make install
+#      - store_artifacts:
+#          path: /work/build
 
 workflows:
   version: 2
