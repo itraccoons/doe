@@ -1,19 +1,18 @@
 #!/bin/sh
 
+set -x
 #set -e
 DOE="/usr/local/bin/doe"
 
 echo "INSTALL $DOE"
-set -x
 curl -fsSL https://doe.cloud/get | sudo sh
 [ "$(command -v doe)" = "$DOE" ]
 [ -e "$DOE" ]
 [ "$(stat -c "%a" "$DOE")" = 755 ]
-set +x
 
 echo "CALL $DOE <some>"
-set -x
 [ "$(doe list-modules)" = "create completion " ]
 [ -e "$(doe create -m mod -f func)" ]
-[ "$(doe mod func)" ]
+doe mod func
+
 set +x
