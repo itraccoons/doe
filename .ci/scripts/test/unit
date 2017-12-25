@@ -12,8 +12,8 @@ curl -fsSL https://doe.cloud/get | sudo sh
 
 echo "INIT COMPLETION"
 #[ "$(typeset -F)" = "declare -f _doe_completion" ]
-doe completion > "~/.${0}rc"
-cat "~/.${0}rc"
+doe completion > "$HOME/.${0}rc"
+cat "$HOME/.${0}rc"
 
 echo "CALL $DOE <some>"
 [ "$(doe list-modules)" = "create completion " ]
