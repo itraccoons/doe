@@ -1,5 +1,4 @@
 #!/bin/sh
-# shellcheck disable=SC2039,SC1090
 
 set -x
 #set -e
@@ -12,14 +11,12 @@ curl -fsSL https://doe.cloud/get | sudo sh
 [ "$(stat -c "%a" "$DOE")" = 755 ]
 
 echo "INIT COMPLETION"
-doe completion > completion.inc
-source ./completion.inc
-[ "$(typeset -F)" = "declare -f _doe_completion" ]
+#[ "$(typeset -F)" = "declare -f _doe_completion" ]
+doe completion > ~/.${0}rc
+cat ~/.${0}rc
 
 echo "CALL $DOE <some>"
 [ "$(doe list-modules)" = "create completion " ]
-
-doe completion
 
 [ -e "$(doe create -m mod -f func)" ]
 doe mod func
