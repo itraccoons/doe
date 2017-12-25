@@ -10,6 +10,6 @@ unit-test: ## run tests
 release:
 	.ci/scripts/build/release
 
-.PHONY: install
-install:
+.PHONY: test-unit
+test-unit:
 	.ci/scripts/test/unit
