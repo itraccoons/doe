@@ -1,6 +1,7 @@
 #!/bin/sh
 
 set -e
+set -x
 
 shellcheck bin/doe
 echo "$0: shellcheck bin/doe => $?"
@@ -12,3 +13,5 @@ find .ci/scripts/ -type f -exec shellcheck {} +
 echo "$0: find .ci/scripts/ -type f -exec shellcheck {} + => $?"
 
 #find scripts/ -type f | grep -v scripts/winresources | xargs shellcheck
+
+set +x
