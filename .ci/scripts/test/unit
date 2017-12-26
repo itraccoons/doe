@@ -1,6 +1,0 @@
-#!/bin/sh
-
-DIR="$(basedir $0)"
-
-$(DIR)/00_install
-$(DIR)/01_calls
