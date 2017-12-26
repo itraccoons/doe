@@ -8,4 +8,4 @@ release:
 
 .PHONY: test-unit
 test-unit:
-	@$(foreach i, $(sort $(wildcard .ci/scripts/test/*)), exec $i)
+	.ci/scripts/test/unit

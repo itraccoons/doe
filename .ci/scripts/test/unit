@@ -1,0 +1,3 @@
+#!/bin/sh
+
+find .ci/scripts/test/[0-9]* -type f -exec {} +
