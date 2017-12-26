@@ -8,4 +8,5 @@ release:
 
 .PHONY: test-unit
 test-unit:
-	find .ci/scripts/test/ -type f -exec {} ;\
+	.ci/scripts/test/00_install
+	.ci/scripts/test/01_calls
