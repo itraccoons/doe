@@ -12,5 +12,4 @@ release:
 
 .PHONY: test-unit
 test-unit:
-	$(wildcard .ci/scripts/test/*) | sort
-#	$(foreach test, $(files), echo $(test))
+	@find .ci/scripts/test -type f | xargs -0 sh
