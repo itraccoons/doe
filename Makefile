@@ -12,4 +12,4 @@ release:
 
 .PHONY: test-unit
 test-unit:
-	@find .ci/scripts/test -type f | xargs -0 sh
+	@$(foreach test, $(wildcard .ci/scripts/test/*), exec $(test))
