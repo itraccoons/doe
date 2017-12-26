@@ -9,4 +9,4 @@ release:
 TESTS=$(wildcard .ci/scripts/test/*)
 .PHONY: test-unit
 test-unit: $(TESTS)
-	@$(foreach i,$(TESTS), echo $i"x")
+	@$(foreach i,$(TESTS), $i)
