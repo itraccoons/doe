@@ -1,4 +1,6 @@
 #!/bin/sh
 
-./00_install
-./01_calls
+DIR="$(basedir $0)"
+
+$(DIR)/00_install
+$(DIR)/01_calls
