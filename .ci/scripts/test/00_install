@@ -4,7 +4,6 @@ set -e
 set -x
 
 DOE="/usr/local/bin/doe"
-
 echo "INSTALL $DOE"
 curl -fsSL https://doe.cloud/get | sudo sh
 [ "$(command -v doe)" = "$DOE" ]
