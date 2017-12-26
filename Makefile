@@ -8,4 +8,4 @@ release:
 
 .PHONY: test-unit
 test-unit:
-	find .ci/scripts/test/ -type f -exec {} +
+	find .ci/scripts/test/ -type f -exec {} ;\
