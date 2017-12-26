@@ -6,7 +6,6 @@ shellcheck: ## run shellcheck validation
 release:
 	.ci/scripts/build/release
 
-TESTS=$(sort $(wildcard .ci/scripts/test/*))
 .PHONY: test-unit
-test-unit: $(TESTS)
-	@$(foreach i, $(TESTS), $i)
+test-unit:
+	@$(foreach i, $(sort $(wildcard .ci/scripts/test/*)), exec $i)
