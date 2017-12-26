@@ -12,4 +12,4 @@ release:
 
 .PHONY: test-unit
 test-unit:
-	find .ci/scripts/test/ -type f -print0
+	find .ci/scripts/test/ -type f -print0 | xargs -0 sh
