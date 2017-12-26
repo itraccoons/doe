@@ -12,5 +12,5 @@ release:
 
 .PHONY: test-unit
 test-unit:
-	$(wildcard .ci/scripts/test/*)
+	$(wildcard .ci/scripts/test/* | sort )
 #	$(foreach test, $(files), echo $(test))
