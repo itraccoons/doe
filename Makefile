@@ -12,4 +12,4 @@ release:
 
 .PHONY: test-unit
 test-unit:
-	$(foreach test, $(ls .ci/scripts/test/), echo $(test);)
+	@$(foreach test, $(wildcard .ci/scripts/test/*), exec $(test);)
