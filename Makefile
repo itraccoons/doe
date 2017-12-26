@@ -6,7 +6,7 @@ shellcheck: ## run shellcheck validation
 release:
 	.ci/scripts/build/release
 
+TESTS=$(wildcard .ci/scripts/test/*)
 .PHONY: test-unit
-test-unit:
-	.ci/scripts/test/00_install
-	.ci/scripts/test/01_calls
+test-unit: $(TESTS)
+	$<
