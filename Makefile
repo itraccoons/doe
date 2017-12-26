@@ -12,4 +12,4 @@ release:
 
 .PHONY: test-unit
 test-unit:
-	.ci/scripts/test/unit
+	@$(foreach test, .ci/scripts/test/*, exec $(test);)

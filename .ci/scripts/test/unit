@@ -1,24 +1,22 @@
 #!/bin/sh
 
-set -x
+#set -x
 #set -e
-DOE="/usr/local/bin/doe"
-
-echo "INSTALL $DOE"
-curl -fsSL https://doe.cloud/get | sudo sh
-[ "$(command -v doe)" = "$DOE" ]
-[ -e "$DOE" ]
-[ "$(stat -c "%a" "$DOE")" = 755 ]
-
-echo "INIT COMPLETION"
+#DOE="/usr/local/bin/doe"
+#
+#echo "INSTALL $DOE"
+#curl -fsSL https://doe.cloud/get | sudo sh
+#[ "$(command -v doe)" = "$DOE" ]
+#[ -e "$DOE" ]
+#[ "$(stat -c "%a" "$DOE")" = 755 ]
+#
+#echo "INIT COMPLETION"
 #[ "$(typeset -F)" = "declare -f _doe_completion" ]
-doe completion > "$HOME/.${0}rc"
-cat "$HOME/.$(basename "$SHELL")rc"
-
-echo "CALL $DOE <some>"
-[ "$(doe list-modules)" = "create completion " ]
-
-[ -e "$(doe create -m mod -f func)" ]
-doe mod func
-
-set +x
+#
+#echo "CALL $DOE <some>"
+#[ "$(doe list-modules)" = "create completion " ]
+#
+#[ -e "$(doe create -m mod -f func)" ]
+#doe mod func
+#
+#set +x
