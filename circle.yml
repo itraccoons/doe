@@ -25,6 +25,8 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker
+          reusable: true
+          exclusive: false
       - run:
           name: "Test doe in zsh"
           command: |
