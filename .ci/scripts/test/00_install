@@ -1,0 +1,15 @@
+#!/bin/sh
+
+set -e
+
+DOE="/usr/local/bin/doe"
+
+echo "TEST: $0"
+echo "INSTALL $DOE"
+
+set -x
+curl -fsSL https://doe.cloud/get | sudo sh
+[ "$(command -v doe)" = "$DOE" ]
+[ -e "$DOE" ]
+[ "$(stat -c "%a" "$DOE")" = 755 ]
+set +x

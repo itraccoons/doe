@@ -33,7 +33,7 @@ jobs:
             docker build -f $dockerfile --tag cli-builder:$CIRCLE_BUILD_NUM .
             docker run --rm \
                 cli-builder:$CIRCLE_BUILD_NUM \
-                make install
+                make test-unit
       - run:
           name: "Run test bash"
           command: |
@@ -42,7 +42,7 @@ jobs:
             docker build -f $dockerfile --tag cli-builder:$CIRCLE_BUILD_NUM .
             docker run --rm \
                 cli-builder:$CIRCLE_BUILD_NUM \
-                make install
+                make test-unit
 #      - store_artifacts:
 #          path: /work/build
 

@@ -1,0 +1,21 @@
+#!/bin/sh
+
+set -e
+
+DOE="/usr/local/bin/doe"
+
+echo "TEST: $0"
+echo "INIT COMPLETION"
+
+#[ "$(typeset -F)" = "declare -f _doe_completion" ]
+
+echo "CALL $DOE <some>"
+
+set -x
+[ "$(doe list-modules)" = "create completion " ]
+f="$(doe create -m mod -f func)"
+[ -e "$f" ]
+[ "$(stat -c "%a" "$f")" = 755 ]
+echo "echo \$0" >> "$f"
+[ "$(doe mod func)" = "$f" ] 
+set +x
