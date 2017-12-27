@@ -61,8 +61,6 @@ workflows:
   ci:
     jobs:
       - shellcheck
-      - test
-      - next:
+      - test:
           requires:
             - shellcheck
-            - test
