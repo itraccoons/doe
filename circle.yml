@@ -43,6 +43,7 @@ jobs:
             docker run --rm \
                 cli-builder:$CIRCLE_BUILD_NUM \
                 make test-unit
+            mkdir -p /work/artifacts
             touch /work/artifcats/XXX
       - store_artifacts:
           path: /work/artifacts
