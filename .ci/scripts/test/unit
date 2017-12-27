@@ -1,6 +1,5 @@
 #!/bin/sh
 
 for test in .ci/scripts/test/[0-9]*; do
-    echo "TEST: $test"
     sh -c "$test"
 done
