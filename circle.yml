@@ -19,12 +19,14 @@ jobs:
             docker run --rm \
                 cli-validator:$CIRCLE_BUILD_NUM \
                 make shellcheck
-  test:
+  test-zsh:
     working_directory: /work
     docker: [{image: 'docker:17.06-git'}]
     steps:
       - checkout
       - setup_remote_docker
+          reusable: true
+          exclusive: false
       - run:
           name: "Test doe in zsh"
           command: |
@@ -34,6 +36,12 @@ jobs:
             docker run --name \
                 test-zsh-$CIRCLE_BUILD_NUM cli-builder:$CIRCLE_BUILD_NUM \
                 make test-unit
+  test-bash:
+    working_directory: /work
+    docker: [{image: 'docker:17.06-git'}]
+    steps:
+      - checkout
+      - setup_remote_docker
       - run:
           name: "Test doe in bash"
           command: |
@@ -61,6 +69,9 @@ workflows:
   ci:
     jobs:
       - shellcheck
-      - test:
+      - test-zsh:
+          requires:
+            - shellcheck
+      - test-bash:
           requires:
             - shellcheck
