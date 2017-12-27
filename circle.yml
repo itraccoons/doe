@@ -47,6 +47,7 @@ jobs:
           name: "Get artifacts from containers"
           command: |
             env
+            docker ps
             mkdir -p /work/artifacts
             docker cp \
                 test-zsh-$CIRCLE_BUILD_NUM:/root/.doe \
