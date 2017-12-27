@@ -40,13 +40,15 @@ jobs:
             dockerfile=.ci/dockerfiles/Dockerfile.test.bash
             echo "COPY . ." >> $dockerfile
             docker build -f $dockerfile --tag cli-builder:$CIRCLE_BUILD_NUM .
-            docker run \
-                --name doe-bash cli-builder:$CIRCLE_BUILD_NUM \
+            docker run --name \
+                test-$CIRCLE_BUILD_NUM cli-builder:$CIRCLE_BUILD_NUM \
                 make test-unit
+      - run:
+          name: "Get artifacts"
+          command: |
             docker cp \
-                doe-bash:/work/.doe \
+                test-$CIRCLE_BUILD_NUM:/root/.doe \
                 /work/artifacts
-
 
       - store_artifacts:
           path: /work/artifacts
