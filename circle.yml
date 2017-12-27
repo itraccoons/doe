@@ -57,6 +57,7 @@ jobs:
     working_directory: /work
     docker: [{image: 'docker:17.06-git'}]
     steps:
+      - checkout
       - setup_remote_docker:
       - run:
           name: "Get artifacts from containers"
