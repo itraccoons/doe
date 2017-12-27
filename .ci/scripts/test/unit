@@ -1,7 +1,6 @@
 #!/bin/sh
 
-.ci/scripts/test/00_install
-.ci/scripts/test/01_calls
+.ci/scripts/test/[0-9]*
 
 #for test in .ci/scripts/test/[0-9]*; do
 #    echo "$test"
