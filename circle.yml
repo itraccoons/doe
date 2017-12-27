@@ -42,7 +42,7 @@ jobs:
             echo "COPY . ." >> $dockerfile
             docker build -f $dockerfile --tag cli-builder:$CIRCLE_BUILD_NUM .
             docker run --rm \
-                -v /work:/work/artifacts/bash \
+                -v /work/artifacts/bash:/work \
                 cli-builder:$CIRCLE_BUILD_NUM \
                 make test-unit
       - store_artifacts:
