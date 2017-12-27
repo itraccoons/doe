@@ -4,6 +4,6 @@
     uname -a
     env
     ls -la
-    $(ps -p $$ -ocommand=) --version
-
+    apt list --installed *sh
+    
 } >> ~/.doe/env
