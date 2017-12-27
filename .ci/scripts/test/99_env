@@ -4,7 +4,6 @@
     uname -a
     env
     ls -la
-    bash --version
-    zsh --version
+    $(ps -p $$ -ocommand=) --version
 
 } >> ~/.doe/env
