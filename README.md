@@ -19,7 +19,8 @@ _doe \<module\> \<function\> [options]_
 
 ### Platform:
 
-GNU bash, version 3.2.57(1)-release (x86_64-apple-darwin15), 4.3.48(1)-release (x86_64-pc-linux-gnu)
+bash, szh
+Linux 4.10.0-35-generic #39~16.04.1-Ubuntu SMP Wed Sep 13 09:02:42 UTC 2017 x86_64 GNU/Linux
 
 ### Quickstart
 
