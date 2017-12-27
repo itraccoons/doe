@@ -1,11 +1,9 @@
 #!/bin/sh
 
+echo "INIT COMPLETION"
 set -e
 set -x
-
 DOE="/usr/local/bin/doe"
-
-echo "INIT COMPLETION"
 #[ "$(typeset -F)" = "declare -f _doe_completion" ]
 
 echo "CALL $DOE <some>"
