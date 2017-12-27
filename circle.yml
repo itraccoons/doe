@@ -43,10 +43,6 @@ jobs:
             docker run --name \
                 test-$CIRCLE_BUILD_NUM cli-builder:$CIRCLE_BUILD_NUM \
                 make test-unit
-      - run:
-          name: "Get artifacts"
-          command: |
-            echo $CIRCLE_BUILD_NUM
             docker cp \
                 test-$CIRCLE_BUILD_NUM:/root/.doe \
                 /work/artifacts
