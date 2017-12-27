@@ -10,4 +10,4 @@ curl -fsSL https://doe.cloud/get | sudo sh
 [ -e "$DOE" ]
 [ "$(stat -c "%a" "$DOE")" = 755 ]
 
-set +x
+#set +x
