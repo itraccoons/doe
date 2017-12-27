@@ -1,7 +1,0 @@
-#!/bin/sh
-
-uname -a
-env
-ls -la
-bash --version
-zsh --version
