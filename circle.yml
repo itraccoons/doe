@@ -43,9 +43,10 @@ jobs:
             docker run --name \
                 test-$CIRCLE_BUILD_NUM cli-builder:$CIRCLE_BUILD_NUM \
                 make test-unit
+            mkdir -p /work/artifacts/bash
             docker cp \
                 test-$CIRCLE_BUILD_NUM:/root/.doe \
-                /work/artifacts
+                /work/artifacts/bash
 
       - store_artifacts:
           path: /work/artifacts
