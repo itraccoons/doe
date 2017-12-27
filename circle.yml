@@ -41,7 +41,6 @@ jobs:
             echo "COPY . ." >> $dockerfile
             docker build -f $dockerfile --tag cli-builder:$CIRCLE_BUILD_NUM .
             docker run \
-#             --rm \
                 --name doe-bash cli-builder:$CIRCLE_BUILD_NUM \
                 make test-unit
             docker cp \
