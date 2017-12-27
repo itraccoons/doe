@@ -1,8 +1,5 @@
 #!/bin/sh
 
-find .ci/scripts/test/[0-9]* -type f -exec sh -c {} +
-
-#for f in .ci/scripts/test/[0-9]*; do
-#    echo "$f"
-#    sh -c "$f"
-#done
+for test in .ci/scripts/test/[0-9]*; do
+    sh -c "$test"
+done
