@@ -44,7 +44,7 @@ jobs:
                 cli-builder:$CIRCLE_BUILD_NUM \
                 make test-unit
       - store_artifacts:
-          path: /root/.tmp
+          path: /root/.doe
 
 workflows:
   version: 2
