@@ -26,7 +26,7 @@ jobs:
       - checkout
       - setup_remote_docker
       - run:
-          name: "Run test zsh"
+          name: "Test doe in zsh"
           command: |
             dockerfile=.ci/dockerfiles/Dockerfile.test.zsh
             echo "COPY . ." >> $dockerfile
@@ -35,7 +35,7 @@ jobs:
                 test-zsh-$CIRCLE_BUILD_NUM cli-builder:$CIRCLE_BUILD_NUM \
                 make test-unit
       - run:
-          name: "Run test bash"
+          name: "Test doe in bash"
           command: |
             dockerfile=.ci/dockerfiles/Dockerfile.test.bash
             echo "COPY . ." >> $dockerfile
@@ -43,10 +43,10 @@ jobs:
             docker run --name \
                 test-bash-$CIRCLE_BUILD_NUM cli-builder:$CIRCLE_BUILD_NUM \
                 make test-unit
-
       - run:
-          name: "Get artifacts"
+          name: "Get artifacts from containers"
           command: |
+            env
             mkdir -p /work/artifacts
             docker cp \
                 test-zsh-$CIRCLE_BUILD_NUM:/root/.doe \
@@ -54,7 +54,6 @@ jobs:
             docker cp \
                 test-bash-$CIRCLE_BUILD_NUM:/root/.doe \
                 /work/artifacts/bash
-
       - store_artifacts:
           path: /work/artifacts
 
