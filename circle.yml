@@ -51,18 +51,18 @@ jobs:
             docker run --name \
                 test-bash-$CIRCLE_BUILD_NUM cli-builder:$CIRCLE_BUILD_NUM \
                 make test-unit
-      - run:
-          name: "Get artifacts from containers"
-          command: |
-            mkdir -p /work/artifacts
-            docker cp \
-                test-zsh-$CIRCLE_BUILD_NUM:/root/.doe \
-                /work/artifacts/zsh
-            docker cp \
-                test-bash-$CIRCLE_BUILD_NUM:/root/.doe \
-                /work/artifacts/bash
-      - store_artifacts:
-          path: /work/artifacts
+#      - run:
+#          name: "Get artifacts from containers"
+#          command: |
+#            mkdir -p /work/artifacts
+#            docker cp \
+#                test-zsh-$CIRCLE_BUILD_NUM:/root/.doe \
+#                /work/artifacts/zsh
+#            docker cp \
+#                test-bash-$CIRCLE_BUILD_NUM:/root/.doe \
+#                /work/artifacts/bash
+#      - store_artifacts:
+#          path: /work/artifacts
 
 workflows:
   version: 2
