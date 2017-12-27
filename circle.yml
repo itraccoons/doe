@@ -37,14 +37,18 @@ jobs:
       - run:
           name: "Run test bash"
           command: |
-            mkdir -p /work/artifacts
-            touch /work/artifcats/XXX
             dockerfile=.ci/dockerfiles/Dockerfile.test.bash
             echo "COPY . ." >> $dockerfile
             docker build -f $dockerfile --tag cli-builder:$CIRCLE_BUILD_NUM .
             docker run --rm \
+                --name doe-bash \
                 cli-builder:$CIRCLE_BUILD_NUM \
                 make test-unit
+            docker cp \
+                doe-bash:/work/.doe \
+                /work/artifacts
+
+
       - store_artifacts:
           path: /work/artifacts
 
