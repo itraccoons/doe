@@ -1,5 +1,8 @@
 #!/bin/sh
 
-for test in .ci/scripts/test/[0-9]*; do
-    exec "$test"
-done
+.ci/scripts/test/00_install
+.ci/scripts/test/01_calls
+
+#for test in .ci/scripts/test/[0-9]*; do
+#    echo "$test"
+#done
