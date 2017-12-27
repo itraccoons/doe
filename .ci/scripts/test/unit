@@ -2,5 +2,5 @@
 
 for f in .ci/scripts/test/[0-9]*; do
     echo "$f"
-    exec "$f"
+    sh -c "$f"
 done
