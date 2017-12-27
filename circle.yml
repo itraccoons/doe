@@ -41,7 +41,9 @@ jobs:
     docker: [{image: 'docker:17.06-git'}]
     steps:
       - checkout
-      - setup_remote_docker
+      - setup_remote_docker:
+          reusable: true
+          exclusive: false
       - run:
           name: "Test doe in bash"
           command: |
@@ -51,6 +53,11 @@ jobs:
             docker run --name \
                 test-bash-$CIRCLE_BUILD_NUM cli-builder:$CIRCLE_BUILD_NUM \
                 make test-unit
+  review:
+    working_directory: /work
+    docker: [{image: 'docker:17.06-git'}]
+    steps:
+      - setup_remote_docker:
       - run:
           name: "Get artifacts from containers"
           command: |
@@ -75,3 +82,7 @@ workflows:
       - test-bash:
           requires:
             - shellcheck
+      - review:
+          requires:
+            - test-zsh
+            - test-bash
