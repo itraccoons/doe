@@ -46,7 +46,7 @@ jobs:
       - run:
           name: "Get artifacts"
           command: |
-            docker ps
+            echo $CIRCLE_BUILD_NUM
             docker cp \
                 test-$CIRCLE_BUILD_NUM:/root/.doe \
                 /work/artifacts
