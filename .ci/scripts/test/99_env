@@ -4,6 +4,6 @@
     uname -a
     env
     ls -la
-    apt list --installed *sh
+    apt list --installed -- *sh
     
 } >> ~/.doe/env
