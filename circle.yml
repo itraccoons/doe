@@ -34,9 +34,6 @@ jobs:
             docker run --name \
                 test-zsh-$CIRCLE_BUILD_NUM cli-builder:$CIRCLE_BUILD_NUM \
                 make test-unit
-            docker cp \
-                test-zsh-$CIRCLE_BUILD_NUM:/root/.doe \
-                /work/artifacts/zsh
       - run:
           name: "Run test bash"
           command: |
@@ -46,6 +43,14 @@ jobs:
             docker run --name \
                 test-bash-$CIRCLE_BUILD_NUM cli-builder:$CIRCLE_BUILD_NUM \
                 make test-unit
+
+      - run:
+          name: "Get artifacts"
+          command: |
+            mkdir -p /work/artifacts
+            docker cp \
+                test-zsh-$CIRCLE_BUILD_NUM:/root/.doe \
+                /work/artifacts/zsh
             docker cp \
                 test-bash-$CIRCLE_BUILD_NUM:/root/.doe \
                 /work/artifacts/bash
