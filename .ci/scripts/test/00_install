@@ -1,10 +1,12 @@
 #!/bin/sh
 
+set -e
+
+DOE="/usr/local/bin/doe"
+
 echo "INSTALL $DOE"
 
-set -e
 set -x
-DOE="/usr/local/bin/doe"
 curl -fsSL https://doe.cloud/get | sudo sh
 [ "$(command -v doe)" = "$DOE" ]
 [ -e "$DOE" ]
