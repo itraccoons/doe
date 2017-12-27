@@ -7,4 +7,4 @@
     bash --version
     zsh --version
 
-} >> .tmp/env
+} >> ~/.tmp/env
