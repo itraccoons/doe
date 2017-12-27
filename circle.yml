@@ -31,10 +31,9 @@ jobs:
             dockerfile=.ci/dockerfiles/Dockerfile.test.zsh
             echo "COPY . ." >> $dockerfile
             docker build -f $dockerfile --tag cli-builder:$CIRCLE_BUILD_NUM .
-            docker run --name \
+            docker run --rm --name \
                 test-zsh-$CIRCLE_BUILD_NUM cli-builder:$CIRCLE_BUILD_NUM \
                 make test-unit
-            mkdir -p /work/artifacts/zsh
             docker cp \
                 test-zsh-$CIRCLE_BUILD_NUM:/root/.doe \
                 /work/artifacts/zsh
@@ -44,7 +43,7 @@ jobs:
             dockerfile=.ci/dockerfiles/Dockerfile.test.bash
             echo "COPY . ." >> $dockerfile
             docker build -f $dockerfile --tag cli-builder:$CIRCLE_BUILD_NUM .
-            docker run --name \
+            docker run --rm --name \
                 test-bash-$CIRCLE_BUILD_NUM cli-builder:$CIRCLE_BUILD_NUM \
                 make test-unit
             docker cp \
