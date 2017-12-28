@@ -13,7 +13,7 @@ jobs:
       - run:
           name: "Run shellcheck"
           command: |
-            dockerfile=.ci/dockerfiles/Dockerfile.shellcheck
+            dockerfile=.circleci/dockerfiles/Dockerfile.shellcheck
             echo "COPY . ." >> $dockerfile
             docker build -f $dockerfile --tag cli-validator:$CIRCLE_BUILD_NUM .
             docker run --rm \
@@ -28,7 +28,7 @@ jobs:
       - run:
           name: "Test doe in zsh"
           command: |
-            dockerfile=.ci/dockerfiles/Dockerfile.test.zsh
+            dockerfile=.circleci/dockerfiles/Dockerfile.test.zsh
             echo "COPY . ." >> $dockerfile
             docker build -f $dockerfile --tag cli-builder:$CIRCLE_BUILD_NUM .
             docker run --name \
@@ -37,7 +37,7 @@ jobs:
       - run:
           name: "Test doe in bash"
           command: |
-            dockerfile=.ci/dockerfiles/Dockerfile.test.bash
+            dockerfile=.circleci/dockerfiles/Dockerfile.test.bash
             echo "COPY . ." >> $dockerfile
             docker build -f $dockerfile --tag cli-builder:$CIRCLE_BUILD_NUM .
             docker run --name \
