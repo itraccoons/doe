@@ -5,7 +5,7 @@ set -x
 
 shellcheck bin/doe
 bin/doe completion | shellcheck -
-find .ci/scripts/ -type f -exec shellcheck {} +
+find .circleci/scripts/ -type f -exec shellcheck {} +
 #find scripts/ -type f | grep -v scripts/winresources | xargs shellcheck
 
 set +x
