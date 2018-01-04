@@ -4,7 +4,6 @@ set -e
 
 DOE="/usr/local/bin/doe"
 
-echo "TEST: $0"
 echo "INIT COMPLETION"
 
 #[ "$(typeset -F)" = "declare -f _doe_completion" ]
@@ -18,4 +17,7 @@ f="$(doe create -m mod -f func)"
 [ "$(stat -c "%a" "$f")" = 755 ]
 echo "echo \$0" >> "$f"
 [ "$(doe mod func)" = "$f" ] 
+[ "$(doe completion | md5sum | cut -d' ' -f1)" = "385aa382bca74cfa6d3bf7f2ebbf50ff" ]
 set +x
+
+

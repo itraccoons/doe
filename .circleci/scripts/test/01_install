@@ -4,7 +4,6 @@ set -e
 
 DOE="/usr/local/bin/doe"
 
-echo "TEST: $0"
 echo "INSTALL $DOE"
 
 set -x

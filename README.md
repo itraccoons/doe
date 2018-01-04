@@ -19,7 +19,9 @@ _doe \<module\> \<function\> [options]_
 
 ### Platform:
 
-GNU bash, version 3.2.57(1)-release (x86_64-apple-darwin15), 4.3.48(1)-release (x86_64-pc-linux-gnu)
+GNU bash, version 4.4.12(1)-release (x86_64-pc-linux-gnu)
+zsh 5.3.1 (x86_64-debian-linux-gnu)
+Linux 4.10.0-35-generic #39~16.04.1-Ubuntu SMP Wed Sep 13 09:02:42 UTC 2017 x86_64 GNU/Linux
 
 ### Quickstart
 
@@ -33,6 +35,8 @@ GNU bash, version 3.2.57(1)-release (x86_64-apple-darwin15), 4.3.48(1)-release (
     $ doe quick ubuntu
     $ doe quick ubuntu -c destroy
 
+### Add to .bashrc/.zshrc
+    $ doe completion >> ~/.$(basename $SHELL)rc
 
 ###### Oleksii Kucheruk (raccoon1)
 [![HitCount](http://hits.dwyl.io/itraccoons/doe.svg)](http://hits.dwyl.io/itraccoons/doe)

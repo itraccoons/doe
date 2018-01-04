@@ -1,0 +1,6 @@
+#!/bin/sh
+
+for test in .circleci/scripts/test/[0-9]*; do
+    echo "TEST: $test"
+    sh -c "$test"
+done

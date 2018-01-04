@@ -1,3 +1,4 @@
+---
 version: 2
 
 jobs:
@@ -13,7 +14,7 @@ jobs:
       - run:
           name: "Run shellcheck"
           command: |
-            dockerfile=.ci/dockerfiles/Dockerfile.shellcheck
+            dockerfile=.circleci/dockerfiles/Dockerfile.shellcheck
             echo "COPY . ." >> $dockerfile
             docker build -f $dockerfile --tag cli-validator:$CIRCLE_BUILD_NUM .
             docker run --rm \
@@ -26,25 +27,35 @@ jobs:
       - checkout
       - setup_remote_docker
       - run:
-          name: "Run test zsh"
+          name: "Test doe in zsh"
           command: |
-            dockerfile=.ci/dockerfiles/Dockerfile.test.zsh
+            dockerfile=.circleci/dockerfiles/Dockerfile.test.zsh
             echo "COPY . ." >> $dockerfile
             docker build -f $dockerfile --tag cli-builder:$CIRCLE_BUILD_NUM .
-            docker run --rm \
-                cli-builder:$CIRCLE_BUILD_NUM \
+            docker run --name \
+                test-zsh-$CIRCLE_BUILD_NUM cli-builder:$CIRCLE_BUILD_NUM \
                 make test-unit
       - run:
-          name: "Run test bash"
+          name: "Test doe in bash"
           command: |
-            dockerfile=.ci/dockerfiles/Dockerfile.test.bash
+            dockerfile=.circleci/dockerfiles/Dockerfile.test.bash
             echo "COPY . ." >> $dockerfile
             docker build -f $dockerfile --tag cli-builder:$CIRCLE_BUILD_NUM .
-            docker run --rm \
-                cli-builder:$CIRCLE_BUILD_NUM \
+            docker run --name \
+                test-bash-$CIRCLE_BUILD_NUM cli-builder:$CIRCLE_BUILD_NUM \
                 make test-unit
-#      - store_artifacts:
-#          path: /work/build
+      - run:
+          name: "Get artifacts from containers"
+          command: |
+            mkdir -p /work/artifacts
+            docker cp \
+                test-zsh-$CIRCLE_BUILD_NUM:/root/.doe \
+                /work/artifacts/zsh
+            docker cp \
+                test-bash-$CIRCLE_BUILD_NUM:/root/.doe \
+                /work/artifacts/bash
+      - store_artifacts:
+          path: /work/artifacts
 
 workflows:
   version: 2
