@@ -36,7 +36,7 @@ Linux 4.10.0-35-generic #39~16.04.1-Ubuntu SMP Wed Sep 13 09:02:42 UTC 2017 x86_
     $ doe quick ubuntu -c destroy
 
 ### Add to .bashrc/.zshrc
-    $ doe completion >> ~/.$(basename ${SHELL})rc
+    $ doe completion >> ~/.$(basename $SHELL)rc
 
 ###### Oleksii Kucheruk (raccoon1)
 [![HitCount](http://hits.dwyl.io/itraccoons/doe.svg)](http://hits.dwyl.io/itraccoons/doe)
