@@ -47,6 +47,8 @@ Use $HOME/bin for local binaries
     $ doe quick ubuntu
     $ doe quick ubuntu -c destroy
 
+### Add your modules
+    $ git clone <your-git-repo> ~/.doe/modules
 
 ###### Oleksii Kucheruk (raccoon1)
 [![HitCount](http://hits.dwyl.io/itraccoons/doe.svg)](http://hits.dwyl.io/itraccoons/doe)
