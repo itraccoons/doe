@@ -20,22 +20,16 @@ _doe \<module\> \<function\> [options]_
 ### Platform:
 
 GNU bash, version 4.4.12(1)-release (x86_64-pc-linux-gnu)
+
 zsh 5.3.1 (x86_64-debian-linux-gnu)
+
 Linux 4.10.0-35-generic #39~16.04.1-Ubuntu SMP Wed Sep 13 09:02:42 UTC 2017 x86_64 GNU/Linux
 
 ### Quickstart
 
     $ curl -fsSL https://doe.cloud/get | sudo sh
 
-### Using doe
-    $ . <(doe completion)
-    $ doe <TAB><TAB>
-    $ doe create -m quick -f ubuntu
-    $ nano ~/.doe/modules/quick/quick.ubuntu
-    $ doe quick ubuntu
-    $ doe quick ubuntu -c destroy
-
-### Adding to .bashrc/.zshrc
+### Adding completion to .bashrc/.zshrc
     $ doe completion >> ~/.$(basename $SHELL)rc
 
 ### if "Google Cloud Shell"; then
@@ -44,6 +38,15 @@ Use $HOME/bin for local binaries
     $ mkdir ~/bin
     $ cp /usr/local/bin/doe ~/bin/
     $ sudo rm -f /usr/local/bin/doe
+
+### Using doe
+    $ exec -l $SHELL
+    $ doe <TAB><TAB>
+    $ doe create -m quick -f ubuntu
+    $ nano ~/.doe/modules/quick/quick.ubuntu
+    $ doe quick ubuntu
+    $ doe quick ubuntu -c destroy
+
 
 ###### Oleksii Kucheruk (raccoon1)
 [![HitCount](http://hits.dwyl.io/itraccoons/doe.svg)](http://hits.dwyl.io/itraccoons/doe)
