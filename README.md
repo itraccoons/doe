@@ -38,7 +38,7 @@ Linux 4.10.0-35-generic #39~16.04.1-Ubuntu SMP Wed Sep 13 09:02:42 UTC 2017 x86_
 ### Adding to .bashrc/.zshrc
     $ doe completion >> ~/.$(basename $SHELL)rc
 
-#### if "Google Cloud Shell"; then
+##### if "Google Cloud Shell"; then
     $ mkdir ~/bin
     $ cp /usr/local/bin/doe ~/bin/
     $ sudo rm -f /usr/local/bin/doe
