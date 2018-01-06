@@ -5,5 +5,5 @@
     env
     ls -la
     apt list --installed -- *sh
-    
+
 } >> ~/.doe/env
