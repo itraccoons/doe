@@ -33,11 +33,13 @@ Linux 4.10.0-35-generic #39~16.04.1-Ubuntu SMP Wed Sep 13 09:02:42 UTC 2017 x86_
     $ doe completion >> ~/.$(basename $SHELL)rc
 
 ### if "Google Cloud Shell"; then
-Use $HOME/bin for local binaries
+Use $HOME/bin for local binaries, becasue persistemnt only $HOME (5GB)
 
     $ mkdir ~/bin
     $ cp /usr/local/bin/doe ~/bin/
     $ sudo rm -f /usr/local/bin/doe
+
+_check for PATH="$HOME/bin:$PATH" your .profile/.zprofile if you want run doe at user level_
 
 ### Using doe
     $ exec -l $SHELL
