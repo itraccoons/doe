@@ -11,7 +11,7 @@ DOE_HOMEDIR=$HOME/.doe
 DOE_MODDIR=$DOE_HOMEDIR/modules
 
 die() {
-  echo "$1"
+  echo "$1" >&2
   exit 1
 }
 
