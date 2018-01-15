@@ -1,61 +1,60 @@
 #!/bin/sh
 #
+# Create your own 3-level CLI with tab complition
+# $ doe <module> <function> [options]
+#
 # https://github.com/itraccoons/doe
 # doeZen by Oleksii Kucheruk <ok@raccoons.co> (raccoon1)
-# Create your own 3-level CLI with tab complition
-#
-# $ doe <module> <function> [options]
 set -e
 
 DOE_HOMEDIR=$HOME/.doe
 DOE_MODDIR=$DOE_HOMEDIR/modules
 
 die() {
-    echo "$1"
-    exit 1
+  echo "$1"
+  exit 1
 }
 
 create() {
-    help="Usage: doe create -m <MODULE> -f <FUNCTION> [-h]"
-    while getopts "m:f:h" o; do
-	case $o in
-	    m   ) mod="${OPTARG}" ;;
-	    f   ) func="${OPTARG:-help}" ;;
-	    ?|h ) echo "$help" && return ;;
-	esac
-    done
+  help="Usage: doe create -m <MODULE> -f <FUNCTION> [-h]"
+  while getopts "m:f:h" o; do
+    case $o in
+      m   ) mod="${OPTARG}" ;;
+      f   ) func="${OPTARG:-help}" ;;
+      ?|h ) echo "$help" && return ;;
+    esac
+  done
 
-    # if no -m or -f options
-    [ x"$mod" = x ] || [ y"$func" = y ] && echo "$help" && return
+  # if no -m or -f options
+  [ x"$mod" = x ] || [ y"$func" = y ] && echo "$help" && return
 
-    func_file=$DOE_MODDIR/$mod/$mod.$func
-    if [ -e "$func_file" ] ; then
-	echo "$func_file Already exist"
-    else
-        [ -d "$DOE_MODDIR/$mod" ] || mkdir -p "$DOE_MODDIR/$mod"
-        echo "#!/bin/sh" > "$func_file"
-        chmod +x "$func_file"
-        echo "$func_file"
-    fi
+  func_file=$DOE_MODDIR/$mod/$mod.$func
+  if [ -e "$func_file" ]; then
+    echo "$func_file Already exist"
+  else
+    [ -d "$DOE_MODDIR/$mod" ] || mkdir -p "$DOE_MODDIR/$mod"
+    echo "#!/bin/sh" > "$func_file"
+    chmod +x "$func_file"
+    echo "$func_file"
+  fi
 }
 
 call_module() {
-    [ "$2" = "list-functions" ] && call_module_function "$1" "$2" && die
+  [ "$2" = "list-functions" ] && call_module_function "$1" "$2" && die
 
-    case "$1" in
-	list-modules)	# Find all dirictories ("modules") in the directory with all modules.
-	    l_m=$(
-	    	find	-L "$DOE_MODDIR"/* \
-			-type d \
-			-maxdepth 0 \
-			-exec basename -a \
-			{} + \
-			2>/dev/null \
-		| tr '\n' ' '
-	    )
-	    echo "create completion $l_m"
-	    ;;
-	completion)
+  case "$1" in
+    list-modules) # Find all dirictories in the directory with all modules.
+      l_m=$( find -L "$DOE_MODDIR"/* \
+                  -type d \
+                  -maxdepth 0 \
+                  -exec basename -a \
+                  {} + \
+                  2>/dev/null \
+               | tr '\n' ' '
+           )
+       echo "create completion $l_m" # return list of modules
+       ;;
+    completion)
 echo "#!/usr/bin/env bash
 if [ \"\$(basename \"\$SHELL\")\" = \"zsh\" ] ; then
     autoload -U +X compinit bashcompinit
@@ -70,49 +69,48 @@ _doe_completion() {
 }
 complete -F _doe_completion doe
 "
-	    ;;
-	create)
-	    shift	# Remove "create" from "create -m MODULE -f FUNCTION"
-	    create "$@"
-	    ;;
-	"$1")
-	    if [ -d "$DOE_MODDIR/$1" ] ; then
-		call_module_function "$@" || die "Usage: doe $mod <function>\nfunctions: $($0 "$1" list-functions)"
-	    else
-		return 1
-	    fi
-	    ;;
-    esac
+      ;;
+    create)
+      shift # Remove "create" from "create -m MODULE -f FUNCTION"
+      create "$@"
+      ;;
+    "$1")
+      if [ -d "$DOE_MODDIR/$1" ]; then
+        call_module_function "$@" || die "Usage: doe $mod <function>\nfunctions: $($0 "$1" list-functions)"
+      else
+        return 1
+      fi
+      ;;
+  esac
 }
 
 call_module_function() {
-    case "$2" in
-	list-functions)	# Find all files ("functions") in the module directory
-	    l_f=$(
-		find	-L "$DOE_MODDIR/$1"/* \
-			-type f \
-			-maxdepth 0 \
-			-exec basename -a \
-			{} + \
-			2>/dev/null \
-		| cut -d'.' -f2 \
-		| tr '\n' ' '
-	    )
-	    echo "$l_f"
-	    ;;
-	"$2")
-	    func_file="$DOE_MODDIR/$1/$1.$2"
-	    if [ -f "$func_file" ] ; then
-		shift 2
-		exec "$func_file" "$@"
-	    else
-		return 1
-	    fi
+  case "$2" in
+    list-functions) # Find all files in the module directory
+      l_f=$( find -L "$DOE_MODDIR/$1"/* \
+                  -type f \
+                  -maxdepth 0 \
+                  -exec basename -a \
+                  {} + \
+                  2>/dev/null \
+               | cut -d'.' -f2 \
+               | tr '\n' ' '
+           )
+      echo "$l_f" # return list of functions
+      ;;
+    "$2")
+      func_file="$DOE_MODDIR/$1/$1.$2"
+      if [ -f "$func_file" ]; then
+        shift 2
+        exec "$func_file" "$@"
+      else
+        return 1
+      fi
     esac
 }
 
-if [ $# -eq 0 ] ; then
-    die "Usage: doe <module>\nmodules: $($0 list-modules)"
+if [ $# -eq 0 ]; then
+  die "Usage: doe <module>\nmodules: $($0 list-modules)"
 else
-    call_module "$@" || die "Usage: doe <module>\nmodules: $($0 list-modules)"
+  call_module "$@" || die "Usage: doe <module>\nmodules: $($0 list-modules)"
 fi
