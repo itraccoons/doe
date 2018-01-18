@@ -20,7 +20,7 @@ create() {
     while getopts "m:f:h" o; do
         case $o in
             m   ) mod="${OPTARG}" ;;
-            f   ) func="${OPTARG:-help}" ;;
+            f   ) func="${OPTARG}" ;;
             ?|h ) echo "$help" && return ;;
         esac
     done
