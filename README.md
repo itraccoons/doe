@@ -29,11 +29,11 @@ Linux 4.10.0-35-generic #39~16.04.1-Ubuntu SMP Wed Sep 13 09:02:42 UTC 2017 x86_
 
     $ curl -fsSL https://doe.cloud/get | sudo sh
 
-### Adding completion to .bashrc/.zshrc
-    $ doe completion >> ~/.$(basename $SHELL)rc
+### Adding completion to .bashrc
+    $ doe completion >> ~/.bashrc
     $ echo "if [ -f ~/.bashrc ]; then . ~/.bashrc; fi" >> ~/.bash_profile
 
-_use .zprofile for zsh_
+_use .zshrc and .zprofile for zsh_
 
 ### if "Google Cloud Shell"; then
 Use $HOME/bin for local binaries, becasue persistemnt only $HOME (5GB)
