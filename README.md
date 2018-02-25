@@ -7,7 +7,7 @@ Increasing perfomance by automating routing tasks.
 Wrap your routine into own simple "tab-tab" CLI
 
 This is "self-creating" tool for calling functions structured by purposes (modules).
-Includes one core module "completion" and create" functions for self extending.
+Includes one core modules "completion" and create" for self extending.
 
 Main idea to wrap repeatable activities into "tab" completing 3-level CLI.
 Rest of args/options could be transfered into function. 
